@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.4 (2020-03-31)
+
+
+### chore
+
+* update dependencies (#3cj43t)
+* **release :** publish [ci skip]
+* **release :** publish [ci skip]
+* **release :** publish [ci skip]
+* **release :** publish [ci skip]
+
+
+### ci
+
+* use concurrency 1 in yarn disclaimer generation
+
+
+### test
+
+* configure jest setupFiles correctly with enzyme and clearMocks (#4akeab)
+* generate test reports (#4cg6tp)
+
+
+
+
+
 ## 1.0.3 (2020-03-05)
 
 

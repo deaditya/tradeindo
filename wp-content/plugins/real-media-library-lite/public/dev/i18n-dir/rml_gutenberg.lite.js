@@ -882,9 +882,13 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -932,12 +936,14 @@ var linkOptions = [{
 var SelectFolderControl = /*#__PURE__*/function (_Component) {
   _inherits(SelectFolderControl, _Component);
 
+  var _super = _createSuper(SelectFolderControl);
+
   function SelectFolderControl() {
     var _this;
 
     _classCallCheck(this, SelectFolderControl);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SelectFolderControl).apply(this, arguments));
+    _this = _super.apply(this, arguments);
     _this.state = {
       $busy: true,
       tree: []
@@ -953,7 +959,7 @@ var SelectFolderControl = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, tree;
+        var _yield$window$rml$aja, tree;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -963,8 +969,8 @@ var SelectFolderControl = /*#__PURE__*/function (_Component) {
                 return window.rml.ajax("tree");
 
               case 2:
-                _ref = _context.sent;
-                tree = _ref.tree;
+                _yield$window$rml$aja = _context.sent;
+                tree = _yield$window$rml$aja.tree;
                 tree.unshift({
                   id: -1,
                   name: rmlOpts.others.lang.unorganized
@@ -1000,11 +1006,11 @@ var SelectFolderControl = /*#__PURE__*/function (_Component) {
           $busy = _this$state.$busy,
           tree = _this$state.tree;
 
-      return !$busy ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TreeSelect, _extends({
+      return !$busy ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TreeSelect, _extends({
         label: rmlOpts.others.lang.folder
       }, rest, {
         tree: tree
-      })) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Spinner, null);
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Spinner, null);
     }
   }]);
 
@@ -1018,12 +1024,14 @@ var SelectFolderControl = /*#__PURE__*/function (_Component) {
 var GalleryEdit = /*#__PURE__*/function (_Component2) {
   _inherits(GalleryEdit, _Component2);
 
+  var _super2 = _createSuper(GalleryEdit);
+
   function GalleryEdit() {
     var _this2;
 
     _classCallCheck(this, GalleryEdit);
 
-    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(GalleryEdit).apply(this, arguments));
+    _this2 = _super2.apply(this, arguments);
 
     _this2.setFid = function (fid) {
       return _this2.props.setAttributes({
@@ -1070,40 +1078,40 @@ var GalleryEdit = /*#__PURE__*/function (_Component2) {
           imageCrop = attributes.imageCrop,
           captions = attributes.captions,
           linkTo = attributes.linkTo;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(InspectorControls, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PanelBody, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(InspectorControls, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PanelBody, {
         title: __("Gallery Settings")
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectFolderControl, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectFolderControl, {
         value: fid,
         onChange: _this2.setFid
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(RangeControl, {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(RangeControl, {
         label: __("Columns"),
         value: columns,
         onChange: _this2.setColumnsNumber,
         min: "1",
         max: "8"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ToggleControl, {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ToggleControl, {
         label: __("Crop Images"),
         checked: !!imageCrop,
         onChange: _this2.toggleImageCrop
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ToggleControl, {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ToggleControl, {
         label: __("Caption"),
         checked: !!captions,
         onChange: _this2.toggleCaptions
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectControl, {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SelectControl, {
         label: __("Link To"),
         value: linkTo,
         onChange: _this2.setLinkTo,
         options: linkOptions
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Button, {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Button, {
         isPrimary: true,
         onClick: _this2.handleReload
-      }, rmlOpts.others.lang.reloadContent))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ServerSideRender, {
+      }, rmlOpts.others.lang.reloadContent))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ServerSideRender, {
         block: BLOCK_ID,
         attributes: attributes
-      }), !fid && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Notice, {
+      }), !fid && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Notice, {
         status: "error",
         isDismissible: false
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, rmlOpts.others.lang.gutenBergBlockSelect)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, rmlOpts.others.lang.gutenBergBlockSelect)));
     };
 
     _this2.state = {
@@ -1122,17 +1130,17 @@ var GalleryEdit = /*#__PURE__*/function (_Component2) {
 registerBlockType(BLOCK_ID, {
   title: "Real Media Library Gallery",
   description: "Display folder images in a rich gallery.",
-  icon: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SVG, {
+  icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SVG, {
     viewBox: "0 0 24 24",
     xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
     fill: "none",
     d: "M0 0h24v24H0V0z"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(G, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(G, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
     d: "M20 4v12H8V4h12m0-2H8L6 4v12l2 2h12l2-2V4l-2-2z"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
     d: "M12 12l1 2 3-3 3 4H9z"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Path, {
     d: "M2 6v14l2 2h14v-2H4V6H2z"
   }))),
   category: "common",

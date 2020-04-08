@@ -1,5 +1,27 @@
 (window["webpackJsonpdevowlWp_utils"] = window["webpackJsonpdevowlWp_utils"] || []).push([["vendor~index"],{
 
+/***/ "../../node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
+/*!******************************************************************************************!*\
+  !*** /builds/devowlio/devowl-wp/node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+
+/***/ }),
+
 /***/ "../../node_modules/@babel/runtime/helpers/arrayWithHoles.js":
 /*!****************************************************************************************!*\
   !*** /builds/devowlio/devowl-wp/node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
@@ -244,10 +266,7 @@ module.exports = _inherits;
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -286,7 +305,7 @@ module.exports = _iterableToArrayLimit;
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 module.exports = _nonIterableRest;
@@ -458,10 +477,12 @@ var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ "../../node_mod
 
 var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ "../../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
 
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "../../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
 var nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ "../../node_modules/@babel/runtime/helpers/nonIterableRest.js");
 
 function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
 
 module.exports = _slicedToArray;
@@ -493,6 +514,29 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
+
+/***/ }),
+
+/***/ "../../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
+/*!****************************************************************************************************!*\
+  !*** /builds/devowlio/devowl-wp/node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "../../node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(n);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
 
 /***/ }),
 
