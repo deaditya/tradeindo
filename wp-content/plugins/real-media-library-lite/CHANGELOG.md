@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.7.6 (2020-03-31)
+
+
+### chore
+
+* update dependencies (#3cj43t)
+* **release :** publish [ci skip]
+* **release :** publish [ci skip]
+
+
+### ci
+
+* use concurrency 1 in yarn disclaimer generation
+
+
+### style
+
+* run prettier@2 on all files (#3cj43t)
+
+
+### test
+
+* configure jest setupFiles correctly with enzyme and clearMocks (#4akeab)
+* generate test reports (#4cg6tp)
+
+
+
+
+
 ## 4.7.5 (2020-03-23)
 
 
