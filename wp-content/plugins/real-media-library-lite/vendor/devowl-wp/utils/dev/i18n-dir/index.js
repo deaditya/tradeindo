@@ -196,7 +196,7 @@ var Button = function Button(_ref) {
     "button-primary": type === ButtonType.Primary,
     "button-secondary": type === ButtonType.Secondary || !type
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
     className: buttonClassName
   }, rest), children);
 };
@@ -263,9 +263,9 @@ var Notice = function Notice(_ref) {
     "notice-info": type === NoticeType.Info,
     "notice-success": type === NoticeType.Success
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, children));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, children));
 };
 
 
@@ -571,7 +571,7 @@ function createContextFactory(object) {
 
   var StoreProvider = function StoreProvider(_ref) {
     var children = _ref.children;
-    return /*#__PURE__*/React.createElement(StoreContext.Provider, {
+    return React.createElement(StoreContext.Provider, {
       value: object
     }, children);
   };
@@ -610,12 +610,6 @@ function createContextFactory(object) {
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var wp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp */ "wp");
 /* harmony import */ var wp__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp__WEBPACK_IMPORTED_MODULE_2__);
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 // @see https://github.com/Automattic/wp-calypso/blob/master/packages/i18n-calypso/src/index.js
 
 
@@ -632,18 +626,28 @@ function createLocalizationFactory(slug) {
       wpi18nLazy = _ref.wpi18nLazy;
 
   if (wpi18nLazy && wpi18nLazy[slug] && wp__WEBPACK_IMPORTED_MODULE_2___default.a && wp__WEBPACK_IMPORTED_MODULE_2___default.a.i18n) {
-    var _iterator = _createForOfIteratorHelper(wpi18nLazy[slug]),
-        _step;
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
     try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      for (var _iterator = wpi18nLazy[slug][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var localeData = _step.value;
         wp__WEBPACK_IMPORTED_MODULE_2___default.a.i18n.setLocaleData(localeData, slug);
       }
     } catch (err) {
-      _iterator.e(err);
+      _didIteratorError = true;
+      _iteratorError = err;
     } finally {
-      _iterator.f();
+      try {
+        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+          _iterator["return"]();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
     }
   }
   /**

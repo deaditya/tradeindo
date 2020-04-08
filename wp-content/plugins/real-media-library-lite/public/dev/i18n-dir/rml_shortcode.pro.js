@@ -1133,7 +1133,7 @@ tinymce__WEBPACK_IMPORTED_MODULE_1___default.a.PluginManager.add(TAG, function (
   // Command
   editor.addCommand("folder_gallery_popup", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(ui, v) {
-      var _yield$ajax, _yield$ajax$slugs, names, slugs, types, listValues, _ref3, _ref3$fid, fid, _ref3$link, link, _ref3$columns, columns, _ref3$orderby, orderby, _ref3$size, size, columnsValue, mce, options;
+      var _ref3, _ref3$slugs, names, slugs, types, listValues, _ref4, _ref4$fid, fid, _ref4$link, link, _ref4$columns, columns, _ref4$orderby, orderby, _ref4$size, size, columnsValue, mce, options;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -1145,11 +1145,11 @@ tinymce__WEBPACK_IMPORTED_MODULE_1___default.a.PluginManager.add(TAG, function (
               return Object(_util__WEBPACK_IMPORTED_MODULE_3__["ajax"])("tree");
 
             case 3:
-              _yield$ajax = _context.sent;
-              _yield$ajax$slugs = _yield$ajax.slugs;
-              names = _yield$ajax$slugs.names;
-              slugs = _yield$ajax$slugs.slugs;
-              types = _yield$ajax$slugs.types;
+              _ref3 = _context.sent;
+              _ref3$slugs = _ref3.slugs;
+              names = _ref3$slugs.names;
+              slugs = _ref3$slugs.slugs;
+              types = _ref3$slugs.types;
               names.shift();
               slugs.shift();
               types.shift();
@@ -1162,7 +1162,7 @@ tinymce__WEBPACK_IMPORTED_MODULE_1___default.a.PluginManager.add(TAG, function (
               });
               editor.setProgressState(false); // Prepare dialog
 
-              _ref3 = v || {}, _ref3$fid = _ref3.fid, fid = _ref3$fid === void 0 ? "" : _ref3$fid, _ref3$link = _ref3.link, link = _ref3$link === void 0 ? "" : _ref3$link, _ref3$columns = _ref3.columns, columns = _ref3$columns === void 0 ? "3" : _ref3$columns, _ref3$orderby = _ref3.orderby, orderby = _ref3$orderby === void 0 ? "" : _ref3$orderby, _ref3$size = _ref3.size, size = _ref3$size === void 0 ? "" : _ref3$size, columnsValue = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (i) {
+              _ref4 = v || {}, _ref4$fid = _ref4.fid, fid = _ref4$fid === void 0 ? "" : _ref4$fid, _ref4$link = _ref4.link, link = _ref4$link === void 0 ? "" : _ref4$link, _ref4$columns = _ref4.columns, columns = _ref4$columns === void 0 ? "3" : _ref4$columns, _ref4$orderby = _ref4.orderby, orderby = _ref4$orderby === void 0 ? "" : _ref4$orderby, _ref4$size = _ref4.size, size = _ref4$size === void 0 ? "" : _ref4$size, columnsValue = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (i) {
                 return {
                   text: "" + i,
                   value: "" + i
@@ -1507,16 +1507,16 @@ var textDots = function textDots(string) {
   var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
   return string && string.length > max ? string.slice(0, max) + "..." : string;
 };
-var ICON_OBJ_FOLDER_CLOSED = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_aiot__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
+var ICON_OBJ_FOLDER_CLOSED = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_aiot__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
   type: "folder"
 });
-var ICON_OBJ_FOLDER_OPEN = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_aiot__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
+var ICON_OBJ_FOLDER_OPEN = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_aiot__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
   type: "folder-open"
 });
-var ICON_OBJ_FOLDER_COLLECTION = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+var ICON_OBJ_FOLDER_COLLECTION = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
   className: "rmlicon-collection"
 });
-var ICON_OBJ_FOLDER_GALLERY = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+var ICON_OBJ_FOLDER_GALLERY = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
   className: "rmlicon-gallery"
 });
 /**
@@ -1558,7 +1558,7 @@ function resolveIcon(icon) {
 
 
       _hooks__WEBPACK_IMPORTED_MODULE_4__["default"].call("tree/node/icon", [result, icon]);
-      return result.icon ? result.icon : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_aiot__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
+      return result.icon ? result.icon : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_aiot__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
         type: icon
       });
   }
@@ -1587,7 +1587,7 @@ var ready = function ready(fn) {
 
 function i18n(key, params, spanWrapperProps) {
   if (rmlopts__WEBPACK_IMPORTED_MODULE_5___default.a && rmlopts__WEBPACK_IMPORTED_MODULE_5___default.a.others.lang && rmlopts__WEBPACK_IMPORTED_MODULE_5___default.a.others.lang[key]) {
-    var span = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(i18n_react__WEBPACK_IMPORTED_MODULE_7___default.a.span, _extends({
+    var span = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(i18n_react__WEBPACK_IMPORTED_MODULE_7___default.a.span, _extends({
       text: rmlopts__WEBPACK_IMPORTED_MODULE_5___default.a.others.lang[key]
     }, params)); // Predefined span wrapper props
 
@@ -1607,7 +1607,7 @@ function i18n(key, params, spanWrapperProps) {
       }
     }
 
-    return spanWrapperProps ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", spanWrapperProps, span) : span;
+    return spanWrapperProps ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", spanWrapperProps, span) : span;
   }
 
   return key;
@@ -1775,7 +1775,7 @@ function fetchTree(_x) {
 
 function _fetchTree() {
   _fetchTree = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(settings) {
-    var _yield$ajax, tree, rest;
+    var _ref3, tree, rest;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -1785,9 +1785,9 @@ function _fetchTree() {
             return ajax("tree", settings);
 
           case 2:
-            _yield$ajax = _context.sent;
-            tree = _yield$ajax.tree;
-            rest = _objectWithoutProperties(_yield$ajax, ["tree"]);
+            _ref3 = _context.sent;
+            tree = _ref3.tree;
+            rest = _objectWithoutProperties(_ref3, ["tree"]);
 
             if (!tree) {
               rml && rml.store && rml.store.setter(function (self) {
