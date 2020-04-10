@@ -2056,44 +2056,44 @@ body .dark .testimonial_slider[data-style="multiple_visible"][data-color*="accen
 		article.post.link .post-content h2, #call-to-action span, .woocommerce .full-width-tabs #reviews h3, 
 		.row .col.section-title h2, .nectar_single_testimonial[data-style="bold"] p,
 		.woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control,
-		body #error-404 h2, .woocommerce-page .woocommerce p.cart-empty { text-transform: none;  }		
+		body #error-404 h2, .woocommerce-page .woocommerce p.cart-empty { font-family: Rubik; text-transform: none; font-size:26px; line-height:26px; font-weight:400;  }		
 		.single-product div.product h1.product_title {
-			font-size: 34px;
-			line-height: 42px;
+			font-size: 26px;
+			line-height: 26px;
 		}
 		
 		@media only screen and (max-width: 1300px) and (min-width: 1000px) {
 		 	body h2, .single-product div.product h1.product_title {
-		 		font-size: 28.9px;
-				line-height: 35.7px;
+		 		font-size: 22.1px;
+				line-height: 22.1px;
 			}
 			.row .span_2 h2, .row .span_3 h2, .row .span_4 h2, .row .vc_col-sm-2 h2, .row .vc_col-sm-3 h2, .row .vc_col-sm-4 h2 { 
-				font-size: 23.8px;
-				line-height: 29.4px;
+				font-size: 18.2px;
+				line-height: 18.2px;
 			}
 			
 		}
 
 		@media only screen and (max-width: 999px) and (min-width: 690px) {
 		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control {
-				font-size: 27.2px;
-				line-height: 33.6px;
+				font-size: 20.8px;
+				line-height: 20.8px;
 			}
 			.wpb_wrapper h2.vc_custom_heading {
-				font-size: 27.2px!important;
-				line-height: 33.6px!important;
+				font-size: 20.8px!important;
+				line-height: 20.8px!important;
 			}
 			
 		}
 
 		@media only screen and (max-width: 690px) {
 		.col h2, h2, .single-product div.product h1.product_title, .woocommerce-account .woocommerce > #customer_login .nectar-form-controls .control {
-				font-size: 25.5px;
-				line-height: 31.5px;
+				font-size: 19.5px;
+				line-height: 19.5px;
 			}
 			.wpb_wrapper h2.vc_custom_heading {
-				font-size: 25.5px!important;
-				line-height: 31.5px!important;
+				font-size: 19.5px!important;
+				line-height: 19.5px!important;
 			}
 		}
 		
