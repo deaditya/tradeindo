@@ -1586,7 +1586,7 @@ body .dark .testimonial_slider[data-style="multiple_visible"][data-color*="accen
 					 background-color: rgba(255,255,255,100); 
 				 }.material #header-outer:not(.transparent) .bg-color-stripe { 
 					 display: none; 
-				 } .portfolio-loading, #ajax-loading-screen .loading-icon, .loading-icon, .pp_loaderIcon { background-image: url("http://localhost/tradeindo/wp-content/uploads/2020/04/tradeindo-logo-white.png"); } @media only screen and (min-width: 1000px) and (max-width: 1300px) {
+				 } .portfolio-loading, #ajax-loading-screen .loading-icon, .loading-icon, .pp_loaderIcon { background-image: url(""); } @media only screen and (min-width: 1000px) and (max-width: 1300px) {
 	    .nectar-slider-wrap[data-full-width="true"] .swiper-slide .content h2, 
 	    .nectar-slider-wrap[data-full-width="boxed-full-width"] .swiper-slide .content h2,
 	    .full-width-content .vc_span12 .swiper-slide .content h2 {
