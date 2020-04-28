@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: real-media-library\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/src\n"
 "POT-Creation-Date: 2020-02-24T11:44:26+01:00\n"
-"PO-Revision-Date: 2020-02-24 14:12+0100\n"
+"PO-Revision-Date: 2020-04-07 19:34+0200\n"
 "Last-Translator: wordpress <matzeeable@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
 "__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
@@ -28,7 +28,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 msgid "WP Real Media Library"
-msgstr "WP Real Media Library"
+msgstr "Real Media Library"
 
 #. Plugin URI of the plugin
 msgid "https://devowl.io/wordpress-real-media-library/"
@@ -44,7 +44,7 @@ msgstr ""
 
 #. Author of the plugin
 msgid "devowl.io GmbH"
-msgstr "devowl.io GmbH"
+msgstr "devowl.io"
 
 #. Author URI of the plugin
 msgid "https://devowl.io"
@@ -663,7 +663,7 @@ msgstr ""
 "Неорганизованные."
 
 #: inc/view/Lang.php:58
-msgid "Ok"
+msgid "OK"
 msgstr "ОК"
 
 #: inc/view/Lang.php:59
@@ -1074,7 +1074,7 @@ msgid "PRO Feature"
 msgstr "PRO-функция"
 
 #: inc/view/Lang.php:179
-msgid "Dismiss 20 days"
+msgid "Hide for 20 days"
 msgstr "Прятаться 20 дней"
 
 #: inc/view/Lang.php:180

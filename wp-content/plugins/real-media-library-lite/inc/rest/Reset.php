@@ -1,4 +1,5 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\rest;
 
 use MatthiasWeb\RealMediaLibrary\attachment\CountCache;
@@ -7,86 +8,39 @@ use MatthiasWeb\RealMediaLibrary\comp\ExImport;
 use MatthiasWeb\RealMediaLibrary\rest\Service;
 use MatthiasWeb\RealMediaLibrary\Util;
 use WP_REST_Response;
-
+use MatthiasWeb\RealMediaLibrary\lite\order\Sortable;
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * Enables the /reset, /import and /export REST for admins (manage_options).
  */
-class Reset {
+class Reset
+{
     use UtilsProvider;
-
     /**
      * Register endpoints.
      */
-    public function rest_api_init() {
+    public function rest_api_init()
+    {
         if ($this->isPro()) {
-            register_rest_route(Service::LEGACY_NAMESPACE, '/reset/order', [
-                'methods' => 'DELETE',
-                'callback' => [$this, 'resetOrder']
-            ]);
+            register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/reset/order', ['methods' => 'DELETE', 'callback' => [$this, 'resetOrder']]);
         }
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/reset/count', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'resetCount']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/reset/slugs', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'resetSlugs']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/reset/relations', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'resetRelations']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/reset/folders', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'resetFolders']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/export', [
-            'methods' => 'GET',
-            'callback' => [$this, 'export']
-        ]);
-
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/reset/count', ['methods' => 'DELETE', 'callback' => [$this, 'resetCount']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/reset/slugs', ['methods' => 'DELETE', 'callback' => [$this, 'resetSlugs']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/reset/relations', ['methods' => 'DELETE', 'callback' => [$this, 'resetRelations']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/reset/folders', ['methods' => 'DELETE', 'callback' => [$this, 'resetFolders']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/export', ['methods' => 'GET', 'callback' => [$this, 'export']]);
         if ($this->isPro()) {
-            register_rest_route(Service::LEGACY_NAMESPACE, '/import', [
-                'methods' => 'POST',
-                'callback' => [$this, 'import']
-            ]);
-
-            register_rest_route(Service::LEGACY_NAMESPACE, '/import/taxonomy', [
-                'methods' => 'POST',
-                'callback' => [$this, 'importTaxonomy']
-            ]);
+            register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/import', ['methods' => 'POST', 'callback' => [$this, 'import']]);
+            register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/import/taxonomy', ['methods' => 'POST', 'callback' => [$this, 'importTaxonomy']]);
         }
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/reset/debug', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'resetDebug']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/notice/license', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'routeNoticeDismissLicense']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/notice/lite', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'routeNoticeDismissLite']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/notice/import', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'routeNoticeDismissImportTax']
-        ]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/reset/debug', ['methods' => 'DELETE', 'callback' => [$this, 'resetDebug']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/notice/license', ['methods' => 'DELETE', 'callback' => [$this, 'routeNoticeDismissLicense']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/notice/lite', ['methods' => 'DELETE', 'callback' => [$this, 'routeNoticeDismissLite']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/notice/import', ['methods' => 'DELETE', 'callback' => [$this, 'routeNoticeDismissImportTax']]);
     }
-
     /**
      * See API docs.
      *
@@ -100,15 +54,14 @@ class Reset {
      * @apiPermission manage_options
      * @apiPermission Pro only
      */
-    public function resetOrder($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function resetOrder($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
         \MatthiasWeb\RealMediaLibrary\lite\order\Sortable::delete_all_order();
-        return new WP_REST_Response(true);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -121,15 +74,14 @@ class Reset {
      * @apiVersion 1.0.0
      * @apiPermission manage_options
      */
-    public function resetCount($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function resetCount($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
-        CountCache::getInstance()->resetCountCache();
-        return new WP_REST_Response(true);
+        \MatthiasWeb\RealMediaLibrary\attachment\CountCache::getInstance()->resetCountCache();
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -142,15 +94,14 @@ class Reset {
      * @apiVersion 1.0.0
      * @apiPermission manage_options
      */
-    public function resetSlugs($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function resetSlugs($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
-        Util::getInstance()->resetAllSlugsAndAbsolutePathes('html_entity_decode');
-        return new \WP_REST_Response(true);
+        \MatthiasWeb\RealMediaLibrary\Util::getInstance()->resetAllSlugsAndAbsolutePathes('html_entity_decode');
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -163,18 +114,17 @@ class Reset {
      * @apiVersion 1.0.0
      * @apiPermission manage_options
      */
-    public function resetRelations($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function resetRelations($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
         global $wpdb;
         $table_posts = $this->getTableName('posts');
         // phpcs:disable WordPress.DB.PreparedSQL
-        $wpdb->query("DELETE FROM $table_posts");
+        $wpdb->query("DELETE FROM {$table_posts}");
         // phpcs:enable WordPress.DB.PreparedSQL
-        CountCache::getInstance()->resetCountCache();
-
+        \MatthiasWeb\RealMediaLibrary\attachment\CountCache::getInstance()->resetCountCache();
         /**
          * This action is fired after folder / attachment relations reset.
          *
@@ -182,10 +132,8 @@ class Reset {
          * @since 4.0.7
          */
         do_action('RML/Reset/Relations');
-
-        return new \WP_REST_Response(true);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -198,25 +146,21 @@ class Reset {
      * @apiVersion 1.0.0
      * @apiPermission manage_options
      */
-    public function resetFolders($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function resetFolders($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
         global $wpdb;
         // phpcs:disable WordPress.DB.PreparedSQL
         $table_posts = $this->getTableName('posts');
-        $wpdb->query("DELETE FROM $table_posts");
-
+        $wpdb->query("DELETE FROM {$table_posts}");
         $table_name = $this->getTableName();
-        $wpdb->query("DELETE FROM $table_name");
-
+        $wpdb->query("DELETE FROM {$table_name}");
         $table_meta = $this->getTableName('meta');
-        $wpdb->query("DELETE FROM $table_meta");
+        $wpdb->query("DELETE FROM {$table_meta}");
         // phpcs:enable WordPress.DB.PreparedSQL
-
-        CountCache::getInstance()->resetCountCache();
-
+        \MatthiasWeb\RealMediaLibrary\attachment\CountCache::getInstance()->resetCountCache();
         /**
          * This action is fired after whole reset.
          *
@@ -224,10 +168,8 @@ class Reset {
          * @since 4.0.7
          */
         do_action('RML/Reset');
-
-        return new WP_REST_Response(true);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -240,14 +182,13 @@ class Reset {
      * @apiVersion 1.0.0
      * @apiPermission manage_options
      */
-    public function export($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function export($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
-        return new WP_REST_Response(json_encode(ExImport::getInstance()->getFolders()));
+        return new \WP_REST_Response(\json_encode(\MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->getFolders()));
     }
-
     /**
      * See API docs.
      *
@@ -262,17 +203,16 @@ class Reset {
      * @apiPermission manage_options
      * @apiPermission Pro only
      */
-    public function import($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function import($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
-        $import = urldecode($request->get_param('import'));
-        $import = json_decode($import, true);
-        ExImport::getInstance()->import($import);
-        return new WP_REST_Response(true);
+        $import = \urldecode($request->get_param('import'));
+        $import = \json_decode($import, \true);
+        \MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->import($import);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -287,16 +227,15 @@ class Reset {
      * @apiPermission manage_options
      * @apiPermission Pro only
      */
-    public function importTaxonomy($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function importTaxonomy($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
         $taxonomy = $request->get_param('taxonomy');
-        ExImport::getInstance()->importTaxonomy($taxonomy);
-        return new WP_REST_Response(true);
+        \MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->importTaxonomy($taxonomy);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -310,14 +249,14 @@ class Reset {
      * @since 4.1.0
      * @apiPermission install_plugins
      */
-    public function routeNoticeDismissLicense() {
-        if (($permit = Service::permit('install_plugins')) !== null) {
+    public function routeNoticeDismissLicense()
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('install_plugins')) !== null) {
             return $permit;
         }
-        $this->getCore()->isLicenseNoticeDismissed(true);
-        return new WP_REST_Response(true);
+        $this->getCore()->isLicenseNoticeDismissed(\true);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -331,14 +270,14 @@ class Reset {
      * @since 4.6.0
      * @apiPermission install_plugins
      */
-    public function routeNoticeDismissLite() {
-        if (($permit = Service::permit('install_plugins')) !== null) {
+    public function routeNoticeDismissLite()
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('install_plugins')) !== null) {
             return $permit;
         }
-        $this->getCore()->isLiteNoticeDismissed(true);
-        return new WP_REST_Response(true);
+        $this->getCore()->isLiteNoticeDismissed(\true);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -352,14 +291,14 @@ class Reset {
      * @since 4.6.2
      * @apiPermission install_plugins
      */
-    public function routeNoticeDismissImportTax() {
-        if (($permit = Service::permit('install_plugins')) !== null) {
+    public function routeNoticeDismissImportTax()
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('install_plugins')) !== null) {
             return $permit;
         }
-        ExImport::getInstance()->isImportTaxNoticeDismissed(true);
-        return new WP_REST_Response(true);
+        \MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->isImportTaxNoticeDismissed(\true);
+        return new \WP_REST_Response(\true);
     }
-
     /**
      * See API docs.
      *
@@ -372,16 +311,16 @@ class Reset {
      * @apiVersion 1.0.0
      * @apiPermission manage_options
      */
-    public function resetDebug($request) {
-        if (($permit = Service::permit('manage_options')) !== null) {
+    public function resetDebug($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
             return $permit;
         }
-
         global $wpdb;
         $tablename = $this->getTableName('debug');
         // phpcs:disable WordPress.DB.PreparedSQL
-        $wpdb->query("DELETE FROM $tablename", ARRAY_A);
+        $wpdb->query("DELETE FROM {$tablename}", ARRAY_A);
         // phpcs:enable WordPress.DB.PreparedSQL
-        return new WP_REST_Response(true);
+        return new \WP_REST_Response(\true);
     }
 }

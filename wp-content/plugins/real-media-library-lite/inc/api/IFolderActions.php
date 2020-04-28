@@ -1,12 +1,12 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\api;
 
 use MatthiasWeb\RealMediaLibrary\exception\OnlyInProVersionException;
-
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * This interface provides elementary action methods for folder objects. All folder
  * types (Folder, Collection, Gallery, ...) have implemented this interface.
@@ -14,7 +14,8 @@ defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file req
  *
  * @since 3.3.1
  */
-interface IFolderActions {
+interface IFolderActions
+{
     /**
      * Fetch all attachment ids currently in this folder. It uses the
      * default WP_Query to fetch the ids. You can also use the WP_Query like:
@@ -32,7 +33,6 @@ interface IFolderActions {
      * @return int[] Post ids
      */
     public function read($order = null, $orderby = null);
-
     /**
      * Relocate a folder to a given place in the folder structure.
      *
@@ -41,8 +41,7 @@ interface IFolderActions {
      * @throws Exception
      * @return boolean|string[] true or array with errors
      */
-    public function relocate($parentId, $nextFolderId = false);
-
+    public function relocate($parentId, $nextFolderId = \false);
     /**
      * (Pro only) Start to order the given folder subfolders by a given order type.
      *
@@ -52,8 +51,7 @@ interface IFolderActions {
      * @throws OnlyInProVersionException
      * @since 4.4
      */
-    public function orderSubfolders($orderby, $writeMetadata = true);
-
+    public function orderSubfolders($orderby, $writeMetadata = \true);
     /**
      * (Pro only) Reset the subfolders order'.
      *
@@ -62,14 +60,12 @@ interface IFolderActions {
      * @since 4.4
      */
     public function resetSubfolderOrder();
-
     /**
      * Reindex the children folders so the "ord" number is set right.
      *
      * @param boolean $resetData If true, the structure is reset
      */
-    public function reindexChildrens($resetData = false);
-
+    public function reindexChildrens($resetData = \false);
     /**
      * Insert an amount of post ID's (attachments) to this folder.
      *
@@ -81,22 +77,26 @@ interface IFolderActions {
      * @see wp_rml_move()
      * @see wp_rml_create_shortcuts()
      */
-    public function insert($ids, $supress_validation = false, $isShortcut = false);
-
+    public function insert($ids, $supress_validation = \false, $isShortcut = \false);
     /**
      * Iterate all children of this folder recursively and
      * update the absolute path. Use this function with caution because it can be
      * time intensive.
      */
     public function updateThisAndChildrensAbsolutePath();
-
+    /**
+     * For internal usage only!
+     *
+     * @param object $children
+     * @internal
+     */
+    public function addChildren($children);
     /**
      * Sets the folders visibility to the user.
      *
      * @param boolean $visible
      */
     public function setVisible($visible);
-
     /**
      * Set restrictions for this folder. Allowed restrictions for folders:
      *
@@ -116,7 +116,6 @@ interface IFolderActions {
      * @return boolean
      */
     public function setRestrictions($restrictions = []);
-
     /**
      * Changes the parent folder of this folder.
      *
@@ -126,8 +125,7 @@ interface IFolderActions {
      * @throws \Exception
      * @return boolean
      */
-    public function setParent($id, $ord = -1, $force = false);
-
+    public function setParent($id, $ord = -1, $force = \false);
     /**
      * Renames a folder and then checks, if there is no duplicate folder in the
      * parent folder.
@@ -137,5 +135,5 @@ interface IFolderActions {
      * @throws \Exception
      * @return boolean
      */
-    public function setName($name, $supress_validation = false);
+    public function setName($name, $supress_validation = \false);
 }

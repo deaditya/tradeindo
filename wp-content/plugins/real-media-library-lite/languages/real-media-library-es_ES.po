@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: real-media-library\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/src\n"
-"POT-Creation-Date: 2020-02-24T11:44:26+01:00\n"
-"PO-Revision-Date: 2020-02-24 14:09+0100\n"
+"POT-Creation-Date: 2020-03-31T11:39:11+02:00\n"
+"PO-Revision-Date: 2020-04-07 19:32+0200\n"
 "Last-Translator: wordpress <matzeeable@gmail.com>\n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
 "__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
@@ -25,8 +25,8 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
 #. Plugin Name of the plugin
-msgid "WP Real Media Library"
-msgstr "WP Biblioteca Real Media"
+msgid "Real Media Library"
+msgstr "Real Media Library"
 
 #. Plugin URI of the plugin
 msgid "https://devowl.io/wordpress-real-media-library/"
@@ -42,31 +42,67 @@ msgstr ""
 "comunicación es fácil!"
 
 #. Author of the plugin
-msgid "devowl.io GmbH"
-msgstr "devowl.io GmbH"
+msgid "devowl.io"
+msgstr "devowl.io"
 
 #. Author URI of the plugin
 msgid "https://devowl.io"
 msgstr "https://devowl.io"
+
+#: inc/AdInitiator.php:56
+msgid "Complete file and folder manager"
+msgstr ""
+
+#: inc/AdInitiator.php:57
+msgid ""
+"Real Media Library is a WordPress plugin that empowers you with advanced "
+"media management. You can use this plugin to organize the thousands of "
+"images, audio, video and PDF files in your media library into folders. "
+"Basically it is a file manager like Windows Explorer or Mac Finder, but for "
+"WordPress."
+msgstr ""
+
+#: inc/AdInitiator.php:59
+msgid "In the PRO version you can create more than 10 folders (unlimited)."
+msgstr ""
+
+#: inc/AdInitiator.php:63
+msgid "Filter in insert media dialog"
+msgstr ""
+
+#: inc/AdInitiator.php:64
+msgid ""
+"No matter where you are, the folder structure of Real Media Library is "
+"always where you can select files. For example in the dialog for selecting a "
+"\"Featured Image\"."
+msgstr ""
+
+#: inc/AdInitiator.php:69
+msgid "Custom image order"
+msgstr ""
+
+#: inc/AdInitiator.php:70
+msgid ""
+"Organizing your media files is really easy with the Real Media Library "
+"plugin. You can arrange the order of your files yourself by dragging and "
+"dropping. This allows you to move important files to the top for faster "
+"access."
+msgstr ""
+
+#: inc/AdInitiator.php:82
+msgid "Get your PRO license now!"
+msgstr ""
 
 #: inc/api/attachment.php:108 inc/api/attachment.php:129
 #: inc/api/attachment.php:145
 msgid "The given folder was not found."
 msgstr "No se encontró la carpeta dada."
 
-#: inc/Assets.php:224
+#: inc/Assets.php:223
 msgid "Complementary Plugins"
 msgstr "Extensiones"
 
-#: inc/Assets.php:228
-msgid "Support"
-msgstr "Soporte"
-
-#: inc/Assets.php:234
-msgid "Rate plugin"
-msgstr "Calificar plugin"
-
-#: inc/Assets.php:252
+#: inc/Assets.php:241
 msgid ""
 "\n"
 "\n"
@@ -130,6 +166,10 @@ msgstr ""
 
 #. translators:
 #: inc/attachment/CustomField.php:133
+#, fuzzy
+#| msgid "For this file is %d shortcut available in the following folder:"
+#| msgid_plural ""
+#| "For this file are %d shortcuts available in the following folders:"
 msgid "For this file is %d shortcut available in the following folder:"
 msgid_plural ""
 "For this file are %d shortcuts available in the following folders:"
@@ -182,27 +222,27 @@ msgstr ""
 msgid "upload to folder"
 msgstr "subir a la carpeta"
 
-#: inc/comp/ExImport.php:54
+#: inc/comp/ExImport.php:55
 msgid "RealMediaLibrary:Import / Export"
 msgstr "RealMediaLibrary:Importación / Exportación"
 
-#: inc/comp/ExImport.php:62
+#: inc/comp/ExImport.php:63
 msgid "Import from other plugins"
 msgstr "Importación de otros plugins"
 
-#: inc/comp/ExImport.php:71
+#: inc/comp/ExImport.php:72
 msgid "Export / Import Real Media Library folders"
 msgstr "Exportar / Importar Real Media Library carpeta"
 
-#: inc/comp/ExImport.php:85
+#: inc/comp/ExImport.php:86
 msgid "Export"
 msgstr "Exportar"
 
-#: inc/comp/ExImport.php:90
+#: inc/comp/ExImport.php:91 inc/comp/ExImport.php:131
 msgid "Import"
 msgstr "Importar"
 
-#: inc/comp/ExImport.php:93
+#: inc/comp/ExImport.php:94
 msgid ""
 "All available folders will be exported. The current structure is not lost "
 "during import - but check that there are no duplicate names in the import "
@@ -213,31 +253,21 @@ msgstr ""
 "de que los datos de importación no tienen nombres duplicados con tu "
 "jerarquía actual."
 
-#: inc/comp/ExImport.php:99
+#: inc/comp/ExImport.php:100
 msgid "Exported data:"
 msgstr "Exportar datos:"
 
-#: inc/comp/ExImport.php:102
+#: inc/comp/ExImport.php:103
 msgid "Import data:"
 msgstr "Importar datos:"
 
-#: inc/comp/ExImport.php:109
+#: inc/comp/ExImport.php:110
 msgid "Importing data is only available in PRO version."
 msgstr "La importación de datos sólo está disponible en la versión PRO."
 
-#: inc/comp/ExImport.php:113 inc/comp/ExImport.php:144 inc/view/Lang.php:181
+#: inc/comp/ExImport.php:114 inc/comp/ExImport.php:144 inc/view/Lang.php:181
 msgid "Learn more about PRO"
 msgstr "Más información sobre PRO"
-
-#. translators:
-#: inc/comp/ExImport.php:127
-msgid "Import from %s"
-msgstr "Importación de %s"
-
-#. translators:
-#: inc/comp/ExImport.php:127
-msgid "Import %s as folders"
-msgstr "Importar %s como carpetas"
 
 #: inc/comp/ExImport.php:136
 msgid "Imports categories and post relations."
@@ -670,7 +700,7 @@ msgstr ""
 "mueven a / Desorganizado."
 
 #: inc/view/Lang.php:58
-msgid "Ok"
+msgid "OK"
 msgstr "De acuerdo"
 
 #: inc/view/Lang.php:59
@@ -1082,7 +1112,7 @@ msgid "PRO Feature"
 msgstr "Función PRO"
 
 #: inc/view/Lang.php:179
-msgid "Dismiss 20 days"
+msgid "Hide for 20 days"
 msgstr "Esconderse durante 20 días"
 
 #: inc/view/Lang.php:180
@@ -1119,7 +1149,7 @@ msgstr ""
 "Ordene los contenidos de sus carpetas y organice sus archivos según un "
 "criterio (por ejemplo, descendiendo el nombre) o mediante arrastrar y soltar."
 
-#: inc/view/Lang.php:204
+#: inc/view/Lang.php:205
 msgid ""
 "Organize the nodes within your folder tree according to a criterion (e.g. "
 "name descending) or by drag & drop."
@@ -1127,7 +1157,7 @@ msgstr ""
 "Organice los nodos dentro de su árbol de carpetas según un criterio (por "
 "ejemplo, descendiendo el nombre) o mediante arrastrar y soltar."
 
-#: inc/view/Lang.php:212
+#: inc/view/Lang.php:213
 msgid ""
 "You can create up to 10 folders in the free version of Real Media Library. "
 "Get the Pro version and create unlimited folders."
@@ -1200,6 +1230,18 @@ msgstr "Todos"
 #: inc/view/View.php:210
 msgid "Unorganized pictures"
 msgstr "Fotos sin organizar"
+
+#~ msgid "Support"
+#~ msgstr "Soporte"
+
+#~ msgid "Rate plugin"
+#~ msgstr "Calificar plugin"
+
+#~ msgid "Import from %s"
+#~ msgstr "Importación de %s"
+
+#~ msgid "Import %s as folders"
+#~ msgstr "Importar %s como carpetas"
 
 #~ msgid "Organize your WordPress media library in a nice way with folders."
 #~ msgstr ""

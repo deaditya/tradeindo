@@ -1,14 +1,15 @@
 <?php
-namespace DevOwl\Freemium;
 
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+namespace MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\Freemium;
 
-interface ICore {
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
+interface ICore
+{
     /**
      * Additional constructor.
      */
     public function overrideConstructFreemium();
-
     /**
      * Set and/or get the value if the lite notice is dismissed.
      * We need this because the tree is always visible in the posts list

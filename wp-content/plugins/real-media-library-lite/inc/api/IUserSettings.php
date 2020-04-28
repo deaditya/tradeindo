@@ -1,12 +1,12 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\api;
 
 use MatthiasWeb\RealMediaLibrary\Assets;
-
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * Metadata content for the general user settings. The metadata can be changed in the cog icon
  * in the folders sidebar toolbar. To handle metadata for general user settings you can
@@ -17,7 +17,8 @@ defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file req
  * @see https://developer.wordpress.org/reference/functions/add_user_meta/
  * @since 3.2
  */
-interface IUserSettings {
+interface IUserSettings
+{
     /**
      * Return modified content for the meta box.
      *
@@ -44,7 +45,6 @@ interface IUserSettings {
      * @return string Content
      */
     public function content($content, $user);
-
     /**
      * Save the infos. Add an error to the array to show on the frontend dialog. Add an
      * successful data to receive it in JavaScript.
@@ -60,7 +60,6 @@ interface IUserSettings {
      * @return string[]
      */
     public function save($response, $user, $request);
-
     /**
      * Enqueue scripts and styles for this meta box.
      *

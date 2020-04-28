@@ -1,10 +1,11 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\api;
 
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * This interface provides elementary getter and setter methods for folder objects. All folder
  * types (Folder, Collection, Gallery, ...) have implemented this interface.
@@ -28,7 +29,7 @@ defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file req
  * Also have a look at the wp_rml_register_creatable function to register your class
  * (RML_TYPE_FOLDER is an unique defined integer for your folder type):
  * ```php
- * wp_rml_register_creatable(RML_NS . '\\folder\\Folder', RML_TYPE_FOLDER);
+ * wp_rml_register_creatable(Folder::class, RML_TYPE_FOLDER);
  * ```
  *
  * @see wp_rml_root_childs
@@ -39,7 +40,8 @@ defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file req
  * @see is_rml_folder
  * @see IFolderActions
  */
-interface IFolder extends IFolderActions, IFolderContent {
+interface IFolder extends \MatthiasWeb\RealMediaLibrary\api\IFolderActions, \MatthiasWeb\RealMediaLibrary\api\IFolderContent
+{
     /**
      * Get all parents which meets a given column value or column value is not empty.
      *
@@ -51,8 +53,7 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return array folderId => columnValue, first id is the first found parent
      * @since 3.3
      */
-    public function anyParentHas($column, $value = null, $valueFormat = '%s', $includeSelf = false, $until = null);
-
+    public function anyParentHas($column, $value = null, $valueFormat = '%s', $includeSelf = \false, $until = null);
     /**
      * Get all parents which meets a given meta key value or meta key value is not empty.
      *
@@ -64,14 +65,7 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return array Array with keys: id (meta_id), folderId, value (meta_value), first id is the first found parent
      * @since 3.3
      */
-    public function anyParentHasMetadata(
-        $meta_key,
-        $meta_value = null,
-        $valueFormat = '%s',
-        $includeSelf = false,
-        $until = null
-    );
-
+    public function anyParentHasMetadata($meta_key, $meta_value = null, $valueFormat = '%s', $includeSelf = \false, $until = null);
     /**
      * Get all children which meets a given column value or column value is not empty.
      *
@@ -82,8 +76,7 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return array folderId => columnValue, first id is the first found child
      * @since 3.3
      */
-    public function anyChildrenHas($column, $value = null, $valueFormat = '%s', $includeSelf = false);
-
+    public function anyChildrenHas($column, $value = null, $valueFormat = '%s', $includeSelf = \false);
     /**
      * Get all chilren which meets a given meta key value or meta key value is not empty.
      *
@@ -94,8 +87,7 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return array Array with keys: id (meta_id), folderId, value (meta_value), first id is the first found child
      * @since 3.3
      */
-    public function anyChildrenHasMetadata($meta_key, $meta_value = null, $valueFormat = '%s', $includeSelf = false);
-
+    public function anyChildrenHasMetadata($meta_key, $meta_value = null, $valueFormat = '%s', $includeSelf = \false);
     /**
      * Checks if this folder has a children with a given name.
      *
@@ -104,36 +96,31 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return boolean
      * @since 3.3 Now it checks for a given folder name instead the slug
      */
-    public function hasChildren($name, $returnObject = false);
-
+    public function hasChildren($name, $returnObject = \false);
     /**
      * Return the type for the given folder. For example: 0 = Folder, 1 = Collection, 2 = Gallery
      *
      * @return int
      */
     public function getType();
-
     /**
      * Get all allowed children folder types.
      *
      * @return boolean|int[] Array with allowed types or TRUE for all types allowed
      */
     public function getAllowedChildrenTypes();
-
     /**
      * Get the folder id.
      *
      * @return int
      */
     public function getId();
-
     /**
      * Get the parent folder id.
      *
      * @return int
      */
     public function getParent();
-
     /**
      * Get all parents of this folder.
      *
@@ -143,15 +130,13 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @since 3.3
      */
     public function getAllParents($until = null, $colIdx = 0);
-
     /**
      * Get the folder name.
      *
      * @param boolean $htmlentities If true the name is returned htmlentitied for output
      * @return string
      */
-    public function getName($htmlentities = false);
-
+    public function getName($htmlentities = \false);
     /**
      * Returns a sanitized title for the folder. If the slug is empty
      * or forced to, it will be updated in the database, too.
@@ -160,8 +145,7 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @param boolean $fromSetName For internal usage only
      * @return string
      */
-    public function getSlug($force = false, $fromSetName = false);
-
+    public function getSlug($force = \false, $fromSetName = \false);
     /**
      * Creates a absolute path without slugging' the names.
      *
@@ -176,7 +160,6 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return string htmlentitied path
      */
     public function getPath($implode = '/', $map = 'htmlentities', $filter = null);
-
     /**
      * Get the creator/owner of the folder.
      *
@@ -184,7 +167,6 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @since 3.3
      */
     public function getOwner();
-
     /**
      * Creates a absolute path. If the absolute path is empty
      * or forced to, it will be updated in the database, too.
@@ -193,8 +175,7 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @param boolean $fromSetName For internal usage only
      * @return string
      */
-    public function getAbsolutePath($force = false, $fromSetName = false);
-
+    public function getAbsolutePath($force = \false, $fromSetName = \false);
     /**
      * Gets the count of the files in this folder.
      *
@@ -202,15 +183,13 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return int
      * @since 3.3.1
      */
-    public function getCnt($forceReload = false);
-
+    public function getCnt($forceReload = \false);
     /**
      * Get children of this folder.
      *
      * @return IFolder
      */
     public function getChildren();
-
     /**
      * Get the order number.
      *
@@ -218,7 +197,6 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @since 3.3.1
      */
     public function getOrder();
-
     /**
      * Get the maximal order number of the children.
      *
@@ -226,29 +204,25 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @since 3.3.1
      */
     public function getMaxOrder();
-
     /**
      * Get the restrictions of this folder.
      *
      * @return string[]
      */
     public function getRestrictions();
-
     /**
      * Get the count of the restrictions.
      *
      * @return int
      */
     public function getRestrictionsCount();
-
     /**
      * Gets a plain array with folder properties.
      *
      * @param boolean $deep Return the children as plain object array
      * @return array or null when not visible
      */
-    public function getPlain($deep = false);
-
+    public function getPlain($deep = \false);
     /**
      * Get the full row of the SQL query.
      *
@@ -257,7 +231,6 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @since 3.3
      */
     public function getRowData($field = null);
-
     /**
      * Get the type name for this folder. For example: Folder, Collection, Gallery, Unorganized.
      *
@@ -267,7 +240,6 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @see Filter RML/Folder/Type/Name
      */
     public function getTypeName($default = null);
-
     /**
      * Get the type description for this folder.
      *
@@ -277,7 +249,6 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @see Filter RML/Folder/Type/Description
      */
     public function getTypeDescription($default = null);
-
     /**
      * Check if the folder object is a given type.
      *
@@ -285,14 +256,12 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @return boolean
      */
     public function is($folder_type);
-
     /**
      * Check if the folder object is visible to the user.
      *
      * @return boolean
      */
     public function isVisible();
-
     /**
      * Checks if this folder has a special restriction.
      *
@@ -301,7 +270,6 @@ interface IFolder extends IFolderActions, IFolderContent {
      * @see IFolder::setRestrictions()
      */
     public function isRestrictFor($restriction);
-
     /**
      * Checks if a given folder type is allowed in this folder.
      *

@@ -1,4 +1,5 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\rest;
 
 use MatthiasWeb\RealMediaLibrary\attachment\Structure;
@@ -8,64 +9,32 @@ use MatthiasWeb\RealMediaLibrary\metadata\Meta;
 use MatthiasWeb\RealMediaLibrary\rest\Service;
 use WP_Error;
 use WP_REST_Response;
-
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * Enables the /folders REST for all creatable items.
  */
-class Folder {
+class Folder
+{
     use UtilsProvider;
-
     /**
      * Register endpoints.
      */
-    public function rest_api_init() {
-        register_rest_route(Service::LEGACY_NAMESPACE, '/folders/content/counts', [
-            'methods' => 'GET',
-            'callback' => [$this, 'getContentCounts']
-        ]);
-
+    public function rest_api_init()
+    {
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders/content/counts', ['methods' => 'GET', 'callback' => [$this, 'getContentCounts']]);
         if ($this->isPro()) {
-            register_rest_route(Service::LEGACY_NAMESPACE, '/folders/(?P<fid>\d+)/content/sortables', [
-                'methods' => 'POST',
-                'callback' => [$this, 'applyContentSortables']
-            ]);
-
-            register_rest_route(Service::LEGACY_NAMESPACE, '/folders/(?P<fid>\d+)/sortables', [
-                'methods' => 'POST',
-                'callback' => [$this, 'applyFolderSortables']
-            ]);
+            register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders/(?P<fid>\\d+)/content/sortables', ['methods' => 'POST', 'callback' => [$this, 'applyContentSortables']]);
+            register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders/(?P<fid>\\d+)/sortables', ['methods' => 'POST', 'callback' => [$this, 'applyFolderSortables']]);
         }
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/folders/(?P<id>\d+)/meta', [
-            'methods' => 'GET',
-            'callback' => [$this, 'getMetaHTML']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/folders/(?P<id>\d+)/meta', [
-            'methods' => 'PUT',
-            'callback' => [$this, 'updateMeta']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/folders/(?P<id>\d+)', [
-            'methods' => 'PUT',
-            'callback' => [$this, 'updateItem']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/folders/(?P<id>\d+)', [
-            'methods' => 'DELETE',
-            'callback' => [$this, 'deleteItem']
-        ]);
-
-        register_rest_route(Service::LEGACY_NAMESPACE, '/folders', [
-            'methods' => 'POST',
-            'callback' => [$this, 'createItem']
-        ]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders/(?P<id>\\d+)/meta', ['methods' => 'GET', 'callback' => [$this, 'getMetaHTML']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders/(?P<id>\\d+)/meta', ['methods' => 'PUT', 'callback' => [$this, 'updateMeta']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders/(?P<id>\\d+)', ['methods' => 'PUT', 'callback' => [$this, 'updateItem']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders/(?P<id>\\d+)', ['methods' => 'DELETE', 'callback' => [$this, 'deleteItem']]);
+        register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/folders', ['methods' => 'POST', 'callback' => [$this, 'createItem']]);
     }
-
     /**
      * See API docs.
      *
@@ -78,14 +47,13 @@ class Folder {
      * @apiVersion 1.0.0
      * @apiPermission upload_files
      */
-    public function getContentCounts($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function getContentCounts($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
-        return new WP_REST_Response(Structure::getInstance()->getFolderCounts());
+        return new \WP_REST_Response(\MatthiasWeb\RealMediaLibrary\attachment\Structure::getInstance()->getFolderCounts());
     }
-
     /**
      * See API docs.
      *
@@ -105,22 +73,22 @@ class Folder {
      * @apiPermission Pro only
      * @since 4.4 The old API /folders/content/sortables is deleted
      */
-    public function applyContentSortables($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function applyContentSortables($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
         $sortable = $request->get_param('id');
         $applyTo = $request->get_param('fid');
         $automatically = $request->get_param('automatically');
-        $automatically = gettype($automatically) === 'string' ? $automatically === 'true' : $automatically;
+        $automatically = \gettype($automatically) === 'string' ? $automatically === 'true' : $automatically;
         $folder = wp_rml_get_object_by_id($applyTo);
         $isFolder = is_rml_folder($folder);
-        $result = false;
+        $result = \false;
         if ($sortable === 'original') {
             $result = $isFolder && $folder->contentDeleteOrder();
         } elseif ($sortable === 'deactivate') {
-            $result = update_media_folder_meta($folder->getId(), 'orderAutomatically', false);
+            $result = update_media_folder_meta($folder->getId(), 'orderAutomatically', \false);
         } elseif ($sortable === 'reindex') {
             $result = $isFolder && $folder->contentReindex();
         } elseif ($sortable === 'last') {
@@ -131,9 +99,8 @@ class Folder {
                 update_media_folder_meta($folder->getId(), 'orderAutomatically', $automatically);
             }
         }
-        return new WP_REST_Response($result);
+        return new \WP_REST_Response($result);
     }
-
     /**
      * See API docs.
      *
@@ -153,22 +120,22 @@ class Folder {
      * @apiPermission Pro only
      * @since 4.4
      */
-    public function applyFolderSortables($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function applyFolderSortables($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
         $sortable = $request->get_param('id');
         $applyTo = $request->get_param('fid');
         $automatically = $request->get_param('automatically');
-        $automatically = gettype($automatically) === 'string' ? $automatically === 'true' : $automatically;
+        $automatically = \gettype($automatically) === 'string' ? $automatically === 'true' : $automatically;
         $folder = wp_rml_get_object_by_id($applyTo);
         $isFolder = is_rml_folder($folder);
-        $result = false;
+        $result = \false;
         if ($sortable === 'original') {
             $result = $isFolder && $folder->resetSubfolderOrder();
         } elseif ($sortable === 'deactivate') {
-            $result = update_media_folder_meta($folder->getId(), 'subOrderAutomatically', false);
+            $result = update_media_folder_meta($folder->getId(), 'subOrderAutomatically', \false);
         } elseif ($sortable === 'reindex') {
             $result = $isFolder && $folder->reindexChildrens();
         } elseif ($sortable === 'last') {
@@ -179,9 +146,8 @@ class Folder {
                 update_media_folder_meta($folder->getId(), 'subOrderAutomatically', $automatically);
             }
         }
-        return new WP_REST_Response($result);
+        return new \WP_REST_Response($result);
     }
-
     /**
      * See API docs.
      *
@@ -197,28 +163,25 @@ class Folder {
      * @apiVersion 1.0.0
      * @apiPermission upload_files
      */
-    public function createItem($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function createItem($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
         $name = $request->get_param('name');
         $parent = $request->get_param('parent');
         $type = $request->get_param('type');
-
         try {
             $insert = wp_rml_create($name, $parent, $type);
-        } catch (OnlyInProVersionException $e) {
-            return new WP_Error('rest_rml_only_pro', $e->getMessage(), ['status' => 500]);
+        } catch (\MatthiasWeb\RealMediaLibrary\exception\OnlyInProVersionException $e) {
+            return new \WP_Error('rest_rml_only_pro', $e->getMessage(), ['status' => 500]);
         }
-
-        if (is_array($insert)) {
-            return new WP_Error('rest_rml_folder_create_failed', implode(' ', $insert), ['status' => 500]);
+        if (\is_array($insert)) {
+            return new \WP_Error('rest_rml_folder_create_failed', \implode(' ', $insert), ['status' => 500]);
         } else {
-            return new WP_REST_Response(wp_rml_get_object_by_id($insert)->getPlain());
+            return new \WP_REST_Response(wp_rml_get_object_by_id($insert)->getPlain());
         }
     }
-
     /**
      * See API docs.
      *
@@ -231,22 +194,19 @@ class Folder {
      * @apiVersion 1.0.0
      * @apiPermission upload_files
      */
-    public function deleteItem($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function deleteItem($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
         $id = $request->get_param('id');
-
         $delete = wp_rml_delete($id);
-
-        if ($delete === true) {
-            return new WP_REST_Response($delete);
+        if ($delete === \true) {
+            return new \WP_REST_Response($delete);
         } else {
-            return new WP_Error('rest_rml_folder_delete', implode(' ', $delete), ['status' => 500]);
+            return new \WP_Error('rest_rml_folder_delete', \implode(' ', $delete), ['status' => 500]);
         }
     }
-
     /**
      * See API docs.
      *
@@ -259,17 +219,14 @@ class Folder {
      * @apiVersion 1.0.0
      * @apiPermission upload_files
      */
-    public function getMetaHTML($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function getMetaHTML($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
         $id = $request->get_param('id');
-        return new WP_REST_Response([
-            'html' => Meta::getInstance()->prepare_content($id)
-        ]);
+        return new \WP_REST_Response(['html' => \MatthiasWeb\RealMediaLibrary\metadata\Meta::getInstance()->prepare_content($id)]);
     }
-
     /**
      * See API docs.
      *
@@ -283,16 +240,15 @@ class Folder {
      * @apiVersion 1.0.0
      * @apiPermission upload_files
      */
-    public function updateMeta($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function updateMeta($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
         $folder = wp_rml_get_object_by_id($request->get_param('id'));
         if (!is_rml_folder($folder)) {
             return new \WP_Error('rest_rml_folder_meta_update_not_found', 'Not found', ['status' => 404]);
         }
-
         /**
          * This filter is called to save the metadata. You can use the $_POST
          * fields to validate the input. If an error occurs you can pass an
@@ -305,17 +261,15 @@ class Folder {
          * @return {array}
          */
         $response = apply_filters('RML/Folder/Meta/Save', ['errors' => [], 'data' => []], $folder, $request);
-
-        if (is_array($response) && isset($response['errors']) && count($response['errors']) > 0) {
-            return new WP_Error('rest_rml_folder_update', $response['errors'], ['status' => 500]);
+        if (\is_array($response) && isset($response['errors']) && \count($response['errors']) > 0) {
+            return new \WP_Error('rest_rml_folder_update', $response['errors'], ['status' => 500]);
         } else {
-            if (isset($response['data']) && is_array($response['data'])) {
+            if (isset($response['data']) && \is_array($response['data'])) {
                 $response = $response['data'];
             }
-            return new WP_REST_Response($response);
+            return new \WP_REST_Response($response);
         }
     }
-
     /**
      * See API docs.
      *
@@ -329,21 +283,19 @@ class Folder {
      * @apiVersion 1.0.0
      * @apiPermission upload_files
      */
-    public function updateItem($request) {
-        if (($permit = Service::permit()) !== null) {
+    public function updateItem($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit()) !== null) {
             return $permit;
         }
-
         $name = $request->get_param('name');
         $id = $request->get_param('id');
-
         $update = wp_rml_rename($name, $id);
-
-        if ($update === true) {
-            $folder = wp_rml_get_by_id($id, null, true);
-            return new WP_REST_Response($folder->getPlain());
+        if ($update === \true) {
+            $folder = wp_rml_get_by_id($id, null, \true);
+            return new \WP_REST_Response($folder->getPlain());
         } else {
-            return new WP_Error('rest_rml_folder_update', implode(' ', $update), ['status' => 500]);
+            return new \WP_Error('rest_rml_folder_update', \implode(' ', $update), ['status' => 500]);
         }
     }
 }

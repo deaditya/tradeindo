@@ -1,6 +1,6 @@
 === WordPress Real Media Library: Media Library Folder & File Manager ===
 Contributors: devowl, mguenter, jankarres
-Tags: media library folder, file manager, media folder, media library folders, media library category, media library categories, media category, subfolders, file manager, directories, folder, folders, organize, media library, media management, media directory, folder manager, wordpress, filebird, wp media folder, mediamatic, advanced media library, media library wizard, folders manager, media library folder, media folders, media directories, media categories, wordpress media library folders, wordpress media folder, wordpress media folders, wordpress media library
+Tags: media library folder, file manager, media folder, media library folders, media library category, media library categories, media category, subfolders, file manager, directories, folder, folders, organize, media library, media management, media directory, folder manager, wordpress, media library wizard, folders manager, media library folder, media folders, media directories, media categories, wordpress media library folders, wordpress media folder, wordpress media folders, wordpress media library
 Stable tag: trunk
 Requires at least: 5.0.0
 Requires PHP: 7.0.0

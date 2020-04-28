@@ -1,27 +1,28 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary;
 
-use MatthiasWeb\Utils\Localization as UtilsLocalization;
+use MatthiasWeb\RealMediaLibrary\Vendor\MatthiasWeb\Utils\Localization as UtilsLocalization;
 use MatthiasWeb\RealMediaLibrary\base\UtilsProvider;
-
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * i18n management for backend and frontend.
  */
-class Localization {
+class Localization
+{
     use UtilsProvider;
     use UtilsLocalization;
-
     /**
      * Put your language overrides here!
      *
      * @param string $locale
      * @return string
      */
-    protected function override($locale) {
+    protected function override($locale)
+    {
         switch ($locale) {
             // Put your overrides here!
             case 'de_AT':
@@ -50,18 +51,18 @@ class Localization {
         }
         return $locale;
     }
-
     /**
      * Get the directory where the languages folder exists.
      *
      * @param string $type
      * @return string[]
      */
-    protected function getPackageInfo($type) {
-        if ($type === UtilsLocalization::$PACKAGE_INFO_BACKEND) {
+    protected function getPackageInfo($type)
+    {
+        if ($type === \MatthiasWeb\RealMediaLibrary\Vendor\MatthiasWeb\Utils\Localization::$PACKAGE_INFO_BACKEND) {
             return [path_join(RML_PATH, 'languages'), RML_TD];
         } else {
-            return [path_join(RML_PATH, Assets::$PUBLIC_JSON_I18N), RML_TD];
+            return [path_join(RML_PATH, \MatthiasWeb\RealMediaLibrary\Assets::$PUBLIC_JSON_I18N), RML_TD];
         }
     }
 }

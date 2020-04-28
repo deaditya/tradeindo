@@ -1,12 +1,12 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\api;
 
 use MatthiasWeb\RealMediaLibrary\Assets;
-
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * Metadata content of a folder. The metadata can be changed in the arrow-down icon
  * in the folders sidebar toolbar. To handle metadata for folders you can
@@ -14,7 +14,8 @@ defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file req
  *
  * To register the metadata class you must use the following API function add_rml_meta_box.
  */
-interface IMetadata {
+interface IMetadata
+{
     /**
      * Return modified content for the meta box.
      *
@@ -41,7 +42,6 @@ interface IMetadata {
      * @return string
      */
     public function content($content, $folder);
-
     /**
      * Save the infos. Add an error to the array to show on the frontend dialog. Add an
      * successful data to receive it in JavaScript.
@@ -60,7 +60,6 @@ interface IMetadata {
      * @return string[]
      */
     public function save($response, $folder, $request);
-
     /**
      * Enqueue scripts and styles for this meta box.
      *

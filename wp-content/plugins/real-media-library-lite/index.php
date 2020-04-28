@@ -3,12 +3,12 @@
  * Main file for WordPress.
  *
  * @wordpress-plugin
- * Plugin Name: 	WP Real Media Library (Free)
+ * Plugin Name: 	Real Media Library (Free)
  * Plugin URI:		https://devowl.io/wordpress-real-media-library/
  * Description: 	Organize uploaded media in folders, collections and galleries: A file manager for WordPress. Media management made easy!
- * Author:          devowl.io GmbH
+ * Author:          devowl.io
  * Author URI:		https://devowl.io
- * Version: 		4.7.6
+ * Version: 		4.7.10
  * Text Domain:		real-media-library
  * Domain Path:		/languages
  */

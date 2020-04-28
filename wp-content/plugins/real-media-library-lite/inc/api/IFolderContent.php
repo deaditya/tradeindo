@@ -1,12 +1,12 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\api;
 
 use MatthiasWeb\RealMediaLibrary\exception\OnlyInProVersionException;
-
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * This interface provides elementary action methods for folder content. All folder
  * types (Folder, Collection, Gallery, ...) have implemented this interface.
@@ -14,7 +14,8 @@ defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file req
  *
  * @since 3.3.1
  */
-interface IFolderContent {
+interface IFolderContent
+{
     /**
      * (Pro only) See API function for more information.
      *
@@ -26,8 +27,7 @@ interface IFolderContent {
      * @see wp_attachment_order_update()
      * @throws OnlyInProVersionException
      */
-    public function contentOrder($attachmentId, $nextId, $lastIdInView = false);
-
+    public function contentOrder($attachmentId, $nextId, $lastIdInView = \false);
     /**
      * (Pro only) Start to order the given folder content by a given order type.
      *
@@ -36,8 +36,7 @@ interface IFolderContent {
      * @return boolean
      * @throws OnlyInProVersionException
      */
-    public function contentOrderBy($orderby, $writeMetadata = true);
-
+    public function contentOrderBy($orderby, $writeMetadata = \true);
     /**
      * (Pro only) Index the order table.
      *
@@ -45,8 +44,7 @@ interface IFolderContent {
      * @return boolean
      * @throws OnlyInProVersionException
      */
-    public function contentIndex($delete = true);
-
+    public function contentIndex($delete = \true);
     /**
      * (Pro only) This function retrieves the order of the order
      * table and removes empty spaces, for example:
@@ -57,7 +55,6 @@ interface IFolderContent {
      * @throws OnlyInProVersionException
      */
     public function contentReindex();
-
     /**
      * (Pro only) Enable the order functionality for this folder.
      *
@@ -66,7 +63,6 @@ interface IFolderContent {
      * @throws OnlyInProVersionException
      */
     public function contentEnableOrder();
-
     /**
      * (Pro only) Deletes the complete order for this folder.
      *
@@ -75,7 +71,6 @@ interface IFolderContent {
      * @throws OnlyInProVersionException
      */
     public function contentDeleteOrder();
-
     /**
      * (Pro only) Restore the current order number to the old custom order number.
      *
@@ -83,14 +78,12 @@ interface IFolderContent {
      * @throws OnlyInProVersionException
      */
     public function contentRestoreOldCustomNr();
-
     /**
      * Checks if the folder is allowed to use custom content order.
      *
      * @return boolean
      */
     public function isContentCustomOrderAllowed();
-
     /**
      * The content custom order defines the state of the content order functionality:
      *
@@ -103,7 +96,6 @@ interface IFolderContent {
      * @see IFolderContent::contentEnableOrder()
      */
     public function getContentCustomOrder();
-
     /**
      * Override this functionality to force the content custom order
      * in the posts_clauses.
@@ -112,7 +104,6 @@ interface IFolderContent {
      * @since 4.0.2
      */
     public function forceContentCustomOrder();
-
     /**
      * Override the default posts_clauses join and orderby instead of the RML standard.
      * This can be useful if you want to take the order from another relationship.
@@ -123,7 +114,6 @@ interface IFolderContent {
      * @since 4.0.2
      */
     public function postsClauses($pieces);
-
     /**
      * (Pro only) Get the next attachment row for a specific attachment. It returns false if
      * the attachment is at the end or the folder has no custom content order.
@@ -134,7 +124,6 @@ interface IFolderContent {
      * @throws OnlyInProVersionException
      */
     public function getAttachmentNextTo($attachmentId);
-
     /**
      * (Pro only) Gets the biggest order number;
      *
@@ -143,7 +132,6 @@ interface IFolderContent {
      * @throws OnlyInProVersionException
      */
     public function getContentAggregationNr($function = 'MAX');
-
     /**
      * (Pro only) Get the order number for a specific attachment in this folder.
      *
@@ -152,7 +140,6 @@ interface IFolderContent {
      * @throws OnlyInProVersionException
      */
     public function getContentNrOf($attachmentId);
-
     /**
      * (Pro only) Get the old custom order number count so we can decide if already available.
      *

@@ -1,13 +1,16 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\lite\comp;
 
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
-trait WPML {
+trait WPML
+{
     // Documented in IOverrideWPML
-    public function overrideInit() {
+    public function overrideInit()
+    {
         // Silence is golden.
     }
 }

@@ -1,10 +1,11 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\api;
 
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
 /**
  * Structure implementation for Real Media Library. It handles all SQL query which
  * reads all folders from the database and "collects" it into one tree. You can modify the
@@ -15,7 +16,8 @@ defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file req
  * @see wp_rml_structure()
  * @since 3.3.1
  */
-interface IStructure {
+interface IStructure
+{
     /**
      * Start reading a structure. If you pass a $root parameter the parameter is not
      * automatically respected. You should then use your own implementation or filters
@@ -26,12 +28,10 @@ interface IStructure {
      * @param array $data Custom data for the structure
      */
     public function __construct($root = null, $data = null);
-
     /**
      * Checks, if the SQL result is available and load it if not.
      */
     public function initialLoad();
-
     /**
      * Resets the data of the structure.
      *
@@ -39,8 +39,7 @@ interface IStructure {
      * @param boolean $fetchData Determine, if the data should be re-fetched
      * @see wp_rml_structure_reset()
      */
-    public function resetData($root = null, $fetchData = true);
-
+    public function resetData($root = null, $fetchData = \true);
     /**
      * Get a folder by id.
      *
@@ -50,8 +49,7 @@ interface IStructure {
      * @see wp_rml_get_object_by_id()
      * @see wp_rml_get_by_id()
      */
-    public function byId($id, $nullForRoot = true);
-
+    public function byId($id, $nullForRoot = \true);
     /**
      * Get a folder by absolute path.
      *
@@ -60,21 +58,18 @@ interface IStructure {
      * @see wp_rml_get_by_absolute_path
      */
     public function byAbsolutePath($path);
-
     /**
      * Get the SQL query result instead of IFolder objects.
      *
      * @return object[] The SQL result
      */
     public function getRows();
-
     /**
      * Get all SQL query results as IFolder objects.
      *
      * @return IFolder[] The folders
      */
     public function getParsed();
-
     /**
      * Get all SQL query results placed to a tree. That means it is a "hierarchical"
      * result where you work with ->getChildren(). The first level contains the top folders.
@@ -82,7 +77,6 @@ interface IStructure {
      * @return IFolder[] The folders
      */
     public function getTree();
-
     /**
      * Get all SQL query results placed to a tree. It is fully resolved with all hierarchical
      * plain objects of the folders expect the invisible nodes.
@@ -90,28 +84,24 @@ interface IStructure {
      * @return object[]
      */
     public function getPlainTree();
-
     /**
      * Get the attachment count for this structure.
      *
      * @return int Count
      */
     public function getCntAttachments();
-
     /**
      * Get the attachment count for the "Unorganized" folder for this structure.
      *
      * @return int Count
      */
     public function getCntRoot();
-
     /**
      * Get the custom data.
      *
      * @return array Data
      */
     public function getData();
-
     /**
      * Set the custom data.
      *

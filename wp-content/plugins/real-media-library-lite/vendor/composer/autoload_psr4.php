@@ -6,9 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'MatthiasWeb\\Utils\\' => array($vendorDir . '/devowl-wp/utils/src'),
-    'MatthiasWeb\\RealMediaLibrary\\Test\\' => array($baseDir . '/test/phpunit'),
+    'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\' => array($vendorDir . '/devowl-wp/utils/src'),
+    'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Test\\' => array($vendorDir . '/devowl-wp/real-utils/test/phpunit'),
+    'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\' => array($vendorDir . '/devowl-wp/real-utils/src'),
+    'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\Test\\' => array($vendorDir . '/devowl-wp/freemium/test/phpunit'),
+    'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\' => array($vendorDir . '/devowl-wp/freemium/src'),
     'MatthiasWeb\\RealMediaLibrary\\' => array($baseDir . '/inc', $baseDir . '/src/inc'),
-    'DevOwl\\Freemium\\Test\\' => array($vendorDir . '/devowl-wp/freemium/test/phpunit'),
-    'DevOwl\\Freemium\\' => array($vendorDir . '/devowl-wp/freemium/src'),
 );

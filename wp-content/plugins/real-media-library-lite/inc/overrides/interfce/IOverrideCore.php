@@ -1,23 +1,22 @@
 <?php
+
 namespace MatthiasWeb\RealMediaLibrary\overrides\interfce;
 
-use DevOwl\Freemium\ICore;
-
+use MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\Freemium\ICore;
 // @codeCoverageIgnoreStart
-defined('ABSPATH') or die('No script kiddies please!'); // Avoid direct file request
+\defined('ABSPATH') or die('No script kiddies please!');
+// Avoid direct file request
 // @codeCoverageIgnoreEnd
-
-interface IOverrideCore extends ICore {
+interface IOverrideCore extends \MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\Freemium\ICore
+{
     /**
      * Additional constructor.
      */
     public function overrideConstruct();
-
     /**
      * Additional init.
      */
     public function overrideInit();
-
     /**
      * Set and/or get the value if the license notice is dismissed.
      *
@@ -25,7 +24,6 @@ interface IOverrideCore extends ICore {
      * @return boolean
      */
     public function isLicenseNoticeDismissed($set = null);
-
     /**
      * Get the updater instance.
      *

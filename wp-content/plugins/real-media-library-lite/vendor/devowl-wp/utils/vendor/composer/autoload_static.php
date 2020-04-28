@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita6371341850ec793ebcbcf45823cb1f2
+class ComposerStaticInit185dd36fd8a96561201d770683da7d05
 {
     public static $prefixLengthsPsr4 = array (
         'M' => 
@@ -25,38 +25,11 @@ class ComposerStaticInita6371341850ec793ebcbcf45823cb1f2
         ),
     );
 
-    public static $classMap = array (
-        'MatthiasWeb\\Utils\\Activator' => __DIR__ . '/../..' . '/src/Activator.php',
-        'MatthiasWeb\\Utils\\Assets' => __DIR__ . '/../..' . '/src/Assets.php',
-        'MatthiasWeb\\Utils\\Base' => __DIR__ . '/../..' . '/src/Base.php',
-        'MatthiasWeb\\Utils\\Core' => __DIR__ . '/../..' . '/src/Core.php',
-        'MatthiasWeb\\Utils\\Localization' => __DIR__ . '/../..' . '/src/Localization.php',
-        'MatthiasWeb\\Utils\\PackageLocalization' => __DIR__ . '/../..' . '/src/PackageLocalization.php',
-        'MatthiasWeb\\Utils\\PluginReceiver' => __DIR__ . '/../..' . '/src/PluginReceiver.php',
-        'MatthiasWeb\\Utils\\Service' => __DIR__ . '/../..' . '/src/Service.php',
-        'MatthiasWeb\\Utils\\Test\\ActivatorImpl' => __DIR__ . '/../..' . '/test/phpunit/ActivatorTest.php',
-        'MatthiasWeb\\Utils\\Test\\ActivatorTest' => __DIR__ . '/../..' . '/test/phpunit/ActivatorTest.php',
-        'MatthiasWeb\\Utils\\Test\\AssetsImpl' => __DIR__ . '/../..' . '/test/phpunit/AssetsTest.php',
-        'MatthiasWeb\\Utils\\Test\\AssetsTest' => __DIR__ . '/../..' . '/test/phpunit/AssetsTest.php',
-        'MatthiasWeb\\Utils\\Test\\BaseImpl' => __DIR__ . '/../..' . '/test/phpunit/BaseTest.php',
-        'MatthiasWeb\\Utils\\Test\\BaseTest' => __DIR__ . '/../..' . '/test/phpunit/BaseTest.php',
-        'MatthiasWeb\\Utils\\Test\\CoreImpl' => __DIR__ . '/../..' . '/test/phpunit/CoreTest.php',
-        'MatthiasWeb\\Utils\\Test\\CoreTest' => __DIR__ . '/../..' . '/test/phpunit/CoreTest.php',
-        'MatthiasWeb\\Utils\\Test\\LocalizationImpl' => __DIR__ . '/../..' . '/test/phpunit/LocalizationTest.php',
-        'MatthiasWeb\\Utils\\Test\\LocalizationTest' => __DIR__ . '/../..' . '/test/phpunit/LocalizationTest.php',
-        'MatthiasWeb\\Utils\\Test\\PackageLocalizationTest' => __DIR__ . '/../..' . '/test/phpunit/PackageLocalizationTest.php',
-        'MatthiasWeb\\Utils\\Test\\PluginReceiverImpl' => __DIR__ . '/../..' . '/test/phpunit/PluginReiceverTest.php',
-        'MatthiasWeb\\Utils\\Test\\PluginReceiverTest' => __DIR__ . '/../..' . '/test/phpunit/PluginReiceverTest.php',
-        'MatthiasWeb\\Utils\\Test\\ServiceTest' => __DIR__ . '/../..' . '/test/phpunit/ServiceTest.php',
-        'MatthiasWeb\\Utils\\Test\\WP_Scripts' => __DIR__ . '/../..' . '/test/phpunit/AssetsTest.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita6371341850ec793ebcbcf45823cb1f2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita6371341850ec793ebcbcf45823cb1f2::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInita6371341850ec793ebcbcf45823cb1f2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit185dd36fd8a96561201d770683da7d05::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit185dd36fd8a96561201d770683da7d05::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

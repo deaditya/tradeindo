@@ -4,58 +4,83 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2853959a54c7a7f8789df28357a3cf41
+class ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e
 {
     public static $prefixLengthsPsr4 = array (
         'M' => 
         array (
-            'MatthiasWeb\\Utils\\' => 18,
-            'MatthiasWeb\\RealMediaLibrary\\Test\\' => 34,
+            'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\' => 54,
+            'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Test\\' => 58,
+            'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\' => 53,
+            'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\Test\\' => 57,
+            'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\' => 52,
             'MatthiasWeb\\RealMediaLibrary\\' => 29,
-        ),
-        'D' => 
-        array (
-            'DevOwl\\Freemium\\Test\\' => 21,
-            'DevOwl\\Freemium\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'MatthiasWeb\\Utils\\' => 
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\' => 
         array (
             0 => __DIR__ . '/..' . '/devowl-wp/utils/src',
         ),
-        'MatthiasWeb\\RealMediaLibrary\\Test\\' => 
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Test\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/test/phpunit',
+            0 => __DIR__ . '/..' . '/devowl-wp/real-utils/test/phpunit',
+        ),
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/devowl-wp/real-utils/src',
+        ),
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\Test\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/devowl-wp/freemium/test/phpunit',
+        ),
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/devowl-wp/freemium/src',
         ),
         'MatthiasWeb\\RealMediaLibrary\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc',
             1 => __DIR__ . '/../..' . '/src/inc',
         ),
-        'DevOwl\\Freemium\\Test\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/devowl-wp/freemium/test/phpunit',
-        ),
-        'DevOwl\\Freemium\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/devowl-wp/freemium/src',
-        ),
     );
 
     public static $classMap = array (
-        'DevOwl\\Freemium\\Assets' => __DIR__ . '/..' . '/devowl-wp/freemium/src/Assets.php',
-        'DevOwl\\Freemium\\Autoloader' => __DIR__ . '/..' . '/devowl-wp/freemium/src/Autoloader.php',
-        'DevOwl\\Freemium\\CoreLite' => __DIR__ . '/..' . '/devowl-wp/freemium/src/CoreLite.php',
-        'DevOwl\\Freemium\\CorePro' => __DIR__ . '/..' . '/devowl-wp/freemium/src/CorePro.php',
-        'DevOwl\\Freemium\\FreemiumProvider' => __DIR__ . '/..' . '/devowl-wp/freemium/src/FreemiumProvider.php',
-        'DevOwl\\Freemium\\ICore' => __DIR__ . '/..' . '/devowl-wp/freemium/src/ICore.php',
         'MatthiasWeb\\RealMediaLibrary\\Activator' => __DIR__ . '/../..' . '/inc/Activator.php',
+        'MatthiasWeb\\RealMediaLibrary\\AdInitiator' => __DIR__ . '/../..' . '/inc/AdInitiator.php',
         'MatthiasWeb\\RealMediaLibrary\\Assets' => __DIR__ . '/../..' . '/inc/Assets.php',
         'MatthiasWeb\\RealMediaLibrary\\Core' => __DIR__ . '/../..' . '/inc/Core.php',
         'MatthiasWeb\\RealMediaLibrary\\Localization' => __DIR__ . '/../..' . '/inc/Localization.php',
         'MatthiasWeb\\RealMediaLibrary\\Util' => __DIR__ . '/../..' . '/inc/Util.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\Assets' => __DIR__ . '/..' . '/devowl-wp/freemium/src/Assets.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\Autoloader' => __DIR__ . '/..' . '/devowl-wp/freemium/src/Autoloader.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\CoreLite' => __DIR__ . '/..' . '/devowl-wp/freemium/src/CoreLite.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\CorePro' => __DIR__ . '/..' . '/devowl-wp/freemium/src/CorePro.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\FreemiumProvider' => __DIR__ . '/..' . '/devowl-wp/freemium/src/FreemiumProvider.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\Freemium\\ICore' => __DIR__ . '/..' . '/devowl-wp/freemium/src/ICore.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\AbstractInitiator' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/AbstractInitiator.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Assets' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/Assets.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Core' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/Core.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\RatingHandler' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/RatingHandler.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Service' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/Service.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\TransientHandler' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/TransientHandler.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\UtilsProvider' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/UtilsProvider.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\WelcomePage' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/WelcomePage.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\cross\\AbstractCrossSelling' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/cross/AbstractCrossSelling.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\cross\\CrossRealCategoryLibrary' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/cross/CrossRealCategoryLibrary.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\cross\\CrossRealMediaLibrary' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/cross/CrossRealMediaLibrary.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\cross\\CrossRealPhysicalMedia' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/cross/CrossRealPhysicalMedia.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\cross\\CrossSellingHandler' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/cross/CrossSellingHandler.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\view\\Options' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/view/Options.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\Activator' => __DIR__ . '/..' . '/devowl-wp/utils/src/Activator.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\Assets' => __DIR__ . '/..' . '/devowl-wp/utils/src/Assets.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\Base' => __DIR__ . '/..' . '/devowl-wp/utils/src/Base.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\Core' => __DIR__ . '/..' . '/devowl-wp/utils/src/Core.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\Localization' => __DIR__ . '/..' . '/devowl-wp/utils/src/Localization.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\PackageLocalization' => __DIR__ . '/..' . '/devowl-wp/utils/src/PackageLocalization.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\PluginReceiver' => __DIR__ . '/..' . '/devowl-wp/utils/src/PluginReceiver.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\MatthiasWeb\\Utils\\Service' => __DIR__ . '/..' . '/devowl-wp/utils/src/Service.php',
         'MatthiasWeb\\RealMediaLibrary\\api\\IFolder' => __DIR__ . '/../..' . '/inc/api/IFolder.php',
         'MatthiasWeb\\RealMediaLibrary\\api\\IFolderActions' => __DIR__ . '/../..' . '/inc/api/IFolderActions.php',
         'MatthiasWeb\\RealMediaLibrary\\api\\IFolderContent' => __DIR__ . '/../..' . '/inc/api/IFolderContent.php',
@@ -111,22 +136,14 @@ class ComposerStaticInit2853959a54c7a7f8789df28357a3cf41
         'MatthiasWeb\\RealMediaLibrary\\view\\Lang' => __DIR__ . '/../..' . '/inc/view/Lang.php',
         'MatthiasWeb\\RealMediaLibrary\\view\\Options' => __DIR__ . '/../..' . '/inc/view/Options.php',
         'MatthiasWeb\\RealMediaLibrary\\view\\View' => __DIR__ . '/../..' . '/inc/view/View.php',
-        'MatthiasWeb\\Utils\\Activator' => __DIR__ . '/..' . '/devowl-wp/utils/src/Activator.php',
-        'MatthiasWeb\\Utils\\Assets' => __DIR__ . '/..' . '/devowl-wp/utils/src/Assets.php',
-        'MatthiasWeb\\Utils\\Base' => __DIR__ . '/..' . '/devowl-wp/utils/src/Base.php',
-        'MatthiasWeb\\Utils\\Core' => __DIR__ . '/..' . '/devowl-wp/utils/src/Core.php',
-        'MatthiasWeb\\Utils\\Localization' => __DIR__ . '/..' . '/devowl-wp/utils/src/Localization.php',
-        'MatthiasWeb\\Utils\\PackageLocalization' => __DIR__ . '/..' . '/devowl-wp/utils/src/PackageLocalization.php',
-        'MatthiasWeb\\Utils\\PluginReceiver' => __DIR__ . '/..' . '/devowl-wp/utils/src/PluginReceiver.php',
-        'MatthiasWeb\\Utils\\Service' => __DIR__ . '/..' . '/devowl-wp/utils/src/Service.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2853959a54c7a7f8789df28357a3cf41::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2853959a54c7a7f8789df28357a3cf41::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit2853959a54c7a7f8789df28357a3cf41::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e::$classMap;
 
         }, null, ClassLoader::class);
     }

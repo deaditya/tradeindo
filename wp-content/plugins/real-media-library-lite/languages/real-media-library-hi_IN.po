@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Real Media Library 4.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/src\n"
-"POT-Creation-Date: 2020-02-24T11:44:26+01:00\n"
-"PO-Revision-Date: 2020-02-24 14:10+0100\n"
+"POT-Creation-Date: 2020-03-31T11:39:11+02:00\n"
+"PO-Revision-Date: 2020-04-07 19:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: Hindi\n"
 "Language: hi\n"
@@ -12,12 +12,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Loco-Source-Locale: en_IN\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Loco-Parser: loco_parse_po\n"
 
 #. Plugin Name of the plugin
-msgid "WP Real Media Library"
-msgstr "WP Real Media Library"
+msgid "Real Media Library"
+msgstr "Real Media Library"
 
 #. Plugin URI of the plugin
 msgid "https://devowl.io/wordpress-real-media-library/"
@@ -32,30 +32,63 @@ msgstr ""
 "आसान बना!"
 
 #. Author of the plugin
-msgid "devowl.io GmbH"
-msgstr "devowl.io GmbH"
+msgid "devowl.io"
+msgstr "devowl.io"
 
 #. Author URI of the plugin
 msgid "https://devowl.io"
 msgstr "https://devowl.io"
 
+#: inc/AdInitiator.php:56
+msgid "Complete file and folder manager"
+msgstr ""
+
+#: inc/AdInitiator.php:57
+msgid ""
+"Real Media Library is a WordPress plugin that empowers you with advanced media management. "
+"You can use this plugin to organize the thousands of images, audio, video and PDF files in "
+"your media library into folders. Basically it is a file manager like Windows Explorer or Mac "
+"Finder, but for WordPress."
+msgstr ""
+
+#: inc/AdInitiator.php:59
+msgid "In the PRO version you can create more than 10 folders (unlimited)."
+msgstr ""
+
+#: inc/AdInitiator.php:63
+msgid "Filter in insert media dialog"
+msgstr ""
+
+#: inc/AdInitiator.php:64
+msgid ""
+"No matter where you are, the folder structure of Real Media Library is always where you can "
+"select files. For example in the dialog for selecting a \"Featured Image\"."
+msgstr ""
+
+#: inc/AdInitiator.php:69
+msgid "Custom image order"
+msgstr ""
+
+#: inc/AdInitiator.php:70
+msgid ""
+"Organizing your media files is really easy with the Real Media Library plugin. You can "
+"arrange the order of your files yourself by dragging and dropping. This allows you to move "
+"important files to the top for faster access."
+msgstr ""
+
+#: inc/AdInitiator.php:82
+msgid "Get your PRO license now!"
+msgstr ""
+
 #: inc/api/attachment.php:108 inc/api/attachment.php:129 inc/api/attachment.php:145
 msgid "The given folder was not found."
 msgstr "दिया गया फोल्डर नहीं मिला!"
 
-#: inc/Assets.php:224
+#: inc/Assets.php:223
 msgid "Complementary Plugins"
 msgstr "पूरक प्लगइन्स"
 
-#: inc/Assets.php:228
-msgid "Support"
-msgstr "सहयोग"
-
-#: inc/Assets.php:234
-msgid "Rate plugin"
-msgstr "प्लगइन रेट"
-
-#: inc/Assets.php:252
+#: inc/Assets.php:241
 msgid ""
 "\n"
 "\n"
@@ -149,27 +182,27 @@ msgstr "आप सीधे ही एक फोल्डर में फाइ
 msgid "upload to folder"
 msgstr "फोल्डर में अपलोड करें"
 
-#: inc/comp/ExImport.php:54
+#: inc/comp/ExImport.php:55
 msgid "RealMediaLibrary:Import / Export"
 msgstr "RealMediaLibrary:आयात / निर्यात"
 
-#: inc/comp/ExImport.php:62
+#: inc/comp/ExImport.php:63
 msgid "Import from other plugins"
 msgstr "अन्य प्लगइन्स से आयात करें"
 
-#: inc/comp/ExImport.php:71
+#: inc/comp/ExImport.php:72
 msgid "Export / Import Real Media Library folders"
 msgstr "एक्सपोर्ट / इम्पोर्ट रियल मीडिया लाइब्रेरी फोल्डर"
 
-#: inc/comp/ExImport.php:85
+#: inc/comp/ExImport.php:86
 msgid "Export"
 msgstr "बाहर निकालें"
 
-#: inc/comp/ExImport.php:90
+#: inc/comp/ExImport.php:91 inc/comp/ExImport.php:131
 msgid "Import"
 msgstr "अन्दर लें"
 
-#: inc/comp/ExImport.php:93
+#: inc/comp/ExImport.php:94
 msgid ""
 "All available folders will be exported. The current structure is not lost during import - "
 "but check that there are no duplicate names in the import data, as these are not checked."
@@ -177,31 +210,21 @@ msgstr ""
 "सभी उपलब्ध फ़ोल्डर निर्यात किए जाएंगे। वर्तमान संरचना आयात के दौरान खो नहीं है - लेकिन जाँच करें कि आयात "
 "डेटा में कोई डुप्लिकेट नाम नहीं हैं, क्योंकि ये चेक नहीं किए गए हैं।"
 
-#: inc/comp/ExImport.php:99
+#: inc/comp/ExImport.php:100
 msgid "Exported data:"
 msgstr "बाहर निकाले गए डाटा:"
 
-#: inc/comp/ExImport.php:102
+#: inc/comp/ExImport.php:103
 msgid "Import data:"
 msgstr "डाटा अन्दर लें:"
 
-#: inc/comp/ExImport.php:109
+#: inc/comp/ExImport.php:110
 msgid "Importing data is only available in PRO version."
 msgstr "डेटा आयात करना केवल PRO संस्करण में उपलब्ध है।"
 
-#: inc/comp/ExImport.php:113 inc/comp/ExImport.php:144 inc/view/Lang.php:181
+#: inc/comp/ExImport.php:114 inc/comp/ExImport.php:144 inc/view/Lang.php:181
 msgid "Learn more about PRO"
 msgstr "प्रो के बारे में और जाने"
-
-#. translators:
-#: inc/comp/ExImport.php:127
-msgid "Import from %s"
-msgstr "%s से आयात करें"
-
-#. translators:
-#: inc/comp/ExImport.php:127
-msgid "Import %s as folders"
-msgstr "फ़ोल्डर के रूप में %s आयात करें"
 
 #: inc/comp/ExImport.php:136
 msgid "Imports categories and post relations."
@@ -608,7 +631,7 @@ msgid "Are you sure to delete *{count} folders*? All files gets moved to Unorgan
 msgstr "क्या आप *{count}* फोल्डर* को हटाना सुनिश्चित कर रहे हैं? सभी फाइलें असंगठित में स्थान्तरित हो जाएगी!"
 
 #: inc/view/Lang.php:58
-msgid "Ok"
+msgid "OK"
 msgstr "ठीक है"
 
 #: inc/view/Lang.php:59
@@ -989,7 +1012,7 @@ msgid "PRO Feature"
 msgstr "प्रो की विशेषताएँ"
 
 #: inc/view/Lang.php:179
-msgid "Dismiss 20 days"
+msgid "Hide for 20 days"
 msgstr "20 दिन ख़ारिज करें"
 
 #: inc/view/Lang.php:180
@@ -1024,7 +1047,7 @@ msgstr ""
 "अपनी फोल्डर सामग्री में संगठित करो और एक मापदंड(जैसे-नाम अवरोही क्रम में) द्वारा अपनी फाइलों को दुबारा से "
 "क्रमित करो या ड्रैग और ड्रॉप के माध्यम से!"
 
-#: inc/view/Lang.php:204
+#: inc/view/Lang.php:205
 msgid ""
 "Organize the nodes within your folder tree according to a criterion (e.g. name descending) "
 "or by drag & drop."
@@ -1032,7 +1055,7 @@ msgstr ""
 "अपने फोल्डर में मुफ्त में संगठित करो और दुबारा अपने नोडस को एक मापदंड(जैसे-नाम अवरोही क्रम में) के द्वारा क्रमित "
 "करो या ड्रैग और ड्रॉप के माध्यम से!"
 
-#: inc/view/Lang.php:212
+#: inc/view/Lang.php:213
 msgid ""
 "You can create up to 10 folders in the free version of Real Media Library. Get the Pro "
 "version and create unlimited folders."
@@ -1103,6 +1126,18 @@ msgstr "सभी"
 #: inc/view/View.php:210
 msgid "Unorganized pictures"
 msgstr "असंगठित फोटोज"
+
+#~ msgid "Support"
+#~ msgstr "सहयोग"
+
+#~ msgid "Rate plugin"
+#~ msgstr "प्लगइन रेट"
+
+#~ msgid "Import from %s"
+#~ msgstr "%s से आयात करें"
+
+#~ msgid "Import %s as folders"
+#~ msgstr "फ़ोल्डर के रूप में %s आयात करें"
 
 #~ msgid "Organize your WordPress media library in a nice way with folders."
 #~ msgstr "एक अच्छे तरीके से आपकी वर्डप्रेस मीडिया लाइब्रेरी को संगठित करो!"
