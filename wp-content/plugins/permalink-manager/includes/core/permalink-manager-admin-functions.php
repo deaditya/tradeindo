@@ -905,7 +905,7 @@ class Permalink_Manager_Admin_Functions extends Permalink_Manager_Class {
 		$html = "<div class=\"permalink-manager redirects-row redirects-panel columns-container\">";
 
 		$html .= sprintf(
-			"<div><a class=\"button\" href=\"#\" id=\"toggle-redirect-panel\">%s</a></span></div>",
+			"<div><a class=\"button\" href=\"#\" id=\"toggle-redirect-panel\">%s</a></div>",
 			__("Manage redirects", "permalink-manager")
 		);
 

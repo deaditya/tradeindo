@@ -54,6 +54,7 @@ class Permalink_Manager_Third_Parties extends Permalink_Manager_Class {
 		add_filter('rank_math/frontend/breadcrumb/items', array($this, 'filter_breadcrumbs'), 9);
 		add_filter('seopress_pro_breadcrumbs_crumbs', array($this, 'filter_breadcrumbs'), 9);
 		add_filter('woocommerce_get_breadcrumb', array($this, 'filter_breadcrumbs'), 9);
+		add_filter('slim_seo_breadcrumbs_links', array($this, 'filter_breadcrumbs'), 9);
 
 		// 8. WooCommerce Wishlist Plugin
 		if(function_exists('tinv_get_option')) {
@@ -331,114 +332,118 @@ class Permalink_Manager_Third_Parties extends Permalink_Manager_Class {
 	/**
 	 * 7. Breadcrumbs
 	 */
-	function filter_breadcrumbs($links) {
-		// Get post type permastructure settings
-		global $permalink_manager_uris, $permalink_manager_options, $post, $wpdb, $wp, $wp_current_filter;
+	 function filter_breadcrumbs($links) {
+ 		// Get post type permastructure settings
+ 		global $permalink_manager_uris, $permalink_manager_options, $post, $wpdb, $wp, $wp_current_filter;
 
-		// Check if the filter should be activated
-		if(empty($permalink_manager_options['general']['yoast_breadcrumbs']) || empty($permalink_manager_uris)) { return $links; }
+ 		// Check if the filter should be activated
+ 		if(empty($permalink_manager_options['general']['yoast_breadcrumbs']) || empty($permalink_manager_uris)) { return $links; }
 
-		// Get current post/page/term (if available)
-		$queried_element = get_queried_object();
-		if(!empty($queried_element->ID)) {
-			$element_id = $queried_element->ID;
-		} else if(!empty($queried_element->term_id)) {
-			$element_id = "tax-{$queried_element->term_id}";
-		}
+ 		// Get current post/page/term (if available)
+ 		$queried_element = get_queried_object();
+ 		if(!empty($queried_element->ID)) {
+ 			$element_id = $queried_element->ID;
+ 		} else if(!empty($queried_element->term_id)) {
+ 			$element_id = "tax-{$queried_element->term_id}";
+ 		}
 
-		// Get the custom permalink (if available) or the current request URL (if unavailable)
-		if(!empty($element_id) && !empty($permalink_manager_uris[$element_id])) {
-			$custom_uri = preg_replace("/([^\/]+)$/", '', $permalink_manager_uris[$element_id]);
-		} else {
-			$custom_uri = trim(preg_replace("/([^\/]+)$/", '', $wp->request), "/");
-		}
+ 		// Get the custom permalink (if available) or the current request URL (if unavailable)
+ 		if(!empty($element_id) && !empty($permalink_manager_uris[$element_id])) {
+ 			$custom_uri = preg_replace("/([^\/]+)$/", '', $permalink_manager_uris[$element_id]);
+ 		} else {
+ 			$custom_uri = trim(preg_replace("/([^\/]+)$/", '', $wp->request), "/");
+ 		}
 
-		$all_uris = array_flip($permalink_manager_uris);
-		$custom_uri_parts = explode('/', trim($custom_uri));
-		$breadcrumbs = array();
-		$snowball = '';
-		$available_taxonomies = Permalink_Manager_Helper_Functions::get_taxonomies_array();
-		$available_post_types = Permalink_Manager_Helper_Functions::get_post_types_array();
-		$current_filter = end($wp_current_filter);
+ 		$all_uris = array_flip($permalink_manager_uris);
+ 		$custom_uri_parts = explode('/', trim($custom_uri));
+ 		$breadcrumbs = array();
+ 		$snowball = '';
+ 		$available_taxonomies = Permalink_Manager_Helper_Functions::get_taxonomies_array();
+ 		$available_post_types = Permalink_Manager_Helper_Functions::get_post_types_array();
+ 		$current_filter = end($wp_current_filter);
 
-		// Get Yoast Meta (the breadcrumbs titles can be changed in Yoast metabox)
-		$yoast_meta_terms = get_option('wpseo_taxonomy_meta');
+ 		// Get Yoast Meta (the breadcrumbs titles can be changed in Yoast metabox)
+ 		$yoast_meta_terms = get_option('wpseo_taxonomy_meta');
 
-		// Get internal breadcrumb elements
-		foreach($custom_uri_parts as $slug) {
-			if(empty($slug)) { continue; }
+ 		// Get internal breadcrumb elements
+ 		foreach($custom_uri_parts as $slug) {
+ 			if(empty($slug)) { continue; }
 
-			$snowball = (empty($snowball)) ? $slug : "{$snowball}/{$slug}";
+ 			$snowball = (empty($snowball)) ? $slug : "{$snowball}/{$slug}";
 
-			// 1A. Try to match any custom URI
-			if($snowball) {
-				$uri = trim($snowball, "/");
-				$element = (!empty($all_uris[$uri])) ? $all_uris[$uri] : false;
+ 			// 1A. Try to match any custom URI
+ 			if($snowball) {
+ 				$uri = trim($snowball, "/");
+ 				$element = (!empty($all_uris[$uri])) ? $all_uris[$uri] : false;
 
-				if(!empty($element) && strpos($element, 'tax-') !== false) {
-					$element_id = intval(preg_replace("/[^0-9]/", "", $element));
-					$element = get_term($element_id);
-				} else if(is_numeric($element)) {
-					$element = get_post($element);
-				}
-			}
+ 				if(!empty($element) && strpos($element, 'tax-') !== false) {
+ 					$element_id = intval(preg_replace("/[^0-9]/", "", $element));
+ 					$element = get_term($element_id);
+ 				} else if(is_numeric($element)) {
+ 					$element = get_post($element);
+ 				}
+ 			}
 
-			// 1B. Try to get term
-			if(empty($element) && !empty($available_taxonomies)) {
-				$sql = sprintf("SELECT t.term_id, t.name, tt.taxonomy FROM {$wpdb->terms} AS t LEFT JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id WHERE slug = '%s' AND tt.taxonomy IN ('%s') LIMIT 1", esc_sql($slug), implode("','", array_keys($available_taxonomies)));
+ 			// 1B. Try to get term
+ 			if(empty($element) && !empty($available_taxonomies)) {
+ 				$sql = sprintf("SELECT t.term_id, t.name, tt.taxonomy FROM {$wpdb->terms} AS t LEFT JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id WHERE slug = '%s' AND tt.taxonomy IN ('%s') LIMIT 1", esc_sql($slug), implode("','", array_keys($available_taxonomies)));
 
-				$element = $wpdb->get_row($sql);
-			}
+ 				$element = $wpdb->get_row($sql);
+ 			}
 
-			// 1C. Try to get page/post
-			if(empty($element) && !empty($available_post_types)) {
-				$sql = sprintf("SELECT ID, post_title FROM {$wpdb->posts} WHERE post_name = '%s' AND post_status = 'publish' AND post_type IN ('%s') AND post_type != 'attachment' LIMIT 1", esc_sql($slug), implode("','", array_keys($available_post_types)));
+ 			// 1C. Try to get page/post
+ 			if(empty($element) && !empty($available_post_types)) {
+ 				$sql = sprintf("SELECT ID, post_title FROM {$wpdb->posts} WHERE post_name = '%s' AND post_status = 'publish' AND post_type IN ('%s') AND post_type != 'attachment' LIMIT 1", esc_sql($slug), implode("','", array_keys($available_post_types)));
 
-				$element = $wpdb->get_row($sql);
-			}
+ 				$element = $wpdb->get_row($sql);
+ 			}
 
-			// 2A. When the term is found, we can add it to the breadcrumbs
-			if(!empty($element->term_id)) {
-				$title = (!empty($yoast_meta_terms[$element->taxonomy][$element->term_id]['wpseo_bctitle'])) ? $yoast_meta_terms[$element->taxonomy][$element->term_id]['wpseo_bctitle'] : $element->name;
+ 			// 2A. When the term is found, we can add it to the breadcrumbs
+ 			if(!empty($element->term_id)) {
+ 				$title = (!empty($yoast_meta_terms[$element->taxonomy][$element->term_id]['wpseo_bctitle'])) ? $yoast_meta_terms[$element->taxonomy][$element->term_id]['wpseo_bctitle'] : $element->name;
 
-				$breadcrumbs[] = array(
-					'text' => $title,
-					'url' => get_term_link((int) $element->term_id, $element->taxonomy),
-				);
-			}
-			// 2B. When the post/page is found, we can add it to the breadcrumbs
-			else if(!empty($element->ID)) {
-				$title = get_post_meta($element->ID, '_yoast_wpseo_bctitle', true);
-				$title = (!empty($title)) ? $title : $element->post_title;
+ 				$breadcrumbs[] = array(
+ 					'text' => $title,
+ 					'url' => get_term_link((int) $element->term_id, $element->taxonomy),
+ 				);
+ 			}
+ 			// 2B. When the post/page is found, we can add it to the breadcrumbs
+ 			else if(!empty($element->ID)) {
+ 				$title = get_post_meta($element->ID, '_yoast_wpseo_bctitle', true);
+ 				$title = (!empty($title)) ? $title : $element->post_title;
 
-				$breadcrumbs[] = array(
-					'text' => $title,
-					'url' => get_permalink($element->ID),
-				);
-			}
-		}
+ 				$breadcrumbs[] = array(
+ 					'text' => $title,
+ 					'url' => get_permalink($element->ID),
+ 				);
+ 			}
+ 		}
 
-		// Add new links to current breadcrumbs array
-		if(!empty($links) && is_array($links)) {
-			$first_element = reset($links);
-			$last_element = end($links);
-			$breadcrumbs = (!empty($breadcrumbs)) ? $breadcrumbs : array();
+ 		// Add new links to current breadcrumbs array
+ 		if(!empty($links) && is_array($links)) {
+ 			$first_element = reset($links);
+ 			$last_element = end($links);
+ 			$breadcrumbs = (!empty($breadcrumbs)) ? $breadcrumbs : array();
 
-			// Support RankMath/SEOPress/WooCommerce breadcrumbs
-			if(in_array($current_filter, array('wpseo_breadcrumb_links', 'rank_math/frontend/breadcrumb/items', 'seopress_pro_breadcrumbs_crumbs', 'woocommerce_get_breadcrumb'))) {
-				foreach($breadcrumbs as &$breadcrumb) {
-					if(isset($breadcrumb['text'])) {
-						$breadcrumb[0] = $breadcrumb['text'];
-						$breadcrumb[1] = $breadcrumb['url'];
-					}
-				}
-			}
+ 			// Support RankMath/SEOPress/WooCommerce/Slim SEO breadcrumbs
+ 			if(in_array($current_filter, array('wpseo_breadcrumb_links', 'rank_math/frontend/breadcrumb/items', 'seopress_pro_breadcrumbs_crumbs', 'woocommerce_get_breadcrumb', 'slim_seo_breadcrumbs_links'))) {
+ 				foreach($breadcrumbs as &$breadcrumb) {
+ 					if(isset($breadcrumb['text'])) {
+ 						$breadcrumb[0] = $breadcrumb['text'];
+ 						$breadcrumb[1] = $breadcrumb['url'];
+ 					}
+ 				}
+ 			}
 
-			$links = array_merge(array($first_element), $breadcrumbs, array($last_element));
-		}
+ 			if(in_array($current_filter, array('slim_seo_breadcrumbs_links'))) {
+ 				$links = array_merge(array($first_element), $breadcrumbs);
+ 			} else {
+ 				$links = array_merge(array($first_element), $breadcrumbs, array($last_element));
+ 			}
+ 		}
 
-		return array_filter($links);
-	}
+ 		return array_filter($links);
+ 	}
 
 	/**
 	 * 8. Support WooCommerce Wishlist Plugin

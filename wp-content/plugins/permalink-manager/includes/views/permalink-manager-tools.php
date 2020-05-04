@@ -125,7 +125,7 @@ class Permalink_Manager_Tools extends Permalink_Manager_Class {
 
 	public function find_and_replace_output() {
 		// Get all registered post types array & statuses
-		$all_post_statuses_array = get_post_statuses();
+		$all_post_statuses_array = Permalink_Manager_Helper_Functions::get_post_statuses();
 		$all_post_types = Permalink_Manager_Helper_Functions::get_post_types_array();
 		$all_taxonomies = Permalink_Manager_Helper_Functions::get_taxonomies_array();
 
@@ -213,7 +213,7 @@ class Permalink_Manager_Tools extends Permalink_Manager_Class {
 
 	public function regenerate_slugs_output() {
 		// Get all registered post types array & statuses
-		$all_post_statuses_array = get_post_statuses();
+		$all_post_statuses_array = Permalink_Manager_Helper_Functions::get_post_statuses();
 		$all_post_types = Permalink_Manager_Helper_Functions::get_post_types_array();
 		$all_taxonomies = Permalink_Manager_Helper_Functions::get_taxonomies_array();
 

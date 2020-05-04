@@ -187,7 +187,7 @@ class Permalink_Manager_Helper_Functions extends Permalink_Manager_Class {
 	static function get_disabled_taxonomies($include_user_excluded = true) {
 		global $wp_taxonomies, $permalink_manager_options;
 
-		$disabled_taxonomies = array('product_shipping_class', 'post_status', 'fl-builder-template-category', 'post_format');
+		$disabled_taxonomies = array('product_shipping_class', 'post_status', 'fl-builder-template-category', 'post_format', 'nav_menu');
 
 		// 1. Disable taxonomies that are not publicly_queryable
 		foreach($wp_taxonomies as $taxonomy) {
@@ -200,7 +200,7 @@ class Permalink_Manager_Helper_Functions extends Permalink_Manager_Class {
 
 		// 2. Add taxonomies disabled by user
 		if($include_user_excluded) {
-			$disabled_taxonomies = (!empty($permalink_manager_options['general']['partial_disable']['taxonomies'])) ? array_merge((array) $permalink_manager_options['general']['partial_disable']['taxonomies'], $disabled_taxonomies) : array();
+			$disabled_taxonomies = (!empty($permalink_manager_options['general']['partial_disable']['taxonomies'])) ? array_merge((array) $permalink_manager_options['general']['partial_disable']['taxonomies'], $disabled_taxonomies) : $disabled_taxonomies;
 		}
 
 		return apply_filters('permalink_manager_disabled_taxonomies', $disabled_taxonomies);
@@ -271,6 +271,15 @@ class Permalink_Manager_Helper_Functions extends Permalink_Manager_Class {
 		ksort($taxonomies_array);
 
 		return (empty($tax)) ? $taxonomies_array : $taxonomies_array[$tax];
+	}
+
+	/**
+	 * Get all post statuses supported by Permalink Manager
+	 */
+	static function get_post_statuses() {
+		$post_statuses = get_post_statuses();
+
+		return apply_filters('permalink_manager_post_statuses', $post_statuses);
 	}
 
 	/**

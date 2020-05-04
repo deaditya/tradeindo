@@ -608,7 +608,7 @@ class Permalink_Manager_URI_Functions_Post extends Permalink_Manager_Class {
 		$show_uri_editor = apply_filters("permalink_manager_hide_uri_editor_post_{$post->post_type}", true);
 		if(!$show_uri_editor) { return $html; }
 
-		$new_html = preg_replace("/(<strong>(.*)<\/strong>)(.*)/is", "$1 ", $html);
+		$new_html = preg_replace("/^(<strong>(.*)<\/strong>)(.*)/is", "$1 ", $html);
 		$default_uri = self::get_default_post_uri($id);
 		$native_uri = self::get_default_post_uri($id, true);
 

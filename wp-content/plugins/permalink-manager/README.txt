@@ -7,7 +7,7 @@ Tags: permalinks, custom permalinks, url editor, permalinks, woocommerce permali
 Requires at least: 4.4.0
 Requires PHP: 5.4
 Tested up to: 5.4
-Stable tag: 2.2.8.5
+Stable tag: 2.2.8.6
 
 Permalink Manager Pro allows to easily change full URL addresses of posts, pages, custom post types, terms and WooCommerce links. You can also set different permalink formats per language or bulk change the URLs.
 
@@ -102,6 +102,10 @@ It is because Permalink Manager overwrites one of the core Wordpress functionali
 8.	Permalink Manager settings.
 
 == Changelog ==
+
+= 2.2.8.6 =
+* Hotfix for Permalink_Manager_Helper_Functions::get_disabled_taxonomies() function
+* New wrapper function with filter 'permalink_manager_post_statuses' for get_post_statuses()
 
 = 2.2.8.4/2.2.8.5 =
 * Hotfix for Permastructures (now the permalink formats are saved correctly)
