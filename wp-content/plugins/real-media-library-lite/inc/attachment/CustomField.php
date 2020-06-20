@@ -84,25 +84,30 @@ class CustomField
             $output .= '<p class="description">';
             if ($shortcut > 0) {
                 $output .= __('This is a shortcut of a media library file. Shortcuts doesn\'t need any physical storage <strong>(0 kB)</strong>. If you want to change the file itself, you must do this in the original file (for example replace media file through a plugin).<br/>Note also that the fields in the shortcuts can be different to the original file, for example "Title", "Description" or "Caption".', RML_TD) . '
-                    <a target="_blank" href="' . admin_url('post.php?post=' . $shortcut . '&action=edit') . '">Open original file.</a>';
-            } else {
-                $shortcuts = wp_attachment_get_shortcuts($post->ID, \false, \true);
-                $shortcutsCnt = \count($shortcuts);
-                if ($shortcutsCnt > 0) {
-                    $output .= \sprintf(
-                        // translators:
-                        _n('For this file is %d shortcut available in the following folder:', 'For this file are %d shortcuts available in the following folders:', $shortcutsCnt, RML_TD),
-                        $shortcutsCnt
-                    );
-                    foreach ($shortcuts as $value) {
-                        $folderName = $value['folderId'] === '-1' ? wp_rml_get_object_by_id(-1)->getName(\true) : \htmlentities($value['name']);
-                        $output .= '<div>';
-                        $output .= $folderName . ' (<a target="_blank" href="' . admin_url('post.php?post=' . $value['attachment'] . '&action=edit') . '">Open shortcut file</a>)';
-                        $output .= '</div>';
-                    }
-                } else {
-                    $output .= __('This file has no associated shortcuts. You can create shortcuts by moving files per mouse and hold any key.', RML_TD);
+                    <a target="_blank" href="' . admin_url('post.php?post=' . $shortcut . '&action=edit') . '">Open original file.</a><br />';
+            }
+            $shortcuts = wp_attachment_get_shortcuts(wp_attachment_ensure_source_file($post->ID), \false, \true);
+            // Filter out own id
+            foreach ($shortcuts as $key => &$value) {
+                if (\intval($value['attachment']) === $post->ID) {
+                    unset($shortcuts[$key]);
                 }
+            }
+            $shortcutsCnt = \count($shortcuts);
+            if ($shortcutsCnt > 0) {
+                $output .= \sprintf(
+                    // translators:
+                    _n('For this file is %d shortcut available in the following folder:', 'For this file are %d shortcuts available in the following folders:', $shortcutsCnt, RML_TD),
+                    $shortcutsCnt
+                );
+                foreach ($shortcuts as $shortcut) {
+                    $folderName = $shortcut['folderId'] === '-1' ? wp_rml_get_object_by_id(-1)->getName(\true) : \htmlentities($shortcut['name']);
+                    $output .= '<div>';
+                    $output .= $folderName . ' (<a target="_blank" href="' . admin_url('post.php?post=' . $shortcut['attachment'] . '&action=edit') . '">Open shortcut file</a>)';
+                    $output .= '</div>';
+                }
+            } elseif (!$shortcut) {
+                $output .= __('This file has no associated shortcuts. You can create shortcuts by moving files per mouse and hold any key.', RML_TD);
             }
             $output .= '</p>';
             /**

@@ -110,6 +110,9 @@ if(!function_exists('nectar_post_grid_item_markup')) {
               $card_color_style = ' style="background-color: '.esc_attr($atts['card_bg_color']).';"';
           }
           
+          // Custom Class
+          $custom_class_name = '';
+          
           
           /****************** Post. ******************/
           if($atts['post_type'] === 'post') {
@@ -201,8 +204,13 @@ if(!function_exists('nectar_post_grid_item_markup')) {
           /****************** Portfolio post type. ******************/
           else if( $atts['post_type'] === 'portfolio') {
             
+            $custom_project_class = get_post_meta($post->ID, '_nectar_project_css_class', true);
+            $custom_thumbnail     = get_post_meta($post->ID, '_nectar_portfolio_custom_thumbnail', true); 
             
-            $custom_thumbnail = get_post_meta($post->ID, '_nectar_portfolio_custom_thumbnail', true); 
+            // Class name
+            if( !empty($custom_project_class) ) {
+              $custom_class_name = ' ' . $custom_project_class;
+            }
             
             // Custom thumb.
             if( !empty($custom_thumbnail) ) {
@@ -332,7 +340,7 @@ if(!function_exists('nectar_post_grid_item_markup')) {
           
           
           /****************** Output Markup ******************/
-          $markup .= '<div class="nectar-post-grid-item"'.$card_color_style.'> <div class="inner">';
+          $markup .= '<div class="nectar-post-grid-item'.esc_attr($custom_class_name).'"'.$card_color_style.'> <div class="inner">';
           
           // Conditional based on style
           if( 'content_overlaid' !== $atts['grid_style'] ) { 

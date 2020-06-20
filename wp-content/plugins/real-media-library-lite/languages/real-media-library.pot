@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Real Media Library plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Real Media Library 4.7.6\n"
+"Project-Id-Version: Real Media Library 4.8.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/src\n"
-"Last-Translator: devowl.io GmbH <mail@devowl.io>\n"
-"Language-Team: devowl.io GmbH <mail@devowl.io>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-03-31T11:39:11+02:00\n"
+"POT-Creation-Date: n/a\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 
@@ -33,35 +33,35 @@ msgstr ""
 msgid "https://devowl.io"
 msgstr ""
 
-#: inc/AdInitiator.php:56
+#: inc/AdInitiator.php:58
 msgid "Complete file and folder manager"
 msgstr ""
 
-#: inc/AdInitiator.php:57
-msgid "Real Media Library is a WordPress plugin that empowers you with advanced media management. You can use this plugin to organize the thousands of images, audio, video and PDF files in your media library into folders. Basically it is a file manager like Windows Explorer or Mac Finder, but for WordPress."
+#: inc/AdInitiator.php:59
+msgid "WordPress Real Media Library is a WordPress plugin that empowers you with advanced media management. You can use this plugin to organize the thousands of images, audio, video and PDF files in your media library into folders. Basically it is a file manager like Windows Explorer or Mac Finder, but for WordPress."
 msgstr ""
 
-#: inc/AdInitiator.php:59
+#: inc/AdInitiator.php:71
 msgid "In the PRO version you can create more than 10 folders (unlimited)."
 msgstr ""
 
-#: inc/AdInitiator.php:63
+#: inc/AdInitiator.php:76
 msgid "Filter in insert media dialog"
 msgstr ""
 
-#: inc/AdInitiator.php:64
+#: inc/AdInitiator.php:77
 msgid "No matter where you are, the folder structure of Real Media Library is always where you can select files. For example in the dialog for selecting a \"Featured Image\"."
 msgstr ""
 
-#: inc/AdInitiator.php:69
+#: inc/AdInitiator.php:87
 msgid "Custom image order"
 msgstr ""
 
-#: inc/AdInitiator.php:70
+#: inc/AdInitiator.php:88
 msgid "Organizing your media files is really easy with the Real Media Library plugin. You can arrange the order of your files yourself by dragging and dropping. This allows you to move important files to the top for faster access."
 msgstr ""
 
-#: inc/AdInitiator.php:82
+#: inc/AdInitiator.php:103
 msgid "Get your PRO license now!"
 msgstr ""
 
@@ -71,11 +71,11 @@ msgstr ""
 msgid "The given folder was not found."
 msgstr ""
 
-#: inc/Assets.php:223
+#: inc/Assets.php:218
 msgid "Complementary Plugins"
 msgstr ""
 
-#: inc/Assets.php:241
+#: inc/Assets.php:236
 msgid ""
 "\n"
 "\n"
@@ -83,41 +83,41 @@ msgid ""
 "If you want to delete a non-shortcut file, all associated shortcuts are deleted, too."
 msgstr ""
 
-#: inc/attachment/CustomField.php:47
+#: inc/attachment/CustomField.php:53
 msgid "If you move this shortcut, the location of the source/main file is not changed."
 msgstr ""
 
-#: inc/attachment/CustomField.php:48
+#: inc/attachment/CustomField.php:54
 msgid "If you move this attachment, the folder location of the associated shortcuts are not changed."
 msgstr ""
 
-#: inc/attachment/CustomField.php:72
+#: inc/attachment/CustomField.php:78
 msgid "Move to another folder"
 msgstr ""
 
-#: inc/attachment/CustomField.php:77
-#: inc/folder/Creatable.php:425
+#: inc/attachment/CustomField.php:83
+#: inc/folder/Creatable.php:428
 #: inc/view/FolderShortcode.php:114
 #: inc/view/Lang.php:29
 msgid "Folder"
 msgstr ""
 
-#: inc/attachment/CustomField.php:112
+#: inc/attachment/CustomField.php:124
 msgid "Shortcut infos"
 msgstr ""
 
-#: inc/attachment/CustomField.php:119
+#: inc/attachment/CustomField.php:131
 msgid "This is a shortcut of a media library file. Shortcuts doesn't need any physical storage <strong>(0 kB)</strong>. If you want to change the file itself, you must do this in the original file (for example replace media file through a plugin).<br/>Note also that the fields in the shortcuts can be different to the original file, for example \"Title\", \"Description\" or \"Caption\"."
 msgstr ""
 
 #. translators:
-#: inc/attachment/CustomField.php:133
+#: inc/attachment/CustomField.php:154
 msgid "For this file is %d shortcut available in the following folder:"
 msgid_plural "For this file are %d shortcuts available in the following folders:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/attachment/CustomField.php:155
+#: inc/attachment/CustomField.php:177
 msgid "This file has no associated shortcuts. You can create shortcuts by moving files per mouse and hold any key."
 msgstr ""
 
@@ -153,54 +153,55 @@ msgstr ""
 msgid "upload to folder"
 msgstr ""
 
-#: inc/comp/ExImport.php:55
+#: inc/comp/ExImport.php:62
 msgid "RealMediaLibrary:Import / Export"
 msgstr ""
 
-#: inc/comp/ExImport.php:63
+#: inc/comp/ExImport.php:70
 msgid "Import from other plugins"
 msgstr ""
 
-#: inc/comp/ExImport.php:72
+#: inc/comp/ExImport.php:79
 msgid "Export / Import Real Media Library folders"
 msgstr ""
 
-#: inc/comp/ExImport.php:86
+#: inc/comp/ExImport.php:93
 msgid "Export"
 msgstr ""
 
-#: inc/comp/ExImport.php:91
-#: inc/comp/ExImport.php:131
+#: inc/comp/ExImport.php:98
+#: inc/comp/ExImport.php:138
+#: inc/comp/ExImport.php:149
 msgid "Import"
 msgstr ""
 
-#: inc/comp/ExImport.php:94
+#: inc/comp/ExImport.php:101
 msgid "All available folders will be exported. The current structure is not lost during import - but check that there are no duplicate names in the import data, as these are not checked."
 msgstr ""
 
-#: inc/comp/ExImport.php:100
+#: inc/comp/ExImport.php:107
 msgid "Exported data:"
 msgstr ""
 
-#: inc/comp/ExImport.php:103
+#: inc/comp/ExImport.php:110
 msgid "Import data:"
 msgstr ""
 
-#: inc/comp/ExImport.php:110
+#: inc/comp/ExImport.php:117
 msgid "Importing data is only available in PRO version."
 msgstr ""
 
-#: inc/comp/ExImport.php:114
-#: inc/comp/ExImport.php:144
-#: inc/view/Lang.php:181
+#: inc/comp/ExImport.php:121
+#: inc/comp/ExImport.php:161
+#: inc/view/Lang.php:184
 msgid "Learn more about PRO"
 msgstr ""
 
-#: inc/comp/ExImport.php:136
+#: inc/comp/ExImport.php:153
 msgid "Imports categories and post relations."
 msgstr ""
 
-#: inc/comp/ExImport.php:140
+#: inc/comp/ExImport.php:157
 msgid "Importing categories from another plugin is only available in PRO version."
 msgstr ""
 
@@ -226,99 +227,99 @@ msgid "WPML: Automatically move translations"
 msgstr ""
 
 #. translators:
-#: inc/exception/FolderAlreadyExistsException.php:29
+#: inc/exception/FolderAlreadyExistsException.php:30
 msgid "'%s' already exists in this folder."
 msgstr ""
 
 #. translators:
-#: inc/exception/OnlyInProVersionException.php:21
+#: inc/exception/OnlyInProVersionException.php:22
 msgid "This functionality is not available in the free version (%s)."
 msgstr ""
 
-#: inc/folder/Creatable.php:141
-#: inc/overrides/pro/order/Sortable.php:146
-#: inc/rest/Attachment.php:167
+#: inc/folder/Creatable.php:143
+#: inc/overrides/pro/order/Sortable.php:147
+#: inc/rest/Attachment.php:169
 msgid "Something went wrong."
 msgstr ""
 
-#: inc/folder/Creatable.php:262
+#: inc/folder/Creatable.php:264
 msgid "You need to provide a set of files."
 msgstr ""
 
 #. translators:
-#: inc/folder/Creatable.php:319
+#: inc/folder/Creatable.php:321
 msgid "The parent %d does not exist."
 msgstr ""
 
-#: inc/folder/Creatable.php:359
+#: inc/folder/Creatable.php:361
 msgid "The folder could not be created in the database."
 msgstr ""
 
-#: inc/folder/Creatable.php:362
+#: inc/folder/Creatable.php:364
 msgid "The folder could not be created because it already exists."
 msgstr ""
 
-#: inc/folder/Creatable.php:445
+#: inc/folder/Creatable.php:448
 msgid "A folder can contain every type of file or a collection, but not gallery."
 msgstr ""
 
-#: inc/folder/Creatable.php:469
+#: inc/folder/Creatable.php:472
 msgid "The given parent does not exist to set the parent for this folder."
 msgstr ""
 
-#: inc/folder/Creatable.php:474
+#: inc/folder/Creatable.php:477
 msgid "You are not allowed to change the parent for this folder."
 msgstr ""
 
-#: inc/folder/Creatable.php:479
+#: inc/folder/Creatable.php:482
 msgid "The given parent does not allow the folder type."
 msgstr ""
 
 #. translators:
-#: inc/folder/Creatable.php:595
+#: inc/folder/Creatable.php:598
 msgid "'%s' is not a valid folder name."
 msgstr ""
 
-#: inc/folder/Creatable.php:728
+#: inc/folder/Creatable.php:731
 msgid "Order by name ascending"
 msgstr ""
 
-#: inc/folder/Creatable.php:732
+#: inc/folder/Creatable.php:735
 msgid "Order by name descending"
 msgstr ""
 
-#: inc/folder/Creatable.php:736
+#: inc/folder/Creatable.php:739
 #: inc/order/Sortable.php:100
 msgid "Order by ID ascending"
 msgstr ""
 
-#: inc/folder/Creatable.php:740
+#: inc/folder/Creatable.php:743
 #: inc/order/Sortable.php:104
 msgid "Order by ID descending"
 msgstr ""
 
-#: inc/folder/CRUD.php:121
+#: inc/folder/CRUD.php:122
 msgid "The given folder does not exist or you cannot rename this folder."
 msgstr ""
 
-#: inc/folder/CRUD.php:140
+#: inc/folder/CRUD.php:141
 #: inc/view/Lang.php:73
 msgid "The folder you try to delete has subfolders."
 msgstr ""
 
-#: inc/folder/CRUD.php:199
+#: inc/folder/CRUD.php:200
 msgid "The given folder does not exist."
 msgstr ""
 
-#: inc/folder/Root.php:20
-#: inc/folder/Root.php:81
+#: inc/folder/Root.php:21
+#: inc/folder/Root.php:82
 #: inc/view/Lang.php:107
 #: inc/view/View.php:119
 #: inc/view/View.php:124
 msgid "Unorganized"
 msgstr ""
 
-#: inc/folder/Root.php:88
+#: inc/folder/Root.php:89
 msgid "Unorganized is the same as a root folder. Here you can find all files which are not assigned to a folder."
 msgstr ""
 
@@ -374,43 +375,43 @@ msgstr ""
 msgid "Natural order by filename descending"
 msgstr ""
 
-#: inc/overrides/pro/Core.php:70
+#: inc/overrides/pro/Core.php:75
 msgid "<strong>You have not yet entered the license key</strong>. To receive automatic updates, please enter the key in \"Enter license\"."
 msgstr ""
 
-#: inc/overrides/pro/folder/Collection.php:17
+#: inc/overrides/pro/folder/Collection.php:18
 msgid "A collection cannot contain files."
 msgstr ""
 
-#: inc/overrides/pro/folder/Collection.php:50
+#: inc/overrides/pro/folder/Collection.php:51
 msgid "Collection"
 msgstr ""
 
-#: inc/overrides/pro/folder/Collection.php:57
+#: inc/overrides/pro/folder/Collection.php:58
 msgid "A collection cannot contain files. But you can create other collections and <strong> galleries</strong> there."
 msgstr ""
 
-#: inc/overrides/pro/folder/Gallery.php:18
+#: inc/overrides/pro/folder/Gallery.php:19
 msgid "You can only move images to a gallery."
 msgstr ""
 
-#: inc/overrides/pro/folder/Gallery.php:52
+#: inc/overrides/pro/folder/Gallery.php:53
 msgid "Gallery"
 msgstr ""
 
-#: inc/overrides/pro/folder/Gallery.php:59
+#: inc/overrides/pro/folder/Gallery.php:60
 msgid "A gallery can only contain images. To view a gallery, go to a post and look at the buttons of the visual editor.."
 msgstr ""
 
-#: inc/overrides/pro/order/Sortable.php:43
+#: inc/overrides/pro/order/Sortable.php:44
 msgid "The given folder does not allow to reorder the files."
 msgstr ""
 
-#: inc/overrides/pro/order/Sortable.php:51
+#: inc/overrides/pro/order/Sortable.php:52
 msgid "This folder has an automatic order. Please deactivate that first."
 msgstr ""
 
-#: inc/rest/Attachment.php:55
+#: inc/rest/Attachment.php:57
 msgid "Fetch only media in a folder by folder id."
 msgstr ""
 
@@ -448,7 +449,7 @@ msgid "No folder at startup"
 msgstr ""
 
 #: inc/usersettings/DefaultFolder.php:106
-msgid "Last queried folder"
+msgid "Last opened folder"
 msgstr ""
 
 #: inc/view/FolderShortcode.php:109
@@ -596,7 +597,7 @@ msgid "Are you sure to delete *{count} folders*? All files gets moved to Unorgan
 msgstr ""
 
 #: inc/view/Lang.php:58
-msgid "OK"
+msgid "Ok"
 msgstr ""
 
 #: inc/view/Lang.php:59
@@ -927,55 +928,55 @@ msgstr ""
 msgid "It looks like you have already used another plugin for folders in the media library."
 msgstr ""
 
-#: inc/view/Lang.php:172
+#: inc/view/Lang.php:175
 msgid "Start importing"
 msgstr ""
 
-#: inc/view/Lang.php:173
+#: inc/view/Lang.php:176
 msgid "Dismiss"
 msgstr ""
 
-#: inc/view/Lang.php:174
+#: inc/view/Lang.php:177
 msgid "You will be redirected to the external website of PRO version. Please confirm to continue!"
 msgstr ""
 
-#: inc/view/Lang.php:178
+#: inc/view/Lang.php:181
 msgid "PRO Feature"
 msgstr ""
 
-#: inc/view/Lang.php:179
+#: inc/view/Lang.php:182
 msgid "Hide for 20 days"
 msgstr ""
 
-#: inc/view/Lang.php:180
+#: inc/view/Lang.php:183
 msgid "Thanks for using the free version of Real Media Library."
 msgstr ""
 
-#: inc/view/Lang.php:182
+#: inc/view/Lang.php:185
 msgid "Get PRO!"
 msgstr ""
 
-#: inc/view/Lang.php:183
+#: inc/view/Lang.php:186
 msgid "I want to learn more!"
 msgstr ""
 
-#: inc/view/Lang.php:184
+#: inc/view/Lang.php:187
 msgid "No, not interested..."
 msgstr ""
 
-#: inc/view/Lang.php:189
+#: inc/view/Lang.php:192
 msgid "Get more organized with different types of folders: Collections and galleries help you to easily recognize where your image galleries are located."
 msgstr ""
 
-#: inc/view/Lang.php:197
+#: inc/view/Lang.php:200
 msgid "Get your folder contents in order and arrange your files according to a criterion (e.g. name descending) or by drag & drop."
 msgstr ""
 
-#: inc/view/Lang.php:205
+#: inc/view/Lang.php:208
 msgid "Organize the nodes within your folder tree according to a criterion (e.g. name descending) or by drag & drop."
 msgstr ""
 
-#: inc/view/Lang.php:213
+#: inc/view/Lang.php:216
 msgid "You can create up to 10 folders in the free version of Real Media Library. Get the Pro version and create unlimited folders."
 msgstr ""
 
@@ -1020,7 +1021,7 @@ msgid "Reset count"
 msgstr ""
 
 #: inc/view/Options.php:156
-#: inc/view/Options.php:179
+#: inc/view/Options.php:182
 msgid "Reset"
 msgstr ""
 
@@ -1028,7 +1029,7 @@ msgstr ""
 msgid "Activate this option if you are using a page builder like Divi Page Builder, WPBakery Page Builder or Elementor."
 msgstr ""
 
-#: inc/view/Options.php:182
+#: inc/view/Options.php:185
 msgid "You can also reset an single folder in its folder details."
 msgstr ""
 

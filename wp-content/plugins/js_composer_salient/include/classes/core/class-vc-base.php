@@ -120,12 +120,10 @@ class Vc_Base {
 			'WPBMap',
 			'addAllMappedShortcodes',
 		) );
-		/* nectar addition */
 		add_action( 'wp_head', array(
 			$this,
 			'addFrontCss',
 		), 1000 );
-		/* nectar addition end */
 		add_action( 'wp_head', array(
 			$this,
 			'addNoScript',
@@ -275,31 +273,40 @@ class Vc_Base {
 	 * Function creates meta data for post with the key '_wpb_shortcodes_custom_css'
 	 * and value as css string, which will be added to the footer of the page.
 	 *
-	 * @param $post_id
+	 * @param $id
 	 * @throws \Exception
 	 * @since  4.2
 	 * @access public
 	 */
-	public function buildShortcodesCustomCss( $post_id ) {
-		$post = get_post( $post_id );
+	public function buildShortcodesCustomCss( $id ) {
+		if ( 'dopreview' === vc_post_param( 'wp-preview' ) && wp_revisions_enabled( get_post( $id ) ) ) {
+			$latest_revision = wp_get_post_revisions( $id );
+			if ( ! empty( $latest_revision ) ) {
+				$array_values = array_values( $latest_revision );
+				$id = $array_values[0]->ID;
+			}
+		}
+
+		$post = get_post( $id );
 		/**
 		 * vc_filter: vc_base_build_shortcodes_custom_css
 		 * @since 4.4
 		 */
+		 
 		 /* nectar addition */ 
- 	 $portfolio_extra_content = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_portfolio_extra_content', true) : '';
- 	 
- 	 if(!empty($portfolio_extra_content)) {
- 		 $css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $portfolio_extra_content ), $post_id  );
- 	 } else {
- 		 $css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $post->post_content ), $post_id  );
- 	 }
- 	 /* nectar addition end */ 
-	 
-		if ( empty( $css ) ) {
-			delete_metadata( 'post', $post_id, '_wpb_shortcodes_custom_css' );
+		$portfolio_extra_content = (isset($post->ID)) ? get_post_meta($post->ID, '_nectar_portfolio_extra_content', true) : '';
+		
+		if(!empty($portfolio_extra_content)) {
+			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $portfolio_extra_content ), $id  );
 		} else {
-			update_metadata( 'post', $post_id, '_wpb_shortcodes_custom_css', $css );
+			$css = apply_filters( 'vc_base_build_shortcodes_custom_css', $this->parseShortcodesCustomCss( $post->post_content ), $id  );
+		}
+		/* nectar addition end */ 
+
+		if ( empty( $css ) ) {
+			delete_metadata( 'post', $id, '_wpb_shortcodes_custom_css' );
+		} else {
+			update_metadata( 'post', $id, '_wpb_shortcodes_custom_css', $css );
 		}
 	}
 
@@ -371,6 +378,7 @@ class Vc_Base {
 				}
 			}
 			$post_custom_css = get_metadata( 'post', $id, '_wpb_post_custom_css', true );
+			$post_custom_css = apply_filters( 'vc_post_custom_css', $post_custom_css, $id );
 			if ( ! empty( $post_custom_css ) ) {
 				$post_custom_css = wp_strip_all_tags( $post_custom_css );
 				echo '<style type="text/css" data-type="vc_custom-css">';
@@ -393,10 +401,7 @@ class Vc_Base {
 	 *
 	 */
 	public function addShortcodesCustomCss( $id = null ) {
-		if ( ! is_singular() ) {
-			return;
-		}
-		if ( ! $id ) {
+		if ( ! $id && is_singular() ) {
 			$id = get_the_ID();
 		}
 
@@ -409,6 +414,7 @@ class Vc_Base {
 				}
 			}
 			$shortcodes_custom_css = get_metadata( 'post', $id, '_wpb_shortcodes_custom_css', true );
+			$shortcodes_custom_css = apply_filters( 'vc_shortcodes_custom_css', $shortcodes_custom_css, $id );
 			if ( ! empty( $shortcodes_custom_css ) ) {
 				$shortcodes_custom_css = wp_strip_all_tags( $shortcodes_custom_css );
 				echo '<style type="text/css" data-type="vc_shortcodes-custom-css">';
@@ -472,7 +478,6 @@ class Vc_Base {
 			$custom_css_url = vc_str_remove_protocol( $custom_css_url );
 			wp_register_style( 'js_composer_custom_css', $custom_css_url, array(), WPB_VC_VERSION );
 		}
-
 
 		add_action( 'wp_enqueue_scripts', array(
 			$this,
@@ -611,7 +616,6 @@ class Vc_Base {
 		echo '<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>' . "\n";
 	}
 
-
 	/**
 	 * Method adds css class to body tag.
 	 *
@@ -647,8 +651,8 @@ class Vc_Base {
 		/* nectar addition */ 
 		if ( empty( $output ) && ! empty( $post->post_content ) ) {
 			$post_content =  preg_replace ('/\[recent_posts[^\]]*\]/', ' ', $post->post_content);
-			$text = strip_tags( do_shortcode($post_content ));
-			$options = get_option('salient');
+			$text = wp_strip_all_tags( do_shortcode( $post_content ) );
+			$options = get_option('salient_redux');
 			$the_excerpt_length = (!empty($options['blog_excerpt_length'])) ? intval($options['blog_excerpt_length']) : 30; 
 			$excerpt_length = apply_filters('excerpt_length', $the_excerpt_length);
 			$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );

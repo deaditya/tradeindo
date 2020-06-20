@@ -42,7 +42,7 @@ if( !function_exists('nectar_create_meta_box') ) {
 				}
 				
 				if( $inline === null ) {
-					echo '<tr><th><label for="'. $field['id'] .'"><strong>'. $field['name'] .'</strong>
+					echo '<tr class="field_'.$field['id'].'"><th><label for="'. $field['id'] .'"><strong>'. $field['name'] .'</strong>
 					<span>'. $field['desc'] .'</span></label></th>';
 				}
 				
@@ -511,7 +511,18 @@ if( !function_exists('nectar_save_meta_box') ) {
 		
 		foreach( $_POST['nectar_meta'] as $key => $val ) {
 			
-			if( $key === '_nectar_portfolio_extra_content' || $key === '_nectar_portfolio_custom_grid_item_content' ) {
+			if( $key === '_nectar_portfolio_extra_content' ) {
+				// Portfolio extra content.
+				if( wp_is_post_revision($post_id) && isset( $_POST['wp-preview'] ) && 'dopreview' === $_POST['wp-preview'] ) {
+					// Store preview separate.
+					update_post_meta( $post_id, $key .'_preview', $val );
+				} else {
+					update_post_meta( $post_id, $key, $val );
+				}
+				
+			} 
+			else if( $key === '_nectar_portfolio_custom_grid_item_content' ) {
+				// Custom content grid item.
 				update_post_meta( $post_id, $key, $val );
 			}
 			else if( $key === 'nectar-metabox-portfolio-display' && is_array($val) ) {

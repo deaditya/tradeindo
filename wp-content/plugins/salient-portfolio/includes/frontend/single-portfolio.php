@@ -3,7 +3,7 @@
  * The template for displaying single portfolio post type projects.
  *
  * @package Salient Portfolio
- * @version 1.5
+ * @version 1.6
  */
 
 // Exit if accessed directly
@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 $fwp = get_post_meta( $post->ID, '_nectar_portfolio_item_layout', true );
+
 if ( empty( $fwp ) ) {
 	$fwp = 'false';
 }
@@ -34,6 +35,11 @@ if( defined( 'NECTAR_THEME_NAME' ) ) {
 	$options = salient_get_default_portfolio_options(); 
 }
 
+
+if( class_exists('Salient_Portfolio_Single_Layout') && Salient_Portfolio_Single_Layout::$is_full_width ) {
+	$fwp = 'enabled';
+} 
+
 $featured_src              = ( has_post_thumbnail( $post->ID ) ) ? wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ) : array( 'empty' );
 $full_width_portfolio      = ( ! empty( $fwp ) && $fwp == 'enabled' ) ? 'full_width_portfolio' : 'regular_portfolio';
 $single_nav_pos            = ( ! empty( $options['portfolio_single_nav'] ) ) ? $options['portfolio_single_nav'] : 'after_project_2';
@@ -42,6 +48,7 @@ $project_social_style      = get_option( 'salient_social_button_style', 'fixed' 
 $portfolio_remove_comments = ( ! empty( $options['portfolio_remove_comments'] ) ) ? $options['portfolio_remove_comments'] : '0';
 $theme_skin                = ( ! empty( $options['theme-skin'] ) && $options['theme-skin'] === 'ascend' ) ? 'ascend' : 'default';
 $remove_single_header      = 'false';  
+
   
 if( isset($options['portfolio_remove_single_header']) && 
     !empty($options['portfolio_remove_single_header']) && 

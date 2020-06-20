@@ -59,9 +59,12 @@ trait Localization
     public function load_script_translation_file($file, $handle, $domain)
     {
         list($useFile, $packagePath, $packageDomain, $packageDomainFilePrefix) = $this->packageInfoParserForOverrides(self::$PACKAGE_INFO_FRONTEND, $file, $domain);
-        $locale = determine_locale();
         if ($domain === $packageDomain && !\is_readable($useFile) && \substr($useFile, 0, \strlen($packagePath)) === $packagePath) {
             // Collect data
+            $locale = $this->getLanguageFromFile($file);
+            if ($locale === \false) {
+                return $file;
+            }
             $folder = \dirname($useFile);
             $use = $this->override($locale);
             $wp_scripts = wp_scripts();
@@ -71,6 +74,21 @@ trait Localization
             return path_join($folder, $file_base);
         }
         return $file;
+    }
+    /**
+     * Obtain language key from a file name.
+     *
+     * @param string $file
+     */
+    public function getLanguageFromFile($file)
+    {
+        $availableLanguages = get_available_languages();
+        $availableLanguages[] = 'en_US';
+        \preg_match_all('/-(' . \join('|', $availableLanguages) . ')-/m', \basename($file), $matches, \PREG_SET_ORDER, 0);
+        if (\count($matches) === 0) {
+            return \false;
+        }
+        return $matches[0][1];
     }
     /**
      * Allow language overrides so for example de_AT uses de_DE to avoid duplicate

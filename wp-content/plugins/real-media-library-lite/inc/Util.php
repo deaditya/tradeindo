@@ -211,10 +211,6 @@ class Util
             // Create migration table
             $table_name_reset = $this->getTableName('resetnames');
             $this->getCore()->getActivator()->install(\false, [$this, 'resetAllSlugsAndAbsolutePathesTable']);
-            // Clear already created resets
-            // phpcs:disable WordPress.DB.PreparedSQL
-            $wpdb->query('DELETE FROM ' . $table_name_reset);
-            // phpcs:enable WordPress.DB.PreparedSQL
             // Get rows and create
             $rows = $this->group_by($rows, 'id');
             $sqlInserts = [];
@@ -242,7 +238,7 @@ class Util
             // phpcs:disable WordPress.DB.PreparedSQL
             $chunks = \array_chunk($sqlInserts, 150);
             foreach ($chunks as $sqlInsert) {
-                $sql = "INSERT INTO {$table_name_reset} VALUES (" . \implode('),(', $sqlInserts) . ')';
+                $sql = "INSERT INTO {$table_name_reset} VALUES (" . \implode('),(', $sqlInsert) . ')';
                 $wpdb->query($sql);
             }
             // Create UPDATE statement
@@ -269,9 +265,16 @@ class Util
     // Documented above
     public function resetAllSlugsAndAbsolutePathesTable()
     {
+        global $wpdb;
+        $charset_collate = $wpdb->get_charset_collate();
+        // Always recreate table
+        $table_name_reset = $this->getTableName('resetnames');
+        // phpcs:disable WordPress.DB.PreparedSQL
+        $wpdb->query("DROP TABLE IF EXISTS {$table_name_reset}");
+        // phpcs:enable WordPress.DB.PreparedSQL
         $this->debug('Create reset table...', __METHOD__);
         $table_name = $this->getTableName('resetnames');
-        $sql = "CREATE TABLE {$table_name} (\n\t\t\tid mediumint(9) NOT NULL,\n\t\t\tname tinytext NOT NULL,\n\t\t\tslug text DEFAULT '' NOT NULL,\n\t\t\tabsolute text DEFAULT '' NOT NULL,\n\t\t\tUNIQUE KEY id (id)\n\t\t);";
+        $sql = "CREATE TABLE {$table_name} (\n\t\t\tid mediumint(9) NOT NULL,\n\t\t\tname tinytext NOT NULL,\n\t\t\tslug text DEFAULT '' NOT NULL,\n\t\t\tabsolute text DEFAULT '' NOT NULL,\n\t\t\tUNIQUE KEY id (id)\n\t\t) {$charset_collate};";
         dbDelta($sql);
     }
     // Documented in wp_rml_create_all_parents_sql()

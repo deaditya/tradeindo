@@ -101,8 +101,8 @@ class FolderShortcode
     function mce_external_plugins($plugin_array)
     {
         $assets = $this->getCore()->getAssets();
-        $dir = $assets->useNonMinifiedSources() ? 'dev' : 'dist';
-        $plugin_array[self::$TAG] = plugins_url('public/' . $dir . '/rml_shortcode.' . ($this->isPro() ? 'pro' : 'lite') . '.js', RML_FILE);
+        $dir = $assets->getPublicFolder();
+        $plugin_array[self::$TAG] = plugins_url($dir . 'rml_shortcode.' . ($this->isPro() ? 'pro' : 'lite') . '.js', RML_FILE);
         return $plugin_array;
     }
     /**

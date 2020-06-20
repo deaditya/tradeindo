@@ -3,7 +3,7 @@
  * Portfolio single content area
  *
  * @package Salient Portfolio
- * @version 1.0
+ * @version 1.6
  */
 
 // Exit if accessed directly
@@ -14,9 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post;
 
 $fwp = get_post_meta( $post->ID, '_nectar_portfolio_item_layout', true );
+
 if ( empty( $fwp ) ) {
 	$fwp = 'false';
 }
+
 
 if( defined( 'NECTAR_THEME_NAME' ) ) {
 	$options = get_nectar_theme_options(); 
@@ -29,6 +31,11 @@ $hidden_featured_media     = get_post_meta( $post->ID, '_nectar_hide_featured', 
 $hidden_project_title      = get_post_meta( $post->ID, '_nectar_hide_title', true );
 $portfolio_remove_comments = ( ! empty( $options['portfolio_remove_comments'] ) ) ? $options['portfolio_remove_comments'] : '0';
 $theme_skin                = ( ! empty( $options['theme-skin'] ) && $options['theme-skin'] == 'ascend' ) ? 'ascend' : 'default';
+
+if( class_exists('Salient_Portfolio_Single_Layout') && Salient_Portfolio_Single_Layout::$is_full_width ) {
+	$fwp = 'enabled';
+	$hidden_featured_media = 'on';
+} 
 
 ?>
 
@@ -86,7 +93,18 @@ $theme_skin                = ( ! empty( $options['theme-skin'] ) && $options['th
 	if ( ! post_password_required() ) {
 
 		$portfolio_extra_content = get_post_meta( $post->ID, '_nectar_portfolio_extra_content', true );
-
+		
+		if( is_preview() && current_user_can( 'edit_post', $post->ID) ) {
+			
+			// Preview content.
+			$portfolio_extra_content_preview = get_post_meta( $post->ID, '_nectar_portfolio_extra_content_preview', true );
+			
+			if( !empty($portfolio_extra_content_preview) ) {
+				$portfolio_extra_content = $portfolio_extra_content_preview;
+			}
+			
+		} // end preview
+		
 		if ( ! empty( $portfolio_extra_content ) ) {
 			echo '<div id="portfolio-extra">';
 

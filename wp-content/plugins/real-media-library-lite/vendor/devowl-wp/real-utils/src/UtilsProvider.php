@@ -33,7 +33,7 @@ trait UtilsProvider
         }
         \define('REAL_UTILS_SLUG', 'real-utils');
         \define('REAL_UTILS_ROOT_SLUG', 'devowl-wp');
-        \define('REAL_UTILS_TD', REAL_UTILS_SLUG);
+        \define('REAL_UTILS_TD', REAL_UTILS_ROOT_SLUG . '-' . REAL_UTILS_SLUG);
         \define('REAL_UTILS_SLUG_CAMELCASE', \lcfirst(\str_replace('-', '', \ucwords(REAL_UTILS_SLUG, '-'))));
         \define('REAL_UTILS_VERSION', \filemtime(__FILE__));
         // as we do serve assets through the consumer plugin we can safely use file modified time

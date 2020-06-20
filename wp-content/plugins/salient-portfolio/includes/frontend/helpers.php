@@ -735,3 +735,23 @@ if ( ! function_exists( 'nectar_portfolio_video_popup_link' ) ) {
 	}
 }
 
+
+
+/**
+ * Adds a body class when removing default project header
+ *
+ * @since 1.6
+ */
+add_filter( 'body_class','salient_portfolio_single_remove_dh_bodyclass' );
+
+function salient_portfolio_single_remove_dh_bodyclass( $classes ) {
+	
+	if( is_singular( 'portfolio' ) && 
+	class_exists('Salient_Portfolio_Single_Layout') && 
+	false === Salient_Portfolio_Single_Layout::$default_header ) {
+		$classes[] = 'remove-default-project-header';
+	} 
+	
+	return $classes;
+}
+

@@ -72,7 +72,9 @@ class Assets
         $screen = \function_exists('get_current_screen') ? get_current_screen() : null;
         if ($screen !== null && $screen->id === 'plugins') {
             $assets = $this->getFirstAssetsToEnqueueComposer();
-            $assets->enqueueComposerScript(REAL_UTILS_SLUG, ['wp-pointer', REAL_UTILS_ROOT_SLUG . '-utils'], 'feedback.js');
+            $scriptDeps = $assets->enqueueUtils();
+            \array_push($scriptDeps, 'wp-pointer');
+            $assets->enqueueComposerScript(REAL_UTILS_SLUG, $scriptDeps, 'feedback.js');
             $assets->enqueueComposerStyle(REAL_UTILS_SLUG, [], 'feedback.css');
         }
     }
@@ -84,7 +86,8 @@ class Assets
         $initiator = $this->isSomeWelcomePage();
         if ($initiator) {
             $assets = $initiator->getPluginAssets();
-            $assets->enqueueComposerScript(REAL_UTILS_SLUG, [REAL_UTILS_ROOT_SLUG . '-utils'], 'welcome.js');
+            $scriptDeps = $assets->enqueueUtils();
+            $assets->enqueueComposerScript(REAL_UTILS_SLUG, $scriptDeps, 'welcome.js');
             $assets->enqueueComposerStyle(REAL_UTILS_SLUG, [], 'welcome.css');
             wp_enqueue_script('updates');
             wp_enqueue_script('plugin-install');
@@ -97,7 +100,9 @@ class Assets
     {
         if (\count(\MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\Core::getInstance()->getCrossSellingHandler()->getAvailable()) > 0) {
             $assets = $this->getFirstAssetsToEnqueueComposer();
-            $assets->enqueueComposerScript(REAL_UTILS_SLUG, ['wp-pointer', REAL_UTILS_ROOT_SLUG . '-utils'], 'cross.js');
+            $scriptDeps = $assets->enqueueUtils();
+            \array_push($scriptDeps, 'wp-pointer');
+            $assets->enqueueComposerScript(REAL_UTILS_SLUG, $scriptDeps, 'cross.js');
             $assets->enqueueComposerStyle(REAL_UTILS_SLUG, ['wp-pointer'], 'cross.css');
         }
     }
@@ -123,7 +128,7 @@ class Assets
     {
         foreach (\MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\Core::getInstance()->getInitiators() as $initiator) {
             $assets = $initiator->getPluginAssets();
-            if (isset($assets::$ASSETS_BUMP) && $assets::$ASSETS_BUMP >= 2) {
+            if (isset($assets::$ASSETS_BUMP) && $assets::$ASSETS_BUMP >= 4) {
                 return $assets;
             }
         }

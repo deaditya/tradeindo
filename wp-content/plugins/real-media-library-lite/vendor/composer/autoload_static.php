@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e
+class ComposerStaticInit3edd1714489f78b498fe2c7019f904f6
 {
     public static $prefixLengthsPsr4 = array (
         'M' => 
@@ -62,6 +62,7 @@ class ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e
         'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\AbstractInitiator' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/AbstractInitiator.php',
         'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Assets' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/Assets.php',
         'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Core' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/Core.php',
+        'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Localization' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/Localization.php',
         'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\RatingHandler' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/RatingHandler.php',
         'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Service' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/Service.php',
         'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\TransientHandler' => __DIR__ . '/..' . '/devowl-wp/real-utils/src/TransientHandler.php',
@@ -141,9 +142,9 @@ class ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit743da7d3e9de68f41dee5537c4184f7e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3edd1714489f78b498fe2c7019f904f6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3edd1714489f78b498fe2c7019f904f6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3edd1714489f78b498fe2c7019f904f6::$classMap;
 
         }, null, ClassLoader::class);
     }

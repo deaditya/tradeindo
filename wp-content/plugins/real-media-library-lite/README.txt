@@ -108,6 +108,7 @@ WordPress Real Media Library is **compatible with the most popular page builders
 * [Divi](https://www.elegantthemes.com/gallery/divi/)
 * [Newspaper](https://themeforest.net/item/newspaper/5489609)
 * [Uncode](https://themeforest.net/item/uncode-creative-multiuse-wordpress-theme/13373220)
+* [YOOtheme](https://yootheme.com/)
 
 **Plugins**
 
@@ -118,9 +119,12 @@ WordPress Real Media Library is **compatible with the most popular page builders
 * [FooGallery](https://foo.gallery/)
 * [Slider Revolution](https://codecanyon.net/item/slider-revolution-responsive-wordpress-plugin/2751380)
 * [WP Slick Slider and Image Carousel](https://de.wordpress.org/plugins/wp-slick-slider-and-image-carousel/)
+* [Essential Grid](https://codecanyon.net/item/essential-grid-wordpress-plugin/7563340)
+* [Responsive Gallery Grid](https://de.wordpress.org/plugins/responsive-gallery-grid/)
+* [WP/LR Sync](https://meowapps.com/plugin/wplr-sync/)
 * [Thrive Quiz Builder](https://thrivethemes.com/quizbuilder/)
 * [Material WP](https://material-wp.com/)
-* [WP/LR Sync](https://meowapps.com/plugin/wplr-sync/)
+* [ImageSEO](https://wordpress.org/plugins/imageseo/)
 * [Dark Mode](https://wordpress.org/plugins/dark-mode/)
 
 

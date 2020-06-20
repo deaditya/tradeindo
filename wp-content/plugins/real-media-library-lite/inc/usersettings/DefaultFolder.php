@@ -81,7 +81,7 @@ class DefaultFolder implements \MatthiasWeb\RealMediaLibrary\api\IUserSettings
         $default = $this->getDefaultFolder();
         $selectedNone = $default === self::ID_NONE ? 'selected="selected"' : '';
         $selectedLastQueried = $default === self::ID_LAST_QUERIED ? 'selected="selected"' : '';
-        $content .= '<label>' . __('Default startup folder', RML_TD) . '</label><select name="' . self::FIELD_NAME . '"><option value="' . self::ID_NONE . '" ' . $selectedNone . '>' . __('No folder at startup', RML_TD) . '</option><option value="' . self::ID_LAST_QUERIED . '" ' . $selectedLastQueried . '>' . __('Last queried folder', RML_TD) . '</option>' . wp_rml_dropdown($default, []) . '</select>';
+        $content .= '<label>' . __('Default startup folder', RML_TD) . '</label><select name="' . self::FIELD_NAME . '"><option value="' . self::ID_NONE . '" ' . $selectedNone . '>' . __('No folder at startup', RML_TD) . '</option><option value="' . self::ID_LAST_QUERIED . '" ' . $selectedLastQueried . '>' . __('Last opened folder', RML_TD) . '</option>' . wp_rml_dropdown($default, []) . '</select>';
         return $content;
     }
     // Documented in IMetadata

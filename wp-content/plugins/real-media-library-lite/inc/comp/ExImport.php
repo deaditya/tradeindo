@@ -22,6 +22,12 @@ class ExImport implements \MatthiasWeb\RealMediaLibrary\overrides\interfce\comp\
     private $idOffset = null;
     const IMPORT_TAX_MATRIX = ['nt_wmc_folder' => 'FileBird', 'filebase_folder' => 'FileBase', 'media_folder' => 'Folders', 'attachment_category' => 'Media Library Assistant', 'media_category' => 'Enhanced Media Library', 'mlo-category' => 'Media Library Organizer', 'mediamatic_wpfolder' => 'Mediamatic Lite', 'wpmf-category' => 'Media Library Folders', 'rl_media_folder' => 'Responsive Lightbox & Gallery'];
     /**
+     * "Media Library Folders" uses `wp_posts` to store available folders.
+     *
+     * @see https://de.wordpress.org/plugins/media-library-plus/
+     */
+    const MLF_POST_TYPE = 'mgmlp_media_folder';
+    /**
      * Column names for import and export.
      */
     private $columns = [];
@@ -38,7 +44,7 @@ class ExImport implements \MatthiasWeb\RealMediaLibrary\overrides\interfce\comp\
     public function options_register()
     {
         add_settings_section('rml_options_import', __('RealMediaLibrary:Import / Export'), [\MatthiasWeb\RealMediaLibrary\view\Options::getInstance(), 'empty_callback'], 'media');
-        if (\count($this->getHierarchicalTaxos())) {
+        if (\count($this->getHierarchicalTaxos()) || $this->hasMediaLibraryFolders()) {
             add_settings_field('rml_button_import_cats', '<label for="rml_button_import_cats">' . __('Import from other plugins', RML_TD) . '</label>', [$this, 'html_rml_button_import_cats'], 'media', 'rml_options_import');
         }
         add_settings_field('rml_button_export', '<label for="rml_button_export">' . __('Export / Import Real Media Library folders', RML_TD) . '</label>', [$this, 'html_rml_button_export'], 'media', 'rml_options_import');
@@ -67,6 +73,10 @@ class ExImport implements \MatthiasWeb\RealMediaLibrary\overrides\interfce\comp\
         foreach ($this->getHierarchicalTaxos() as $tax) {
             $name = isset(self::IMPORT_TAX_MATRIX[$tax]) ? self::IMPORT_TAX_MATRIX[$tax] : '<code>' . $tax . '</code>';
             echo '<a class="rml-rest-button button" data-url="import/taxonomy" data-method="POST" data-taxonomy="' . esc_attr($tax) . '" ' . $disabled . '>' . __('Import', RML_TD) . ' (' . $name . ')</a>&nbsp;';
+        }
+        // Media Library Folders plugin
+        if ($this->hasMediaLibraryFolders()) {
+            echo '<a class="rml-rest-button button" data-url="import/mlf" data-method="POST" ' . $disabled . '>' . __('Import', RML_TD) . ' (Media Library Folders)</a>&nbsp;';
         }
         echo '<p class="description">' . __('Imports categories and post relations.', RML_TD) . '</p>';
         if (!$this->isPro()) {
@@ -153,6 +163,16 @@ class ExImport implements \MatthiasWeb\RealMediaLibrary\overrides\interfce\comp\
             }
         }
         return get_site_transient($transient) === $value;
+    }
+    /**
+     * Checks if "Media Library Folders" was used previously.
+     *
+     * @see https://de.wordpress.org/plugins/media-library-plus/
+     */
+    public function hasMediaLibraryFolders()
+    {
+        global $wpdb;
+        return \intval($wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type=%s", self::MLF_POST_TYPE))) > 0;
     }
     /**
      * Get instance.

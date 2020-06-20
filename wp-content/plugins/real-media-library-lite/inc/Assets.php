@@ -23,6 +23,7 @@ class Assets
     use UtilsProvider;
     use UtilsAssets;
     use FreemiumAssets;
+    public static $TYPE_CUSTOMIZE = 'customize_controls_print_scripts';
     /**
      * Enqueue gutenberg specific files.
      */
@@ -70,53 +71,57 @@ class Assets
             return;
         }
         // Generally check if an entrypoint should be loaded
-        if (!\in_array($type, [self::$TYPE_ADMIN], \true) && !\MatthiasWeb\RealMediaLibrary\view\Options::load_frontend()) {
+        if (!\in_array($type, [self::$TYPE_ADMIN, self::$TYPE_CUSTOMIZE], \true) && !\MatthiasWeb\RealMediaLibrary\view\Options::load_frontend()) {
             return;
         }
+        // jQuery scripts (Helper) core.js, widget.js, mouse.js, draggable.js, droppable.js, sortable.js
+        $requires = ['jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-mouse', 'jquery-ui-draggable', 'jquery-ui-droppable', 'jquery-ui-sortable', 'jquery-touch-punch'];
+        $realUtils = RML_ROOT_SLUG . '-real-utils-helper';
+        \array_walk($requires, 'wp_enqueue_script');
         // Your assets implementation here... See utils Assets for enqueue* methods
-        // $useNonMinifiedSources = $this->useNonMinifiedSources(); // Use this variable if you need to differ between minified or non minified sources
-        // Our utils package relies on jQuery, but this shouldn't be a problem as the most themes still use jQuery (might be replaced with https://github.com/github/fetch)
-        $RealUtils = RML_ROOT_SLUG . '-real-utils-helper';
-        $scriptDeps = [self::$HANDLE_REACT, self::$HANDLE_REACT_DOM, self::$HANDLE_MOBX, 'moment', 'wp-i18n', 'es6-shim', 'es7-shim', 'i18n-react', 'react-aiot.vendor', 'react-aiot', 'jquery'];
         $useNonMinifiedSources = $this->useNonMinifiedSources();
-        // Enqueue external utils package (not needed, yet)
-        // $handleUtils = $this->enqueueComposerScript('utils', $scriptDeps);
-        // array_push($scriptDeps, $handleUtils);
+        // Use this variable if you need to differ between minified or non minified sources
+        // Our utils package relies on jQuery, but this shouldn't be a problem as the most themes still use jQuery (might be replaced with https://github.com/github/fetch)
+        // Enqueue external utils package
+        $scriptDeps = $this->enqueueUtils();
+        $scriptDeps = \array_merge($scriptDeps, [$realUtils, 'es6-shim', 'es7-shim', 'i18n-react', 'react-aiot.vendor', 'react-aiot'], $requires);
         // Enqueue plugin entry points
-        if ($type === self::$TYPE_ADMIN || \MatthiasWeb\RealMediaLibrary\view\Options::load_frontend()) {
-            // jQuery scripts (Helper) core.js, widget.js, mouse.js, draggable.js, droppable.js, sortable.js
-            $requires = ['jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-mouse', 'jquery-ui-draggable', 'jquery-ui-droppable', 'jquery-ui-sortable', 'jquery-touch-punch'];
-            \array_walk($requires, 'wp_enqueue_script');
-            wp_enqueue_media(['post' => get_query_var('post-id', null)]);
-            add_thickbox();
-            wp_enqueue_script('wp-api');
-            $this->enqueuePolyfills();
-            $this->enqueueReact();
-            $this->enqueueMobx();
-            // Enqueue external utils package
-            $handleUtils = $this->enqueueComposerScript('utils', $scriptDeps);
-            \array_push($scriptDeps, $handleUtils);
-            \array_push($scriptDeps, $RealUtils);
-            $this->enqueueLibraryScript('i18n-react', [[$useNonMinifiedSources, 'i18n-react/dist/i18n-react.umd.js'], 'i18n-react/dist/i18n-react.umd.min.js'], [self::$HANDLE_REACT_DOM]);
-            $this->enqueueLibraryScript('mobx-state-tree', [[$useNonMinifiedSources, 'mobx-state-tree/dist/mobx-state-tree.umd.js'], 'mobx-state-tree/dist/mobx-state-tree.umd.min.js'], [self::$HANDLE_MOBX]);
-            $this->enqueueLibraryScript('react-aiot.vendor', 'react-aiot/umd/react-aiot.vendor.umd.js', [self::$HANDLE_REACT_DOM]);
-            $this->enqueueLibraryScript('react-aiot', 'react-aiot/umd/react-aiot.umd.js', ['react-aiot.vendor']);
-            $this->enqueueLibraryStyle('react-aiot.vendor', 'react-aiot/umd/react-aiot.vendor.umd.css');
-            $this->enqueueLibraryStyle('react-aiot', 'react-aiot/umd/react-aiot.umd.css', ['react-aiot.vendor']);
-            $handle = $this->enqueueScript('rml', [[$this->isPro(), 'rml.pro.js'], 'rml.lite.js'], $scriptDeps);
-            $this->enqueueStyle('rml', 'rml.css', [$RealUtils]);
-            // Plugin icon font
-            wp_enqueue_style('rml-font', plugins_url('public/others/icons/css/rml.css', RML_FILE), [], RML_VERSION);
-            // Localize script with server-side variables (RML_SLUG_CAMELCASE can not be used in lite environment, use LEGACY rmlOpts)
-            wp_localize_script($handle, RML_OPT_PREFIX . 'Opts', $this->localizeScript($type));
-            /**
-             * This action is fired when RML has enqueued scripts and styles.
-             *
-             * @param {Assets} $assets The assets instance
-             * @hook RML/Scripts
-             */
-            do_action('RML/Scripts', $this);
+        wp_enqueue_media(['post' => get_query_var('post-id', null)]);
+        add_thickbox();
+        wp_enqueue_script('wp-api');
+        $this->enqueuePolyfills();
+        $this->enqueueLibraryScript('i18n-react', [[$useNonMinifiedSources, 'i18n-react/dist/i18n-react.umd.js'], 'i18n-react/dist/i18n-react.umd.min.js'], [self::$HANDLE_REACT_DOM]);
+        $this->enqueueLibraryScript('mobx-state-tree', [[$useNonMinifiedSources, 'mobx-state-tree/dist/mobx-state-tree.umd.js'], 'mobx-state-tree/dist/mobx-state-tree.umd.min.js'], [self::$HANDLE_MOBX]);
+        $this->enqueueLibraryScript('react-aiot.vendor', 'react-aiot/umd/react-aiot.vendor.umd.js', [self::$HANDLE_REACT_DOM]);
+        $this->enqueueLibraryScript('react-aiot', 'react-aiot/umd/react-aiot.umd.js', ['react-aiot.vendor']);
+        $this->enqueueLibraryStyle('react-aiot.vendor', 'react-aiot/umd/react-aiot.vendor.umd.css');
+        $this->enqueueLibraryStyle('react-aiot', 'react-aiot/umd/react-aiot.umd.css', ['react-aiot.vendor']);
+        $handle = $this->enqueueScript('rml', [[$this->isPro(), 'rml.pro.js'], 'rml.lite.js'], $scriptDeps);
+        $this->enqueueStyle('rml', 'rml.css', [$realUtils]);
+        // Plugin icon font
+        wp_enqueue_style('rml-font', plugins_url('public/others/icons/css/rml.css', RML_FILE), [], RML_VERSION);
+        // Localize script with server-side variables (RML_SLUG_CAMELCASE can not be used in lite environment, use LEGACY rmlOpts)
+        wp_localize_script($handle, RML_OPT_PREFIX . 'Opts', $this->localizeScript($type));
+        // Add inline-style to avoid flickering effect
+        if ($this->isScreenBase('upload')) {
+            wp_add_inline_style($handle, '#wpbody { display: none; }');
         }
+        /**
+         * This action is fired when RML has enqueued scripts and styles.
+         *
+         * @param {Assets} $assets The assets instance
+         * @hook RML/Scripts
+         */
+        do_action('RML/Scripts', $this);
+    }
+    /**
+     * Enqueue scripts in customize (sidebar). This is essential e. g. for YOOTheme page builder.
+     *
+     * @param string $hook_suffix
+     */
+    public function customize_controls_print_scripts($hook_suffix)
+    {
+        $this->enqueue_scripts_and_styles(self::$TYPE_CUSTOMIZE, $hook_suffix);
     }
     /**
      * Localize the WordPress backend and frontend. If you want to provide URLs to the
@@ -136,7 +141,7 @@ class Assets
         $core = $this->getCore();
         $isLicenseActivated = $this->isPro() ? $core->getUpdater()->isActivated() : \true;
         $isLicenseNoticeDismissed = $core->isLicenseNoticeDismissed();
-        return apply_filters('RML/Localize', \array_merge(['canManageOptions' => current_user_can('manage_options'), 'lang' => (new \MatthiasWeb\RealMediaLibrary\view\Lang())->getItems($this), 'childrenSql' => \intval(get_site_option(RML_OPT_PREFIX . \MatthiasWeb\RealMediaLibrary\Activator::DB_CHILD_QUERY_SUPPORTED, null)), 'lastQueried' => wp_rml_last_queried_folder(), 'blogId' => get_current_blog_id(), 'rootId' => _wp_rml_root(), 'listMode' => $mode, 'userSettings' => has_filter('RML/User/Settings/Content'), 'sortables' => ['content' => \MatthiasWeb\RealMediaLibrary\order\Sortable::getAvailableContentOrders(\true), 'tree' => \MatthiasWeb\RealMediaLibrary\folder\Creatable::getAvailableSubfolderOrders(\true)], 'showLicenseNotice' => !$isLicenseActivated && !$isLicenseNoticeDismissed && current_user_can('install_plugins'), 'showTaxImportNotice' => \count(\MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->getHierarchicalTaxos()) > 0 && !\MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->isImportTaxNoticeDismissed(), 'taxImportNoticeLink' => admin_url('options-media.php#rml-rml_export_data'), 'pluginsUrl' => admin_url('plugins.php')], $this->localizeFreemiumScript()));
+        return apply_filters('RML/Localize', \array_merge(['canManageOptions' => current_user_can('manage_options'), 'lang' => (new \MatthiasWeb\RealMediaLibrary\view\Lang())->getItems($this), 'childrenSql' => \intval(get_site_option(RML_OPT_PREFIX . \MatthiasWeb\RealMediaLibrary\Activator::DB_CHILD_QUERY_SUPPORTED, null)), 'lastQueried' => wp_rml_last_queried_folder(), 'blogId' => get_current_blog_id(), 'rootId' => _wp_rml_root(), 'listMode' => $mode, 'userSettings' => has_filter('RML/User/Settings/Content'), 'sortables' => ['content' => \MatthiasWeb\RealMediaLibrary\order\Sortable::getAvailableContentOrders(\true), 'tree' => \MatthiasWeb\RealMediaLibrary\folder\Creatable::getAvailableSubfolderOrders(\true)], 'showLicenseNotice' => !$isLicenseActivated && !$isLicenseNoticeDismissed && current_user_can('install_plugins'), 'showTaxImportNotice' => (\count(\MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->getHierarchicalTaxos()) > 0 || \MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->hasMediaLibraryFolders()) && !\MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->isImportTaxNoticeDismissed(), 'taxImportNoticeLink' => admin_url('options-media.php#rml-rml_export_data'), 'pluginsUrl' => admin_url('plugins.php')], $this->localizeFreemiumScript()));
     }
     /**
      * Add an "Add-On" link to the plugin row links.

@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  *
- * Class Vc_IconPicker
+ * Class Vc_IconPicker - nectar addition - whole file
  * @since 4.4
  * See example usage in shortcode 'vc_icon'
  *

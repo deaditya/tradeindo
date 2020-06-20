@@ -67,6 +67,7 @@ class Core
         $this->crossSelling[\MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\cross\CrossRealMediaLibrary::SLUG] = new \MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\cross\CrossRealMediaLibrary();
         $this->crossSelling[\MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\cross\CrossRealCategoryLibrary::SLUG] = new \MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\cross\CrossRealCategoryLibrary();
         $this->crossSelling[\MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\cross\CrossRealPhysicalMedia::SLUG] = new \MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\cross\CrossRealPhysicalMedia();
+        \MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\Localization::instanceThis()->hooks();
     }
     /**
      * Add an initiator.

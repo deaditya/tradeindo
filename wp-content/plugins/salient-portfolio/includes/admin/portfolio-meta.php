@@ -30,13 +30,19 @@ if( !function_exists('salient_portfolio_metabox') ) {
 		}
 		
 		
+		if( class_exists('Salient_Portfolio_Single_Layout') && Salient_Portfolio_Single_Layout::$is_full_width ) {
+			$extra_content_meta_desc  = '';
+		} else {
+			$extra_content_meta_desc  = esc_html__('Please use this section to place any extra content you would like to appear in the main content area under your portfolio item. (The above default editor is only used to populate your items sidebar content)', 'salient-portfolio');
+		}
+		
 		#-----------------------------------------------------------------#
 		# Extra Content
 		#-----------------------------------------------------------------# 
 		$meta_box = array(
 			'id' => 'nectar-metabox-portfolio-extra',
-			'title' =>  esc_html__('Extra Content', 'salient-portfolio'),
-			'description' => esc_html__('Please use this section to place any extra content you would like to appear in the main content area under your portfolio item. (The above default editor is only used to populate your items sidebar content)', 'salient-portfolio'),
+			'title' => esc_html__('Extra Content', 'salient-portfolio'),
+			'description' => $extra_content_meta_desc,
 			'post_type' => 'portfolio',
 			'context' => 'normal',
 			'priority' => 'high',
@@ -655,3 +661,104 @@ if( !function_exists('salient_portfolio_page_metabox') ) {
 }
 
 add_action('add_meta_boxes_page', 'salient_portfolio_page_metabox');
+
+
+
+
+/**
+ * Post Preview
+ *
+ * Allows WP to show changes in preview when only 
+ * custom metabox values have changed.
+ *
+ * @since 1.6
+ */
+add_filter('_wp_post_revision_fields', 'salient_portfolio_post_preview_fix', 10, 2);
+
+function salient_portfolio_post_preview_fix( $fields ) {
+		
+		if( isset( $_POST['wp-preview'] ) && 'dopreview' === $_POST['wp-preview'] && 
+				isset( $_POST['post_type'] ) && 'portfolio' === $_POST['post_type']) {
+					
+			$fields['_salient_portfolio_preview_changed'] = 'value other than 0';
+		} 
+		
+		return $fields;
+}
+
+add_action( 'edit_form_after_title', 'salient_portfolio_post_preview_field' );
+
+function salient_portfolio_post_preview_field($post) {
+	 if( isset( $post->post_type ) && 'portfolio' === $post->post_type ) {
+		  echo '<input type="hidden" name="_salient_portfolio_preview_changed" value="0">';
+	 }
+  
+}
+
+
+/**
+ * Default WPBakery template 
+ *
+ * Different logic is needed from the default
+ * since the portfolio content is a custom metabox.
+ *
+ * @since 1.6
+ */
+ function salient_portfolio_insert_new_project($post_id, $post, $update) {
+	
+	 if (false === $update && 
+	 'portfolio' === $post->post_type && 
+	 'auto-draft' === $post->post_status && 
+	 empty(get_post_meta( $post_id, '_salient_project_initialized' )) ) {
+		 
+		 $salient_project_extra_content = get_post_meta( $post_id, '_nectar_portfolio_extra_content' );
+		 
+		 if( empty($salient_project_extra_content) && 
+		 class_exists( 'WPBakeryVisualComposerAbstract' ) &&
+		 class_exists( 'Vc_Setting_Post_Type_Default_Template_Field' ) ) {
+			 
+			 $template_settings = new Vc_Setting_Post_Type_Default_Template_Field( 'general', 'default_template_post_type' );
+			 $new_post_content = $template_settings->getTemplateByPostType( 'portfolio' );
+			 
+			 if ( null !== $new_post_content ) {
+				 update_post_meta( $post_id, '_nectar_portfolio_extra_content', $new_post_content ); 
+			 }	
+			 
+		 } // Make sure VC Class exists.
+		 
+		 // run only once	
+		 update_post_meta( $post_id, '_salient_project_initialized', true ); 
+		 
+	 }
+	 
+ }
+ 
+ add_action( 'wp_insert_post', 'salient_portfolio_insert_new_project', 10, 3 );
+
+
+ /**
+  * Edit project body class
+  *
+  * Add a specific class when using the theme option
+  * for page builder layout.
+  *
+  * @since 1.6
+  */
+	add_filter('admin_body_class', 'salient_portfolio_edit_project_admin_body_class');
+	
+	function salient_portfolio_edit_project_admin_body_class($classes) {
+		
+	    global $post;
+
+	    if( isset($post) && 
+			isset($post->post_type) && 
+			'portfolio' === $post->post_type && 
+			class_exists('Salient_Portfolio_Single_Layout') &&
+			Salient_Portfolio_Single_Layout::$is_full_width ) {
+				
+		    $classes .= ' salient-portfolio-page-builder-layout ';
+
+	    } // on portfolio post type.
+	
+	    return $classes;
+	}

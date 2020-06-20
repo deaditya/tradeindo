@@ -15,6 +15,11 @@ trait ExImport
         throw new \MatthiasWeb\RealMediaLibrary\exception\OnlyInProVersionException(__METHOD__);
     }
     // Documented in IOverrideExImport
+    public function importMlf()
+    {
+        throw new \MatthiasWeb\RealMediaLibrary\exception\OnlyInProVersionException(__METHOD__);
+    }
+    // Documented in IOverrideExImport
     public function importShortcuts()
     {
         throw new \MatthiasWeb\RealMediaLibrary\exception\OnlyInProVersionException(__METHOD__);

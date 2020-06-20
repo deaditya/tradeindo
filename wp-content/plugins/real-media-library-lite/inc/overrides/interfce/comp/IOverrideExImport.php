@@ -2,7 +2,6 @@
 
 namespace MatthiasWeb\RealMediaLibrary\overrides\interfce\comp;
 
-use MatthiasWeb\RealMediaLibrary\exception\OnlyInProVersionException;
 // @codeCoverageIgnoreStart
 \defined('ABSPATH') or die('No script kiddies please!');
 // Avoid direct file request
@@ -15,6 +14,10 @@ interface IOverrideExImport
      * @param string $tax
      */
     public function importTaxonomy($tax);
+    /**
+     * Import from "Media Library Folders".
+     */
+    public function importMlf();
     /**
      * Search the wp_realmedialibrary_posts table for importData contains ","
      * and then create the shortcuts for the splitted "," folders.

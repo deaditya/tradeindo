@@ -47,7 +47,6 @@ function vc_load_vc_grid_item_param() {
 /* nectar addition */ 
 //add_action( 'vc_load_default_params', 'vc_load_vc_grid_item_param' );
 /* nectar addition end */ 
-
 /**
  * @param $target
  * @return string

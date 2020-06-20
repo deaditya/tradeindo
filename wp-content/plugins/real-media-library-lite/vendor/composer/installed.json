@@ -215,15 +215,15 @@
         "source": {
             "type": "git",
             "url": "https:\/\/github.com\/matzeeable\/wordpress-plugin-updater.git",
-            "reference": "20f1b2b0c4c7c46aa1fcbb5f3188e817f8a06407"
+            "reference": "c801fd86c4cf97f3b0c59d653c5e7bce99cebb73"
         },
         "dist": {
             "type": "zip",
-            "url": "https:\/\/api.github.com\/repos\/matzeeable\/wordpress-plugin-updater\/zipball\/20f1b2b0c4c7c46aa1fcbb5f3188e817f8a06407",
-            "reference": "20f1b2b0c4c7c46aa1fcbb5f3188e817f8a06407",
+            "url": "https:\/\/api.github.com\/repos\/matzeeable\/wordpress-plugin-updater\/zipball\/c801fd86c4cf97f3b0c59d653c5e7bce99cebb73",
+            "reference": "c801fd86c4cf97f3b0c59d653c5e7bce99cebb73",
             "shasum": ""
         },
-        "time": "2020-01-10T06:29:39+00:00",
+        "time": "2020-06-16T12:45:12+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

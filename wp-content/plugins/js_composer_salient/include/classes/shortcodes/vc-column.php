@@ -290,8 +290,6 @@ class WPBakeryShortCode_VC_Column extends WPBakeryShortCode {
 }
 
 
-
-
 /* nectar addition */ 
 
 class WPBakeryShortCode_One_Half extends WPBakeryShortCode_VC_Column {
@@ -1298,4 +1296,5 @@ vc_map(  array(
 ));
 
 /* nectar addition end */ 
+
 

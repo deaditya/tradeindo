@@ -95,6 +95,7 @@ class Core extends \MatthiasWeb\RealMediaLibrary\base\Core implements \MatthiasW
         add_action('rest_attachment_query', [$restAttachment, 'rest_attachment_query'], 10, 2);
         add_action('admin_enqueue_scripts', [$this->getAssets(), 'admin_enqueue_scripts']);
         add_action('wp_enqueue_scripts', [$this->getAssets(), 'wp_enqueue_scripts']);
+        add_action('customize_controls_print_scripts', [$this->getAssets(), 'customize_controls_print_scripts']);
         add_action('pre_get_posts', [\MatthiasWeb\RealMediaLibrary\attachment\Filter::getInstance(), 'pre_get_posts'], 998);
         add_action('delete_attachment', [\MatthiasWeb\RealMediaLibrary\attachment\Shortcut::getInstance(), 'delete_attachment']);
         add_action('delete_attachment', [\MatthiasWeb\RealMediaLibrary\attachment\Filter::getInstance(), 'delete_attachment']);

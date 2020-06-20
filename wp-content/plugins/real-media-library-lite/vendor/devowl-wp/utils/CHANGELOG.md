@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2020-06-17)
+
+
+### feat
+
+* email input (with privacy checkbox) (#5ymj7f), 'none' option (#5ymhx1), reason note required (#5ymhjt)
+
+
+
+
+
+# 1.1.0 (2020-06-12)
+
+
+### chore
+
+* i18n update (#5ut991)
+
+
+### ci
+
+* use hot cache and node-gitlab-ci (#54r34g)
+
+
+### feat
+
+* add abstract post and category REST model (#5phrh4)
+
+
+
+
+
+## 1.0.8 (2020-05-20)
+
+
+### chore
+
+* move plugin/rcb branch to develop
+
+
+### fix
+
+* add PATCH to available HTTP methods (#5cjaau)
+* remove ~ due to G6 blacklist filtering (security plugins, #5cqdn0)
+
+
+
+
+
+## 1.0.7 (2020-05-12)
+
+
+### build
+
+* cleanup temporary i18n files correctly
+
+
+### fix
+
+* correctly enqueue dependencies (#52jf92)
+* improvement speed up in admin dashboard (#52gj39)
+* install database tables after reactivate plugin (#52k7f1)
+* use correct assets class
+
+
+
+
+
 ## 1.0.6 (2020-04-27)
 
 

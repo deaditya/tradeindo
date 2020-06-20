@@ -15,7 +15,7 @@ trait Assets
      * For future implementations and updates of this class you can differ from BUMP version.
      * Increment, if needed.
      */
-    public static $ASSETS_BUMP = 2;
+    public static $ASSETS_BUMP = 4;
     /**
      * Enqueue scripts and styles in admin pages.
      */
@@ -99,6 +99,18 @@ trait Assets
         }
     }
     /**
+     * Enqueue utils and return an array of dependencies.
+     */
+    public function enqueueUtils()
+    {
+        $this->enqueueReact();
+        $this->enqueueMobx();
+        $scriptDeps = [self::$HANDLE_REACT, self::$HANDLE_REACT_DOM, self::$HANDLE_MOBX, 'moment', 'wp-i18n', 'jquery'];
+        $handleUtils = $this->enqueueComposerScript('utils', $scriptDeps);
+        \array_push($scriptDeps, $handleUtils);
+        return $scriptDeps;
+    }
+    /**
      * Enqueue mobx state management library.
      */
     public function enqueueMobx()
@@ -107,7 +119,7 @@ trait Assets
         $this->enqueueLibraryScript(self::$HANDLE_MOBX, [[$useNonMinifiedSources, 'mobx/lib/mobx.umd.js'], 'mobx/lib/mobx.umd.min.js']);
     }
     /**
-     * Checks if a `vendor~` file is created for a given script and enqueue it.
+     * Checks if a `vendor-` file is created for a given script and enqueue it.
      *
      * @param string $handle
      * @param boolean $isLib
@@ -119,7 +131,7 @@ trait Assets
     protected function probablyEnqueueChunk($handle, $isLib, $src, &$deps, $in_footer, $media)
     {
         if (!$isLib) {
-            $handle = $this->enqueue('vendor~' . $handle, 'vendor~' . $src, $deps, \false, 'script', $in_footer, $media);
+            $handle = $this->enqueue('vendor-' . $handle, 'vendor-' . $src, $deps, \false, 'script', $in_footer, $media);
             if ($handle !== \false) {
                 \array_push($deps, $handle);
             }
@@ -245,7 +257,7 @@ trait Assets
         return $this->enqueueStyle($handle, $src, $deps, $media, \true);
     }
     /**
-     * Checks if a `vendor~` file is created for a given script in a composer package and enqueue it.
+     * Checks if a `vendor-` file is created for a given script in a composer package and enqueue it.
      *
      * @param string $handle
      * @param string $src
@@ -257,7 +269,7 @@ trait Assets
     {
         $rootSlug = $this->getPluginConstant(\MatthiasWeb\RealMediaLibrary\Vendor\MatthiasWeb\Utils\PluginReceiver::$PLUGIN_CONST_ROOT_SLUG);
         $scriptSuffix = $src === 'index.js' || $src === 'index.css' ? '' : '-' . \pathinfo($src, \PATHINFO_FILENAME);
-        $handle = $this->enqueueComposer($handle, 'vendor~' . $src, $deps, 'script', $in_footer, $media, 'vendor~' . $rootSlug . '-' . $handle . $scriptSuffix);
+        $handle = $this->enqueueComposer($handle, 'vendor-' . $src, $deps, 'script', $in_footer, $media, 'vendor-' . $rootSlug . '-' . $handle . $scriptSuffix);
         if ($handle !== \false) {
             \array_push($deps, $handle);
         }
@@ -299,7 +311,7 @@ trait Assets
             if ($type === 'script') {
                 $this->probablyEnqueueComposerChunk($handle, $src, $deps, $in_footer, $media);
                 wp_enqueue_script($useHandle, $url, $deps, $cachebuster, $in_footer);
-                $this->setLazyScriptTranslations($useHandle, $useHandle, path_join($pluginPath, $packageDir . 'languages/frontend/json'));
+                $this->setLazyScriptTranslations($useHandle, $rootSlug . '-' . $handle, path_join($pluginPath, $packageDir . 'languages/frontend/json'));
             } else {
                 wp_enqueue_style($useHandle, $url, $deps, $cachebuster, $media);
             }

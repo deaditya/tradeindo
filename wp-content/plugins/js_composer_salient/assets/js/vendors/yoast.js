@@ -42,20 +42,25 @@
 			var imgs = [];
 			var rawData = YoastSEO.app.rawData.text;
 
-			var imageResult = rawData.match(/image_with_animation image_url=\"(\d+)\"/g).forEach(function(attribute, i) {
-				
-				 var attrID = attribute.match(/"([^']+)"/)[1];
-				 
-					if( typeof attrID !== 'undefined') {
-						imgs[i] = {
-							image: attrID,
-							paramName: 'image_url',
-							param: attrID
-						}
-					}
-					
-			});
+			var imageResult = rawData.match(/image_with_animation image_url=\"(\d+)\"/g);
 			
+			// If matches are found.
+			if( imageResult !== null ) {
+				
+				imageResult.forEach(function(attribute, i) {
+					
+					 var attrID = attribute.match(/"([^']+)"/)[1];
+					 
+						if( typeof attrID !== 'undefined') {
+							imgs[i] = {
+								image: attrID,
+								paramName: 'image_url',
+								param: attrID
+							}
+						}
+						
+				});
+			}
 			
 			// Loop through IDs and load attachment data.
 			for(var i=0; i<imgs.length;i++) {

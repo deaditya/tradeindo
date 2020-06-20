@@ -32,7 +32,7 @@ class Service
     public function rest_api_init()
     {
         $namespace = \MatthiasWeb\RealMediaLibrary\Vendor\MatthiasWeb\Utils\Service::getNamespace($this);
-        register_rest_route($namespace, '/feedback/(?P<slug>[a-zA-Z0-9_-]+)', ['methods' => 'POST', 'callback' => [$this, 'routeFeedbackCreate'], 'args' => ['reason' => ['type' => 'string', 'required' => \true], 'note' => ['type' => 'string', 'required' => \true]]]);
+        register_rest_route($namespace, '/feedback/(?P<slug>[a-zA-Z0-9_-]+)', ['methods' => 'POST', 'callback' => [$this, 'routeFeedbackCreate'], 'args' => ['reason' => ['type' => 'string', 'required' => \true], 'note' => ['type' => 'string', 'required' => \true], 'email' => ['type' => 'string']]]);
         register_rest_route($namespace, '/cross/(?P<slug>[a-zA-Z0-9_-]+)/(?P<action>[a-zA-Z0-9_-]+)/dismiss', ['methods' => 'DELETE', 'callback' => [$this, 'routeCrossDismiss'], 'args' => ['force' => ['type' => 'boolean', 'default' => \false]]]);
         register_rest_route($namespace, '/rating/(?P<slug>[a-zA-Z0-9_-]+)/dismiss', ['methods' => 'DELETE', 'callback' => [$this, 'routeRatingDismiss'], 'args' => ['force' => ['type' => 'boolean', 'default' => \false]]]);
         register_rest_route($namespace, '/newsletter/subscribe', ['methods' => 'POST', 'callback' => [$this, 'routeNewsletterSubscribe'], 'args' => ['slug' => ['type' => 'string', 'required' => \true], 'email' => ['type' => 'string', 'validate_callback' => 'is_email', 'required' => \true], 'privacy' => ['type' => 'boolean', 'required' => \true]]]);
@@ -46,6 +46,7 @@ class Service
      * @apiParam {string} slug
      * @apiParam {string} reason
      * @apiParam {string} note
+     * @apiParam {string} [email]
      * @apiName FeedbackCreate
      * @apiPermission install_plugins
      * @apiGroup Service
@@ -59,11 +60,38 @@ class Service
         $slug = $request->get_param('slug');
         $reason = $request->get_param('reason');
         $note = $request->get_param('note');
+        $email = $request->get_param('email');
         // Get API url
         $apiHost = \defined('DEVOWL_WP_DEV') && \constant('DEVOWL_WP_DEV') ? 'http://localhost/' : 'https://devowl.io/';
         wp_remote_post($apiHost . 'wp-json/devowl-site/v1/feedback/' . $slug, ['method' => 'POST', 'body' => ['reason' => $reason, 'note' => $note]]);
+        // We do not need to check privacy because this is done client-side
+        if (!empty($email)) {
+            $this->sendDeactivationFeedbackEmail($apiHost, $slug, $email, $reason, $note);
+        }
         // Currently, ignore errors
         return new \WP_REST_Response(['result' => [$slug, $reason, $note]]);
+    }
+    /**
+     * Send a deactivation feedback via email. Internally it uses the support form API.
+     * There are no validations done for e. g. passed email.
+     *
+     * @param string $apiHost
+     * @param string $slug
+     * @param string $email
+     * @param string $reason
+     * @param string $note
+     */
+    protected function sendDeactivationFeedbackEmail($apiHost, $slug, $email, $reason, $note)
+    {
+        $initiator = \MatthiasWeb\RealMediaLibrary\Vendor\DevOwl\RealUtils\Core::getInstance()->getInitiator($slug);
+        if ($initiator === null) {
+            return new \WP_Error('rest_invalid_param', __('No such plugin slug available.', REAL_UTILS_TD), ['status' => 400]);
+        }
+        $pluginName = $initiator->getPluginBase()->getCore()->getPluginData('Name');
+        wp_remote_post($apiHost . 'wp-json/devowl-site/v1/support', ['method' => 'POST', 'body' => ['name' => $email, 'email' => $email, 'type' => 'deactivateFeedback', 'body' => 'WordPress Plugin: ' . $pluginName . '
+Feedback: ' . $reason . '
+
+' . $note, 'siteHealth' => 'none', 'privacy' => \true]]);
     }
     /**
      * See API docs.

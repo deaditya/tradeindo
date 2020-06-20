@@ -195,12 +195,13 @@ class Structure implements \MatthiasWeb\RealMediaLibrary\api\IStructure
             }
         }
         /**
-         * Here you can modify the fresh-created instance of an IFolder object.
+         * Here you can modify the fresh-created instances of an IFolder object. This allows you,
+         * e. g. hide folders on frontend with `setVisible`.
          *
          * @param {IFolder[]} $parsed
-         * @hook RML/Creatable/Construct
+         * @hook RML/Tree/Parsed
          * @return IFolder[]
-         * @since 4.5.2
+         * @since 4.8.1
          */
         $this->parsed = apply_filters('RML/Tree/Parsed', $this->parsed);
         // Create the tree

@@ -52,6 +52,7 @@ trait Core
         // Localize the plugin and package itself
         $this->getPluginClassInstance(\MatthiasWeb\RealMediaLibrary\Vendor\MatthiasWeb\Utils\PluginReceiver::$PLUGIN_CLASS_LOCALIZATION)->hooks();
         \MatthiasWeb\RealMediaLibrary\Vendor\MatthiasWeb\Utils\PackageLocalization::instance($this->getPluginConstant(\MatthiasWeb\RealMediaLibrary\Vendor\MatthiasWeb\Utils\PluginReceiver::$PLUGIN_CONST_ROOT_SLUG), \dirname(__DIR__))->hooks();
+        register_activation_hook($pluginFile, [$this->getActivator(), 'install']);
         register_activation_hook($pluginFile, [$this->getActivator(), 'activate']);
         register_deactivation_hook($pluginFile, [$this->getActivator(), 'deactivate']);
     }

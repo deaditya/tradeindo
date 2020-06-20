@@ -42,7 +42,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-### matthiasweb/wordpress-plugin-updater (Version dev-master | 20f1b2b)
+### matthiasweb/wordpress-plugin-updater (Version dev-master | c801fd8)
 A library for WordPress plugins, to utilize license verification and auto-updating using WordPress License Server.
 Homepage: Not configured.
 Licenses Used: MIT

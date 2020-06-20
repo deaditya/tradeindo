@@ -30,6 +30,12 @@ function vc_set_default_content_for_post_type( $post_content, $post ) {
 	if ( ! empty( $post_content ) || ! vc_backend_editor()->isValidPostType( $post->post_type ) ) {
 		return $post_content;
 	}
+	/* nectar addition */
+	if( 'portfolio' === $post->post_type ) {
+		add_filter( 'wpb_vc_js_status_filter', 'vc_set_default_content_for_post_type_wpb_vc_js_status_filter' );
+		return $post_content;
+	}
+	/* nectar addition end */
 	$template_settings = new Vc_Setting_Post_Type_Default_Template_Field( 'general', 'default_template_post_type' );
 	$new_post_content = $template_settings->getTemplateByPostType( $post->post_type );
 	if ( null !== $new_post_content ) {

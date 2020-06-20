@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-04-27T15:17:51+00:00\n"
+"POT-Creation-Date: n/a\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 
@@ -24,60 +24,88 @@ msgstr ""
 msgid "Never show this popup again"
 msgstr ""
 
-#: feedback.js:1242
+#: feedback.js:1251
 msgid "Contact support"
 msgstr ""
 
-#: feedback.js:1245
+#: feedback.js:1254
 msgid "Skip & Deactivate"
 msgstr ""
 
-#: feedback.js:1248
+#: feedback.js:1257
 msgid "Deactivate"
 msgstr ""
 
-#: feedback.js:1278
+#: feedback.js:1351
 msgid "Sorry to see you go"
 msgstr ""
 
-#: feedback.js:1280
+#: feedback.js:1355
 msgid "Please give us feedback why you deactivate <strong>%s</strong>."
 msgstr ""
 
-#: feedback.js:1283
+#: feedback.js:1358
 msgid "Upgrade to PRO Version"
 msgstr ""
 
-#: feedback.js:1284
+#: feedback.js:1359
 msgid "Plugin did not work"
 msgstr ""
 
-#: feedback.js:1285
+#: feedback.js:1360
 msgid "Not the features I want"
 msgstr ""
 
-#: feedback.js:1286
+#: feedback.js:1361
 msgid "Incompatible with other themes or plugins"
 msgstr ""
 
-#: feedback.js:1287
+#: feedback.js:1362
 msgid "Lack of documentation"
 msgstr ""
 
-#: feedback.js:1288
+#: feedback.js:1363
 msgid "Found a better plugin"
 msgstr ""
 
-#: feedback.js:1289
+#: feedback.js:1364
 msgid "Temporary deactivation"
 msgstr ""
 
-#: feedback.js:1290
+#: feedback.js:1365
+msgid "I do not want to give feedback"
+msgstr ""
+
+#: feedback.js:1366
 msgid "Other"
 msgstr ""
 
-#: feedback.js:1296
+#: feedback.js:1372
 msgid "What could we do better?"
+msgstr ""
+
+#: feedback.js:1372
+msgid "Please enter a text here or check the box below."
+msgstr ""
+
+#: feedback.js:1372
+msgid "I don't want to add a comment and hence not help to make %s better."
+msgstr ""
+
+#: feedback.js:1372
+msgid "Email for answer/solution (optional)?"
+msgstr ""
+
+#: feedback.js:1372
+msgid "Please provide a valid email."
+msgstr ""
+
+#: feedback.js:1372
+msgid "I would like to receive an answer for my issue. For this purpose I agree to the data processing of my feedback and my email address. I have read the devowl.io <a href=\"https://devowl.io/privacy-policy/\" target=\"_blank\">privacy policy</a> and agree to it."
+msgstr ""
+
+#: feedback.js:1372
+msgid "If you would like to be contacted by us, please accept the privacy policy or leave the email field empty."
 msgstr ""
 
 #: helper.js:254

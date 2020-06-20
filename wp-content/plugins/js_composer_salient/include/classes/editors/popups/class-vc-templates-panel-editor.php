@@ -139,18 +139,20 @@ class Vc_Templates_Panel_Editor {
 					$category['output'] .= '<p class="vc_description">' . esc_html( $category['category_description'] ) . '</p>';
 				}
 				$category['output'] .= '</div>';
-				$category['output'] .= '
-				<div class="vc_column vc_col-sm-12">
-					<div class="vc_ui-template-list vc_templates-list-default_templates vc_ui-list-bar" data-vc-action="collapseAll">';
+				
+				// nectar addition
+				$salient_studio_templates = array();
 				if ( ! empty( $category['templates'] ) ) {
 					foreach ( $category['templates'] as $template ) {
-						$category['output'] .= $this->renderTemplateListItem( $template );
+						$salient_studio_templates[] = $this->renderTemplateListItem( $template );
 					}
 				}
+				
 				$category['output'] .= '
-				</div>
+				<div class="vc_column vc_col-sm-12">
+					<div class="vc_ui-template-list vc_templates-list-default_templates vc_ui-list-bar salient-studio-template-json" data-vc-action="collapseAll"><div class="json-templates">'.json_encode($salient_studio_templates).'</div></div>
 			</div>';
-
+       // nectar addition end
 			}
 		}
 
@@ -212,30 +214,21 @@ class Vc_Templates_Panel_Editor {
 	 * @since 4.4
 	 *
 	 */
-	public function renderTemplateWindowDefaultTemplates( $template_name, $template_data ) {
-		ob_start();
-		$template_id = esc_attr( $template_data['unique_id'] );
-		$template_id_hash = md5( $template_id ); // needed for jquery target for TTA
-		$template_name = esc_html( $template_name );
-		$preview_template_title = esc_attr__( 'Preview template', 'js_composer' );
-		$add_template_title = esc_attr__( 'Add template', 'js_composer' );
-
-		echo sprintf( '<button type="button" class="vc_ui-list-bar-item-trigger" title="%s"
-			data-template-handler=""
-			data-vc-ui-element="template-title">%s</button>
-		<div class="vc_ui-list-bar-item-actions">
-			<button type="button" class="vc_general vc_ui-control-button" title="%s"
-					data-template-handler="">
-				<i class="vc-composer-icon vc-c-icon-add"></i>
-			</button>
-			<button type="button" class="vc_general vc_ui-control-button" title="%s"
-				data-vc-container=".vc_ui-list-bar" data-vc-preview-handler data-vc-target="[data-template_id_hash=%s]">
-				<i class="vc-composer-icon vc-c-icon-arrow_drop_down"></i>
-			</button>
-		</div>', esc_attr( $add_template_title ), esc_html( $template_name ), esc_attr( $add_template_title ), esc_attr( $preview_template_title ), esc_attr( $template_id_hash ) );
-
-		return ob_get_clean();
-	}
+	 public function renderTemplateWindowDefaultTemplates( $template_name, $template_data ) {
+ 		ob_start();
+ 		$template_id = esc_attr( $template_data['unique_id'] );
+ 		$template_id_hash = md5( $template_id ); // needed for jquery target for TTA
+ 		$template_name = esc_html( $template_name );
+ 		$preview_template_title = esc_attr__( 'Preview template', 'js_composer' );
+ 		$add_template_title = esc_attr__( 'Add template', 'js_composer' );
+		
+		/* nectar addition */
+ 		echo sprintf( '<button type="button" class="vc_ui-list-bar-item-trigger" title="%s"
+ 			data-template-handler=""
+ 			data-vc-ui-element="template-title">%s</button>', esc_attr( $add_template_title ), esc_html( $template_name ) );
+		/* nectar addition end */
+ 		return ob_get_clean();
+ 	}
 
 	/**
 	 * @since 4.4
@@ -849,54 +842,62 @@ class Vc_Templates_Panel_Editor {
 	 * @param $template
 	 * @return string
 	 */
-	public function renderTemplateListItem( $template ) {
-		$name = isset( $template['name'] ) ? esc_html( $template['name'] ) : esc_html__( 'No title', 'js_composer' );
-		$template_id = esc_attr( $template['unique_id'] );
-		$template_id_hash = md5( $template_id ); // needed for jquery target for TTA
-		$template_name = esc_html( $name );
-		$template_name_lower = esc_attr( vc_slugify( $template_name ) );
-		$template_type = esc_attr( isset( $template['type'] ) ? $template['type'] : 'custom' );
-		$custom_class = esc_attr( isset( $template['custom_class'] ) ? $template['custom_class'] : '' );
-		
-		/*nectar addition - adding in preview img*/
-		$preview_img = esc_attr( isset( $template['image'] ) &&  $template['image'] != '' ? $template['image'] : get_template_directory_uri() .'/nectar/nectar-vc-addons/img/templates/no-img.jpg'  );
-		$cat_display_name = esc_attr( isset( $template['cat_display_name'] ) ? $template['cat_display_name'] : '' );
+	 public function renderTemplateListItem( $template ) {
+ 		$name = isset( $template['name'] ) ? esc_html( $template['name'] ) : esc_html__( 'No title', 'js_composer' );
+ 		$template_id = esc_attr( $template['unique_id'] );
+ 		$template_id_hash = md5( $template_id ); // needed for jquery target for TTA
+ 		$template_name = esc_html( $name );
+ 		$template_name_lower = esc_attr( vc_slugify( $template_name ) );
+ 		$template_type = esc_attr( isset( $template['type'] ) ? $template['type'] : 'custom' );
+ 		$custom_class = esc_attr( isset( $template['custom_class'] ) ? $template['custom_class'] : '' );
+ 		
+ 		/*nectar addition - adding in preview img*/
+ 		$preview_img = esc_attr( isset( $template['image'] ) &&  $template['image'] != '' ? $template['image'] : get_template_directory_uri() .'/nectar/nectar-vc-addons/img/templates/no-img.jpg'  );
+ 		$cat_display_name = esc_attr( isset( $template['cat_display_name'] ) ? $template['cat_display_name'] : '' );
+ 		
+ 		if( $template_type != 'default_templates' ) {
+ 			
+ 			$output = '<div class="vc_ui-template vc_templates-template-type-'.$template_type.' '. $custom_class.'"
+ 							data-template_id="'.$template_id.'"
+ 							data-template_id_hash="'.$template_id_hash.'"
+ 							data-category="'.$template_type.'"
+ 							data-template_unique_id="'.$template_id.'"
+ 							data-template_name="'.$template_name_lower.'"
+ 							data-template_type="'.$template_type.'"
+ 							data-vc-content=".vc_ui-template-content">
+ 							<div class="vc_ui-list-bar-item">';
 
-		$output = <<<HTML
-					<div class="vc_ui-template vc_templates-template-type-$template_type $custom_class"
-						data-template_id="$template_id"
-						data-template_id_hash="$template_id_hash"
-						data-category="$template_type"
-						data-template_unique_id="$template_id"
-						data-template_name="$template_name_lower"
-						data-template_type="$template_type"
-						data-vc-content=".vc_ui-template-content">
-						<div class="vc_ui-list-bar-item">
-HTML;
-	
-	if(!empty($preview_img) && $template_type == 'default_templates') { 
-		//lazy load images out of view
-		if($this->template_count > 6) {
-			$output .= '<div class="img-wrap"><img data-src="'.$preview_img.'" alt="'.$name.'" width="300" height="200" /></div><div class="display_cat">'.$cat_display_name .'</div>';
-		} else {
-			$output .= '<div class="img-wrap"><img src="'.$preview_img.'" alt="'.$name.'" width="300" height="200" /></div><div class="display_cat">'.$cat_display_name .'</div>';
-		}
-		
-	}
-		$output .= apply_filters( 'vc_templates_render_template', $name, $template );
-		$output .= <<<HTML
-						</div>
-						<div class="vc_ui-template-content" data-js-content>
-						</div>
-					</div>
-HTML;
+ 			$output .= apply_filters( 'vc_templates_render_template', $name, $template );
+ 			$output .= '</div>';
+ 			$output .= '<div class="vc_ui-template-content" data-js-content></div>';
+ 		  $output .= '</div>';
+ 		
+ 		} 
+ 		// Salient Studio
+ 		else {
+ 			
+ 			$output = array(
+ 				'template_type' => $template_type,
+ 				'custom_class' => $custom_class,
+ 				'template_id' => $template_id,
+ 				'template_id_hash' => $template_id_hash,
+ 				'template_name_lower' => $template_name_lower,
+ 				'template_name' => $name,
+ 				'template_category_name' => $cat_display_name,
+ 				'img' => $preview_img,
+ 			);
+ 			
+ 			
+ 		}
+ 		// nectar addition end
+ 		
 
-	$this->template_count++;
+ 	$this->template_count++;
 
-	/*nectar addition end*/
+ 	/*nectar addition end*/
 
-		return $output;
-	}
+ 		return $output;
+ 	}
 
 	/**
 	 * @return string

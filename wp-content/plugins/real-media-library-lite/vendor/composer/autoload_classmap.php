@@ -21,6 +21,7 @@ return array(
     'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\AbstractInitiator' => $vendorDir . '/devowl-wp/real-utils/src/AbstractInitiator.php',
     'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Assets' => $vendorDir . '/devowl-wp/real-utils/src/Assets.php',
     'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Core' => $vendorDir . '/devowl-wp/real-utils/src/Core.php',
+    'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Localization' => $vendorDir . '/devowl-wp/real-utils/src/Localization.php',
     'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\RatingHandler' => $vendorDir . '/devowl-wp/real-utils/src/RatingHandler.php',
     'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\Service' => $vendorDir . '/devowl-wp/real-utils/src/Service.php',
     'MatthiasWeb\\RealMediaLibrary\\Vendor\\DevOwl\\RealUtils\\TransientHandler' => $vendorDir . '/devowl-wp/real-utils/src/TransientHandler.php',

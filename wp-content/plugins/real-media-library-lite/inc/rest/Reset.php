@@ -35,6 +35,7 @@ class Reset
         if ($this->isPro()) {
             register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/import', ['methods' => 'POST', 'callback' => [$this, 'import']]);
             register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/import/taxonomy', ['methods' => 'POST', 'callback' => [$this, 'importTaxonomy']]);
+            register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/import/mlf', ['methods' => 'POST', 'callback' => [$this, 'importMlf']]);
         }
         register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/reset/debug', ['methods' => 'DELETE', 'callback' => [$this, 'resetDebug']]);
         register_rest_route(\MatthiasWeb\RealMediaLibrary\rest\Service::LEGACY_NAMESPACE, '/notice/license', ['methods' => 'DELETE', 'callback' => [$this, 'routeNoticeDismissLicense']]);
@@ -220,7 +221,7 @@ class Reset
      * @return WP_REST_Response|WP_Error
      *
      * @api {post} /realmedialibrary/v1/import/taxonomy Import a taxonomy to RML folders with relations to files
-     * @apiParam {string} import The JSON import string
+     * @apiParam {string} taxonomy The taxonomy name
      * @apiName ImportTaxonomy
      * @apiGroup Reset
      * @apiVersion 1.0.0
@@ -234,6 +235,27 @@ class Reset
         }
         $taxonomy = $request->get_param('taxonomy');
         \MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->importTaxonomy($taxonomy);
+        return new \WP_REST_Response(\true);
+    }
+    /**
+     * See API docs.
+     *
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response|WP_Error
+     * @since 4.8.0
+     * @api {post} /realmedialibrary/v1/import/mlf Import "Media Library Folders" to RML folders with relations to files
+     * @apiName ImportMlf
+     * @apiGroup Reset
+     * @apiVersion 1.0.0
+     * @apiPermission manage_options
+     * @apiPermission Pro only
+     */
+    public function importMlf($request)
+    {
+        if (($permit = \MatthiasWeb\RealMediaLibrary\rest\Service::permit('manage_options')) !== null) {
+            return $permit;
+        }
+        \MatthiasWeb\RealMediaLibrary\comp\ExImport::getInstance()->importMlf();
         return new \WP_REST_Response(\true);
     }
     /**

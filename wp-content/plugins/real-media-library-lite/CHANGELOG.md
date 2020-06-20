@@ -3,6 +3,126 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.8.6 (2020-06-17)
+
+
+### chore
+
+* update plugin updater newsletter text (#6gfghm)
+
+
+### docs
+
+* add YOOtheme to compatible themes
+
+
+### fix
+
+* compatibility with YOOTheme page builder (#5yjvm3)
+
+
+
+
+
+## 4.8.5 (2020-06-12)
+
+
+### chore
+
+* i18n update (#5ut991)
+
+
+
+
+
+## 4.8.4 (2020-05-27)
+
+
+### build
+
+* improve plugin build with webpack parallel builds
+
+
+### ci
+
+* use hot cache and node-gitlab-ci (#54r34g)
+
+
+### docs
+
+* redirect user documentation to new knowledgebase (#5etfa6)
+
+
+
+
+
+## 4.8.3 (2020-05-20)
+
+
+### fix
+
+* do not enqueue scripts and styles in customize preview
+
+
+
+
+
+## 4.8.2 (2020-05-14)
+
+
+### docs
+
+* broken link to WP/LR Sync in wordpress.org description
+
+
+
+
+
+## 4.8.1 (2020-05-14)
+
+
+### chore
+
+* add developer filter RML/Tree/Parsed
+
+
+### docs
+
+* add new compatibilities of Real Media Library to 3th-party plugins
+
+
+
+
+
+# 4.8.0 (2020-05-12)
+
+
+### build
+
+* cleanup temporary i18n files correctly
+
+
+### feat
+
+* allow to import from Media Library Folders plugin (#50rduv)
+* last queried folder as default folder (#5pe7y)
+* show all other folders for shortcuts (#2jh476)
+
+
+### fix
+
+* avoid flickering at page load (#42ggat)
+* classic editor does not load shortcode editor (#52kybh)
+* correctly enqueue dependencies (#52jf92)
+* import folders from correct level in Media Library Folders (#50rduv)
+* import taxonomy with special characters (#50rdtv)
+* shortcut info list has duplicates in some cases
+* typo (#5pe7y)
+
+
+
+
+
 ## 4.7.10 (2020-04-27)
 
 

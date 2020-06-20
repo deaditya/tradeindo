@@ -331,7 +331,6 @@ function vc_field_attached_images( $images = array() ) {
 
 
 
-
 /* nectar addition */ 
 if( !function_exists('fjarrett_get_attachment_id_by_url') ) {
 	function fjarrett_get_attachment_id_by_url( $url ) {
@@ -357,6 +356,9 @@ if( !function_exists('fjarrett_get_attachment_id_by_url') ) {
 	}
 }
 /* nectar addition end */ 
+
+
+
 
 
 /**
@@ -599,7 +601,6 @@ function js_composer_body_class( $classes ) {
 	
  }
  /* nectar addition end */ 
-
 
 /**
  * @param $m
@@ -844,6 +845,7 @@ function vc_colorCreator( $colour, $per = 10 ) {
 }
 
 
+
 /* nectar addition */ 
 if( !function_exists('hex2rgba') ) {
 	
@@ -888,8 +890,6 @@ if( !function_exists('hex2rgba') ) {
 }
 
 /* nectar addition end */ 
-
-
 
 /**
  * HEX to RGB converter
@@ -1157,12 +1157,10 @@ function vc_camel_case( $value ) {
  *
  * @todo move to separate folder
  */
- 
- /* nectar addition vc_font_awesome_5 changed to font-awesome */
 function vc_icon_element_fonts_enqueue( $font ) {
 	switch ( $font ) {
 		case 'fontawesome':
-			wp_enqueue_style( 'font-awesome' );
+			wp_enqueue_style( 'font-awesome' ); // nectar addition
 			break;
 		case 'openiconic':
 			wp_enqueue_style( 'vc_openiconic' );
@@ -1405,6 +1403,7 @@ function vc_is_responsive_disabled() {
 	//nectar addition
 	$disable_responsive = '0';
   //nectar addition end
+
 	return '1' === $disable_responsive;
 }
 
@@ -1419,7 +1418,18 @@ function vc_is_responsive_disabled() {
  * @throws \Exception
  */
 function vc_do_shortcode( $atts, $content = null, $tag = null ) {
-	return Vc_Shortcodes_Manager::getInstance()->getElementClass( $tag )->output( $atts, $content );
+	ob_start();
+	echo Vc_Shortcodes_Manager::getInstance()->getElementClass( $tag )->output( $atts, $content );
+	$content = ob_get_clean();
+	// @codingStandardsIgnoreStart
+	global $wp_embed;
+	if ( is_object( $wp_embed ) ) {
+		$content = $wp_embed->run_shortcode( $content );
+		$content = $wp_embed->autoembed( $content );
+		// @codingStandardsIgnoreEnd
+	}
+
+	return $content;
 }
 
 /**

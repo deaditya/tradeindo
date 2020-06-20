@@ -164,7 +164,6 @@ class Vc_Frontend_Editor {
 		if ( 'vc_load_shortcode' === vc_request_param( 'action' ) ) {
 			return;
 		}
-		! defined( 'CONCATENATE_SCRIPTS' ) && define( 'CONCATENATE_SCRIPTS', false );
 		visual_composer()->shared_templates->init();
 		add_filter( 'the_title', array(
 			$this,
@@ -643,7 +642,6 @@ class Vc_Frontend_Editor {
 			$action = vc_post_param( 'action' );
 			if ( 'vc_load_shortcode' === $action ) {
 				$output = '';
-				! defined( 'CONCATENATE_SCRIPTS' ) && define( 'CONCATENATE_SCRIPTS', false );
 				ob_start();
 				$this->setPost();
 				$shortcodes = (array) vc_post_param( 'shortcodes' );
@@ -826,7 +824,6 @@ class Vc_Frontend_Editor {
 		//wp_register_style( 'vc_font_awesome_5_shims', vc_asset_url( 'lib/bower/font-awesome/css/v4-shims.min.css' ), array(), WPB_VC_VERSION );
 		//wp_register_style( 'vc_font_awesome_5', vc_asset_url( 'lib/bower/font-awesome/css/all.min.css' ), array( 'vc_font_awesome_5_shims' ), WPB_VC_VERSION );
 		/* nectar addition end */
-		
 		wp_register_style( 'vc_inline_css', vc_asset_url( 'css/js_composer_frontend_editor.min.css' ), array(), WPB_VC_VERSION );
 
 	}
@@ -844,7 +841,6 @@ class Vc_Frontend_Editor {
 			// 'wpb_jscomposer_autosuggest',
 			'vc_inline_css',
 		);
-		/* nectar addition end */
 
 		// This workaround will allow to disable any of dependency on-the-fly
 		foreach ( $wp_dependencies as $dependency ) {

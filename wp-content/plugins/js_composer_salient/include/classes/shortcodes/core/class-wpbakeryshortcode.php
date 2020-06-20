@@ -442,7 +442,7 @@ abstract class WPBakeryShortCode extends WPBakeryVisualComposerAbstract {
 		$output = '';
 		if ( '' !== $css_animation && 'none' !== $css_animation ) {
 			/* nectar addition */ 
-			//wp_enqueue_script( 'waypoints' );
+			//wp_enqueue_script( 'vc_waypoints' );
 			/* nectar addition end*/ 
 			wp_enqueue_style( 'vc_animate-css' );
 			$output = ' wpb_animate_when_almost_visible wpb_' . $css_animation . ' ' . $css_animation;

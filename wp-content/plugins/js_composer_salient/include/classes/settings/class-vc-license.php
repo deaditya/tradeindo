@@ -339,20 +339,22 @@ class Vc_License {
 	 *
 	 * Don't show notice on dev environment
 	 */
-	 public function setupReminder() {
-		 if ( self::isDevEnvironment() ) {
-			 return;
-		 }
+	public function setupReminder() {
+		if ( self::isDevEnvironment() ) {
+			return;
+		}
 
-		 if ( ! $this->isActivated() && ( empty( $_COOKIE['vchideactivationmsg_vc11'] ) || version_compare( $_COOKIE['vchideactivationmsg_vc11'], WPB_VC_VERSION, '<' ) ) && ! ( vc_is_network_plugin() && is_network_admin() ) ) {
-			 /*nectar addition*/
-			 /*add_action( 'admin_notices', array(
-				 $this,
-				 'adminNoticeLicenseActivation',
-			 ) );*/
-			 /*nectar addition end*/
-		 }
-	 }
+		$version1 = isset( $_COOKIE['vchideactivationmsg_vc11'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['vchideactivationmsg_vc11'] ) ) : '';
+
+		if ( ! $this->isActivated() && ( empty( $version1 ) || version_compare( $version1, WPB_VC_VERSION, '<' ) ) && ! ( vc_is_network_plugin() && is_network_admin() ) ) {
+			/*nectar addition*/
+			/*add_action( 'admin_notices', array(
+				$this,
+				'adminNoticeLicenseActivation',
+			) );*/
+			/*nectar addition end*/
+		}
+	}
 
 	/**
 	 * Check if current enviroment is dev
