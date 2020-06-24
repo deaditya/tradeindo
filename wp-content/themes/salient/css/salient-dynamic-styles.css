@@ -2756,7 +2756,7 @@ body .dark .testimonial_slider[data-style="multiple_visible"][data-color*="accen
 			
 		
 	
-	.swiper-slide .content h2 { font-family: Rubik; text-transform: uppercase; letter-spacing: 0px; font-size:70px; line-height:70px; font-weight:700;  }
+	.swiper-slide .content h2 { font-family: Calibri; text-transform: uppercase; letter-spacing: -px; font-size:70px; line-height:70px; font-weight:700;  }
 			@media only screen and (min-width: 1000px) and (max-width: 1300px) {
 				body .nectar-slider-wrap[data-full-width="true"] .swiper-slide .content h2, 
 				body .nectar-slider-wrap[data-full-width="boxed-full-width"] .swiper-slide .content h2, 
