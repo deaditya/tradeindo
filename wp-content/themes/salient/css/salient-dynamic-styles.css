@@ -1844,17 +1844,17 @@ body .dark .testimonial_slider[data-style="multiple_visible"][data-color*="accen
 				
 				#header-outer.small-nav #logo img, 
 				#header-outer.small-nav .logo-spacing img { 
-						height: 24px; 
+						height: 22px; 
 				}
 
 			  .material #header-outer:not(.transparent) .bg-color-stripe { 
-					top: 86px; 
-					height: calc(35vh - 86px); 
+					top: 84px; 
+					height: calc(35vh - 84px); 
 				}
 					
 			  .material #header-outer:not(.transparent).small-nav .bg-color-stripe { 
-					top: 55.111111111111px; 
-					height: calc(35vh - 55.111111111111px); 
+					top: 53.111111111111px; 
+					height: calc(35vh - 53.111111111111px); 
 				}
 		  }
 			
@@ -1868,7 +1868,7 @@ body .dark .testimonial_slider[data-style="multiple_visible"][data-color*="accen
 
 		  #header-outer #logo img, 
 			#header-outer .logo-spacing img { 
-				height: 30px; 
+				height: 28px; 
 			}
 		 #header-outer[data-lhe="animated_underline"] #top nav > ul > li > a,
 		 #top nav > ul > li[class*="button_solid_color"] > a, 
@@ -1879,28 +1879,26 @@ body .dark .testimonial_slider[data-style="multiple_visible"][data-color*="accen
 		 body #header-outer[data-lhe="default"] #top nav .sf-menu > li[class*="button_bordered"] > a:hover,
 		 body #header-outer.transparent #top nav > ul > li[class*="button_solid_color"] > a, 
 		 #header-outer[data-lhe="animated_underline"] #top nav > ul > li[class*="button_solid_color"] > a { 
-			 margin-left: 20px; 
-			 margin-right: 20px; 
-		 }
-		 
-		 #header-outer[data-lhe="default"] #top nav > ul > li > a { 
-			 padding-left: 20px; 
-			 padding-right: 20px; 
-		 }
-		 
-		 #header-outer[data-lhe="animated_underline"][data-condense="true"][data-format="centered-menu-bottom-bar"].fixed-menu #top nav > ul > li > a { 
 			 margin-left: 15px; 
 			 margin-right: 15px; 
 		 }
 		 
-		 #header-outer[data-lhe="default"][data-condense="true"][data-format="centered-menu-bottom-bar"].fixed-menu #top nav > ul > li > a { 
+		 #header-outer[data-lhe="default"] #top nav > ul > li > a { 
 			 padding-left: 15px; 
 			 padding-right: 15px; 
 		 }
-		 body.material[data-header-format="default"] #header-outer[data-has-buttons="yes"]:not([data-format="left-header"]) #top nav >.buttons { 
-				 margin-left: 40px; 
-			 }#header-space { 
-		 height: 86px;
+		 
+		 #header-outer[data-lhe="animated_underline"][data-condense="true"][data-format="centered-menu-bottom-bar"].fixed-menu #top nav > ul > li > a { 
+			 margin-left: 11px; 
+			 margin-right: 11px; 
+		 }
+		 
+		 #header-outer[data-lhe="default"][data-condense="true"][data-format="centered-menu-bottom-bar"].fixed-menu #top nav > ul > li > a { 
+			 padding-left: 11px; 
+			 padding-right: 11px; 
+		 }
+		 #header-space { 
+		 height: 84px;
 	 }
 	 @media only screen and (max-width: 999px) {
 		 #header-space { 
@@ -2412,7 +2410,7 @@ body .dark .testimonial_slider[data-style="multiple_visible"][data-color*="accen
 	 
  #top nav > ul > li > a, .span_3 .pull-left-wrap > ul > li > a, body.material #search-outer #search input[type="text"], #top nav ul .slide-out-widget-area-toggle a i.label,
     #top .span_9 > .slide-out-widget-area-toggle a.using-label .label, #header-secondary-outer .nectar-center-text, #slide-out-widget-area .secondary-header-text, 
-    #header-outer #mobile-menu ul li a, #header-outer #mobile-menu .secondary-header-text {font-family: Calibri; font-size:15px; line-height:15px;  }#top nav > ul > li[class*="button_solid_color"] > a:before, #header-outer.transparent #top nav > ul > li[class*="button_solid_color"] > a:before, #header-outer #top .slide-out-widget-area-toggle[data-custom-color="true"] a:before { 
+    #header-outer #mobile-menu ul li a, #header-outer #mobile-menu .secondary-header-text {font-family: Calibri; font-size:15px; line-height:16px;  }#top nav > ul > li[class*="button_solid_color"] > a:before, #header-outer.transparent #top nav > ul > li[class*="button_solid_color"] > a:before, #header-outer #top .slide-out-widget-area-toggle[data-custom-color="true"] a:before { 
 		    		height: 26px; 
 		    	}#top nav > ul > li[class*="button_bordered"] > a:before, #header-outer.transparent #top nav > ul > li[class*="button_bordered"] > a:before { 
 		    		height: 36px; 
